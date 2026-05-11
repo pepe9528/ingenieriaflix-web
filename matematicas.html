@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <title>Cursos de Matemáticas - IngenieríaFlix</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+  <header class="navbar">
+    <a href="index.html" class="back-btn">
+      <i class="fa-solid fa-arrow-left"></i> Regresar
+    </a>
+
+    <div class="logo-area">
+      <img src="img/logo.png" class="logo" alt="Logo IngenieríaFlix">
+      <h1>Ingeniería<span>Flex</span></h1>
+    </div>
+     <div class="menu-btn" onclick="toggleMenu()">☰</div>
+  </header>
+
+  <div class="sidebar" id="sidebar">
+    <div class="close-btn" onclick="toggleMenu()">✕</div>
+    <a href="index.html">Inicio</a>
+    <a href="catalogo.html">Cursos</a>
+    <a href="juegos.html">Juegos</a>
+    <a href="recursos.html">Recursos</a>
+  </div>
+
+
+  <main>
+    <section class="hero">
+      <h2>Cursos de Matemáticas</h2>
+      <p>Explora nuestra selección de cursos diseñados para fortalecer tus habilidades matemáticas.</p>
+    </section>
+<section class="categories">
+  <h3>Lista de cursos</h3>
+  <div class="cards">
+   <a href="./contenido/matematicas/algebra.html" class="card">
+      <div class="icon"><i class="fa-solid fa-square-root-variable"></i></div>
+      <h4>Álgebra</h4>
+      <p>15 cursos</p>
+    </a>
+    <a href="./contenido/matematicas/geometria.html" class="card">
+      <div class="icon"><i class="fa-solid fa-shapes"></i></div>
+      <h4>Geometría</h4>
+      <p>12 cursos</p>
+    </a>
+    <a href="./contenido/matematicas/calculo.html" class="card">
+      <div class="icon"><i class="fa-solid fa-infinity"></i></div>
+      <h4>Cálculo</h4>
+      <p>18 cursos</p>
+    </a>
+    <a href="./contenido/matematicas/ecuaciones_1.html" class="card">
+      <div class="icon"><i class="fas fa-equals"></i></div>
+      <h4>Ecuaciones de Primer Grado</h4>
+      <p>10 cursos</p>
+    </a>
+  </div>
+</section>
+  <section class="cta">
+      <a href="contenido/matematicas/algebra.html"><button class="explore-btn">Comenzar cursos</button></a>
+  </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 IngenieríaFlix. Todos los derechos reservados.</p>
+  </footer>
+
+  <script src="js/app.js"></script>
+</body>
+</html>

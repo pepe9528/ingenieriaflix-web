@@ -1,0 +1,32 @@
+@media(max-width:900px){
+
+.hero{
+    padding:80px 30px;
+}
+
+.hero h2{
+    font-size:55px;
+}
+
+.hero p{
+    width:100%;
+    font-size:24px;
+}
+
+.cards{
+    grid-template-columns:1fr;
+}
+
+.categories{
+    padding:40px 20px;
+}
+
+.logo-area h1{
+    font-size:24px;
+}
+
+.menu-btn{
+    font-size:32px;
+}
+
+}

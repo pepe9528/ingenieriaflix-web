@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Biblioteca PDF - IngenieríaFlex</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+
+  <!-- Header -->
+  <header class="navbar">
+
+    <a href="index.html" class="back-btn">
+      <i class="fa-solid fa-arrow-left"></i>
+      Regresar
+    </a>
+
+    <div class="logo-area">
+      <img src="img/logo.png" class="logo" alt="Logo IngenieríaFlex">
+      <h1>Ingeniería<span>Flex</span></h1>
+    </div>
+
+    <div class="menu-btn" onclick="toggleMenu()">
+      ☰
+    </div>
+
+  </header>
+
+
+  <!-- Sidebar -->
+  <div class="sidebar" id="sidebar">
+
+    <div class="close-btn" onclick="toggleMenu()">
+      ✕
+    </div>
+
+    <a href="index.html">Inicio</a>
+    <a href="catalogo.html">Cursos</a>
+    <a href="juegos.html">Juegos</a>
+    <a href="pdfs.html">PDFs</a>
+    <a href="recursos.html">Recursos</a>
+
+  </div>
+
+
+
+  <!-- Hero -->
+  <section class="hero">
+
+    <div class="badge">
+      BIBLIOTECA PDF
+    </div>
+
+    <h2>
+      Aprende con nuestros materiales premium
+    </h2>
+
+    <p>
+      Matemáticas, programación, ingeniería y mucho más.
+    </p>
+
+  </section>
+
+
+
+  <!-- PDFs -->
+  <section class="categories">
+
+    <div class="catalog-list">
+
+
+      <!-- PDF 1 -->
+      <a href="#" class="catalog-item">
+
+        <div class="left">
+
+          <div class="icon">
+            <i class="fa-solid fa-file-pdf"></i>
+          </div>
+
+          <div class="info">
+
+            <h4>Álgebra desde Cero</h4>
+
+            <p>
+              Aprende variables, ecuaciones y ejercicios paso a paso.
+            </p>
+
+          </div>
+
+        </div>
+
+        <i class="fa-solid fa-lock"></i>
+
+      </a>
+
+
+
+      <!-- PDF 2 -->
+      <a href="#" class="catalog-item">
+
+        <div class="left">
+
+          <div class="icon">
+            <i class="fa-solid fa-file-pdf"></i>
+          </div>
+
+          <div class="info">
+
+            <h4>Ecuaciones de Primer Grado</h4>
+
+            <p>
+              Métodos prácticos y problemas resueltos.
+            </p>
+
+          </div>
+
+        </div>
+
+        <i class="fa-solid fa-lock"></i>
+
+      </a>
+
+
+
+      <!-- PDF 3 -->
+      <a href="#" class="catalog-item">
+
+        <div class="left">
+
+          <div class="icon">
+            <i class="fa-brands fa-js"></i>
+          </div>
+
+          <div class="info">
+
+            <h4>JavaScript desde Cero</h4>
+
+            <p>
+              Fundamentos y mini proyectos prácticos.
+            </p>
+
+          </div>
+
+        </div>
+
+        <i class="fa-solid fa-lock"></i>
+
+      </a>
+
+
+
+      <!-- PDF 4 -->
+      <a href="#" class="catalog-item">
+
+        <div class="left">
+
+          <div class="icon">
+            <i class="fa-solid fa-code"></i>
+          </div>
+
+          <div class="info">
+
+            <h4>HTML + CSS Profesional</h4>
+
+            <p>
+              Diseña sitios modernos desde cero.
+            </p>
+
+          </div>
+
+        </div>
+
+        <i class="fa-solid fa-lock"></i>
+
+      </a>
+
+
+
+      <!-- Próximamente -->
+      <a href="#" class="catalog-item">
+
+        <div class="left">
+
+          <div class="icon">
+            <i class="fa-solid fa-star"></i>
+          </div>
+
+          <div class="info">
+
+            <h4>Más contenido próximamente</h4>
+
+            <p>
+              Nuevos materiales cada semana.
+            </p>
+
+          </div>
+
+        </div>
+
+        <i class="fa-solid fa-clock"></i>
+
+      </a>
+
+
+    </div>
+
+  </section>
+
+
+
+  <!-- Script menú -->
+  <script>
+    function toggleMenu(){
+      document
+      .getElementById("sidebar")
+      .classList
+      .toggle("active");
+    }
+  </script>
+
+
+</body>
+</html>

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bienvenido - al catálogo de IngenieríaFlex</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+ <header class="navbar">
+       <a href="index.html" class="back-btn">
+         <i class="fa-solid fa-arrow-left"></i> Regresar
+       </a>
+    <div class="logo-area">
+      <img src="img/logo.png" class="logo" alt="Logo IngenieríaFlix">
+      <h1>Ingeniería<span>Flex</span></h1>
+    </div>
+    <div class="menu-btn" onclick="toggleMenu()">☰</div>
+  </header>
+
+  <div class="sidebar" id="sidebar">
+    <div class="close-btn" onclick="toggleMenu()">✕</div>
+    <a href="index.html">Inicio</a>
+    <a href="catalogo.html">Cursos</a>
+    <a href="juegos.html">Juegos</a>
+    <a href="recursos.html">Recursos</a>
+  </div>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="badge">CATALOGO DE CURSOS</div>
+    <h2>Hay una gran variedad de cursos disponibles</h2>
+    <p>Aprende con nuestros cursos de calidad y actualizados.</p>
+  </section>
+
+  <!-- Lista de cursos -->
+ <section class="categories">
+
+    <div class="catalog-list">
+
+        <a href="matematicas.html" class="catalog-item">
+
+            <div class="left">
+
+                <div class="icon">
+                    <i class="fa-solid fa-square-root-variable"></i>
+                </div>
+
+                <div class="info">
+
+                    <h4>Matemáticas</h4>
+
+                    <p>
+                        Álgebra, cálculo, geometría,
+                        estadística y más.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <span class="courses">
+                25 cursos
+            </span>
+
+        </a>
+        <a href="programacion.html" class="catalog-item">
+
+            <div class="left">
+
+                <div class="icon">
+                    <i class="fa-solid fa-code"></i>
+                </div>
+
+                <div class="info">
+
+                    <h4>Programación</h4>
+
+                    <p>
+                        Python, HTML, CSS,
+                        JavaScript, ASM.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <span class="courses">
+                30 cursos
+            </span>
+
+        </a>
+        <a href="estadistica.html" class="catalog-item">
+
+            <div class="left">
+
+                <div class="icon">
+                    <i class="fa-solid fa-chart-line"></i>
+                </div>
+
+                <div class="info">
+
+                    <h4>Estadística</h4>
+
+                    <p>
+                        Probabilidad, distribuciones,
+                        muestreo y análisis de datos.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <span class="courses">
+                20 cursos
+            </span>
+
+        </a>
+        <a href="electronica.html" class="catalog-item">
+
+            <div class="left">
+
+                <div class="icon">
+                    <i class="fa-solid fa-microchip"></i>
+                </div>
+
+                <div class="info">
+
+                    <h4>Electrónica</h4>
+
+                    <p>
+                        Arduino, sensores,
+                        circuitos y prácticas.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <span class="courses">
+                18 cursos
+            </span>
+
+        </a>
+
+    </div>
+
+</section>
+
+  <!-- CTA final -->
+  <section class="cta">
+    <h3>¿Listo para aprender?</h3>
+    <button class="start-btn">Comenzar ahora</button>
+  </section>
+    <script src="js/app.js"></script>
+
+</body>
+</html>

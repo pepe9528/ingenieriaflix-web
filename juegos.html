@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Juegos- IngenieríaFlex</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+<header class="navbar">
+    <a href="index.html" class="back-btn">
+      <i class="fa-solid fa-arrow-left"></i> Regresar
+    </a>
+
+    <div class="logo-area">
+      <img src="img/logo.png" class="logo" alt="Logo IngenieríaFlix">
+      <h1>Ingeniería<span>Flex</span></h1>
+    </div>
+     <div class="menu-btn" onclick="toggleMenu()">☰</div>
+  </header>
+
+  <div class="sidebar" id="sidebar">
+    <div class="close-btn" onclick="toggleMenu()">✕</div>
+    <a href="index.html">Inicio</a>
+    <a href="catalogo.html">Cursos</a>
+    <a href="juegos.html">Juegos</a>
+    <a href="recursos.html">Recursos</a>
+  </div>
+
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="badge">JUEGOS</div>
+    <h2>Juegos para Ingenieros</h2>
+    <p>Diviértete mientras aprendes.</p>
+    <button class="explore-btn">Explorar juegos</button>
+  </section>
+
+  <!-- Lista de juegos |-->
+<section class="categories">
+
+  <div class="list">
+    <h3>Lista de juegos</h3>
+
+    <!-- Juego 1 -->
+    <div class="cards">
+      <a href="contenido/juegos/juego 1/index.html" class="card">
+
+        <div class="icon">
+          <i class="fa-solid fa-gears"></i>
+        </div>
+
+        <h4>Quiz Battle Engineer</h4>
+
+        <p>Preguntas sobre programación</p>
+
+      </a>
+    </div>
+
+    <!-- Juego 2 -->
+    <div class="cards">
+      <a href="contenido/juegos/code defender/index.html" class="card">
+
+        <div class="icon">
+          <i class="fa-solid fa-shield-halved"></i>
+        </div>
+
+        <h4>Code Defender</h4>
+
+        <p>Practica tu rapidez mental</p>
+
+      </a>
+    </div>
+
+  </div>
+
+</section>
+
+  <script src="js/app.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduQuiz Pro | Master Tecnológico</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+</head>
+<body>
+      <!-- Botón regresar -->
+   <header class="navbar">
+     <a href="../../../juegos.html" class="back-btn">
+       <i class="fa-solid fa-arrow-left"></i> Regresar
+     </a>
+   </header>
+    <div id="game-container">
+        <section id="screen-home" class="screen active">
+            <i class="ph ph-graduation-cap main-icon"></i>
+            <h1>EDUQUIZ <span>PRO</span></h1>
+            <p>Domina la tecnología nivel experto</p>
+            <div class="menu-actions">
+                <button id="btn-start" class="btn-main">JUGAR AHORA</button>
+                <button id="btn-instructions" class="btn-secondary">contesta y pon a prueba tus conocimientos</button>
+            </div>
+        </section>
+
+        <section id="screen-game" class="screen">
+            <header class="game-header">
+                <div class="stat-group">
+                    <div class="stat"><i class="ph ph-heart-fill"></i> <span id="lives">3</span></div>
+                    <div class="stat"><i class="ph ph-coins-fill"></i> <span id="coins">0</span></div>
+                </div>
+                <div class="progress-wrapper">
+                    <div id="progress-bar"></div>
+                </div>
+                <div class="stat timer-box">
+                    <i class="ph ph-clock-fill"></i> <span id="timer">15</span>
+                </div>
+            </header>
+
+            <div class="level-indicator">
+                Nivel <span id="current-level">1</span> — Pregunta <span id="q-index">1</span>
+            </div>
+
+            <div id="question-box">
+                <h2 id="question-text">Cargando pregunta...</h2>
+                <div id="answers-grid">
+                    </div>
+            </div>
+
+            <div id="feedback-area" class="hidden">
+                <div class="feedback-content">
+                    <h3 id="feedback-title"></h3>
+                    <p id="explanation-text"></p>
+                    <button id="btn-next" class="btn-next">Siguiente Pregunta <i class="ph ph-arrow-right"></i></button>
+                </div>
+            </div>
+
+            <footer class="game-footer">
+                <button id="btn-hint" class="btn-hint">
+                    <i class="ph ph-lightbulb-fill"></i> Pista (-10 monedas)
+                </button>
+            </footer>
+        </section>
+
+        <section id="screen-result" class="screen">
+            <i id="result-icon" class="ph ph-trophy-fill"></i>
+            <h2 id="result-title">¡Resultados!</h2>
+            <div class="result-stats">
+                <div class="res-item">Puntaje: <strong id="final-score">0</strong></div>
+                <div class="res-item">Monedas: <strong id="final-coins">0</strong></div>
+            </div>
+            <button id="btn-restart" class="btn-main">VOLVER A JUGAR</button>
+        </section>
+    </div>
+    <script src="games.js"></script>
+</body>
+</html>

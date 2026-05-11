@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code Defender: Cyber-Ops</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+</head>
+<body>
+  <!-- Botón regresar -->
+  <header class="navbar">
+    <a href="../../../juegos.html" class="back-btn">
+      <i class="fa-solid fa-arrow-left"></i> Regresar
+    </a>
+  </header>
+    <div id="game-viewport">
+        <header id="hud">
+            <div class="stat-box">
+                <i class="ph ph-heart-break-fill"></i> <span id="base-hp">100</span>%
+            </div>
+            <div class="stat-box">
+                <i class="ph ph-shield-check-fill"></i> <span id="shield">0</span>
+            </div>
+            <div class="stat-box">
+                <i class="ph ph-lightning-fill"></i> <span id="energy">50</span>
+            </div>
+            <div class="stat-box">
+                <i class="ph ph-coins-fill"></i> <span id="credits">0</span>
+            </div>
+            <div class="timer-container">
+                <div id="timer-bar"></div>
+            </div>
+        </header>
+
+        <main id="battle-scene">
+            <div id="player-base" class="entity">
+                <div class="base-core"></div>
+            </div>
+            <div id="enemy-spawn">
+                </div>
+        </main>
+
+        <section id="ui-overlay">
+            <div id="screen-start" class="overlay-screen active">
+                <h1 class="glitch" data-text="CODE DEFENDER">CODE DEFENDER</h1>
+                <p>PROTEGE EL NÚCLEO RESPONDIENDO CÓDIGO</p>
+                <button id="btn-play" class="btn-neon">INICIAR PROTOCOLO</button>
+            </div>
+
+            <div id="quiz-container" class="hidden">
+                <div id="question-header">
+                    <span id="level-tag">NIVEL 1</span>
+                    <span id="category-tag">HARDWARE</span>
+                </div>
+                <h2 id="question-text">Preparando conexión...</h2>
+                <div id="options-grid"></div>
+                <div id="hint-area"></div>
+            </div>
+
+            <div id="feedback-screen" class="hidden">
+                <h3 id="feedback-title"></h3>
+                <p id="feedback-explanation"></p>
+                <button id="btn-continue" class="btn-neon">SIGUIENTE</button>
+            </div>
+
+            <div id="screen-end" class="overlay-screen hidden">
+                <h2 id="end-title">SISTEMA COMPROMETIDO</h2>
+                <p>SCORE FINAL: <span id="final-score">0</span></p>
+                <button onclick="location.reload()" class="btn-neon">REINICIAR</button>
+            </div>
+        </section>
+    </div>
+    <script src="games.js"></script>
+</body>
+</html>

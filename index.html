@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <title>IngenieríaFlix</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  
+  <!-- Google Tag Manager -->
+  <script>
+    (function(w,d,s,l,i){
+      w[l]=w[l]||[];
+      w[l].push({'gtm.start': new Date().getTime(), event:'gtm.js'});
+      var f=d.getElementsByTagName(s)[0],
+          j=d.createElement(s),
+          dl=l!='dataLayer'?'&l='+l:'';
+      j.async=true;
+      j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;
+      f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-MZWZQQZM');
+  </script>
+</head>
+<body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript>
+    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MZWZQQZM"
+            height="0" width="0"
+            style="display:none;visibility:hidden"></iframe>
+  </noscript>
+  <header class="navbar">
+      <a href="./Login/index.html" class="login-btn">
+
+        Iniciar sesión
+
+      </a>
+    <div class="logo-area">
+      <img src="img/logo.png" class="logo" alt="Logo IngenieríaFlix">
+      <h1>Ingeniería<span>Flex</span></h1>
+    </div>
+    <div class="menu-btn" onclick="toggleMenu()">☰</div>
+  </header>
+
+  <div class="sidebar" id="sidebar">
+    <div class="close-btn" onclick="toggleMenu()">✕</div>
+    <a href="index.html">Inicio</a>
+    <a href="catalogo.html">Cursos</a>
+    <a href="juegos.html">Juegos</a>
+    <a href="recursos.html">Recursos</a>
+  </div>
+
+  <section class="hero">
+    <div class="badge">APRENDIZAJE + TECNOLOGÍA</div>
+    <h2>Catálogo de cursos</h2>
+    <p>Más de 100 cursos diseñados por ingenieros, para ingenieros.</p>
+   <a href="catalogo.html"><button class="explore-btn">Explorar</button></a>
+  </section>
+
+<div class="cards">
+  <!-- Matemáticas -->
+  <a href="matematicas.html" class="card">
+    <div class="icon"><i class="fa-solid fa-square-root-variable"></i></div>
+    <h4>Matemáticas</h4>
+    <p>25 cursos</p>
+  </a>
+
+  <!-- Programación -->
+  <a href="programacion.html" class="card">
+    <div class="icon"><i class="fa-solid fa-code"></i></div>
+    <h4>Programación</h4>
+    <p>30 cursos</p>
+  </a>
+
+  <!-- Electrónica -->
+  <a href="electronica.html" class="card">
+    <div class="icon"><i class="fa-solid fa-microchip"></i></div>
+    <h4>Electrónica</h4>
+    <p>18 cursos</p>
+  </a>
+
+  <!-- Probabilidad y Estadística -->
+  <a href="estadistica.html" class="card">
+    <div class="icon"><i class="fa-solid fa-chart-line"></i></div>
+    <h4>Probabilidad y Estadística</h4>
+    <p>12 cursos</p>
+  </a>
+<!-- Juegos -->
+  <a href="juegos.html" class="card">
+    <div class="icon"><i class="fa-solid fa-gamepad"></i></div>
+    <h4>Juegos</h4>
+    <p>Diviértete mientras aprendes</p>
+  </a>
+  <!-- Biblioteca PDF -->
+  <a href="biblioteca.html" class="card">
+
+    <div class="icon"><i class="fa-solid fa-file-pdf"></i></div>
+      <h4>Biblioteca PDF</h4>
+    <p>Fórmulas, guías, apuntes y recursos</p>
+
+  </a>
+
+</div>
+
+  </section>
+
+  <script src="js/app.js"></script>
+</body>
+</html>

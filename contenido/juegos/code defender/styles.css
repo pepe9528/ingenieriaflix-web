@@ -1,0 +1,123 @@
+:root {
+    --neon-blue: #00f3ff;
+    --neon-pink: #ff00ff;
+    --neon-green: #39ff14;
+    --neon-red: #ff3131;
+    --bg-dark: #050505;
+    --glass: rgba(0, 243, 255, 0.1);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Courier New', Courier, monospace; }
+
+body { background: var(--bg-dark); color: white; overflow: hidden; }
+
+#game-viewport {
+    width: 100vw; height: 100vh;
+    display: flex; flex-direction: column;
+    background: radial-gradient(circle, #1a1a2e 0%, #050505 100%);
+    position: relative;
+}
+
+/* HUD */
+#hud {
+    display: flex; justify-content: space-around; align-items: center;
+    padding: 15px; background: rgba(0,0,0,0.8);
+    border-bottom: 2px solid var(--neon-blue);
+    z-index: 10;
+}
+
+.stat-box { font-weight: bold; color: var(--neon-blue); text-shadow: 0 0 5px var(--neon-blue); }
+
+.timer-container { width: 30%; height: 10px; background: #222; border-radius: 5px; }
+#timer-bar { width: 100%; height: 100%; background: var(--neon-green); transition: width 1s linear; }
+
+/* Escenario */
+#battle-scene { flex: 1; position: relative; overflow: hidden; }
+
+#player-base {
+    position: absolute; left: 5%; top: 50%; transform: translateY(-50%);
+    width: 100px; height: 100px;
+    border: 3px solid var(--neon-blue);
+    box-shadow: 0 0 20px var(--neon-blue);
+    border-radius: 20%;
+}
+
+.base-core {
+    width: 40%; height: 40%; background: var(--neon-blue);
+    margin: 30%; animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.2); opacity: 0.5; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+/* Enemigos */
+.enemy {
+    position: absolute; right: -50px; width: 40px; height: 40px;
+    background: var(--neon-red); border-radius: 50%;
+    box-shadow: 0 0 15px var(--neon-red);
+    transition: transform 0.5s linear;
+}
+
+/* UI / Quiz */
+#ui-overlay {
+    position: absolute; bottom: 0; width: 100%;
+    padding: 20px; background: rgba(0,0,0,0.9);
+    border-top: 2px solid var(--neon-pink);
+    min-height: 40%;
+}
+
+.hidden { display: none !important; }
+
+#options-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 20px;
+}
+
+.btn-neon {
+    background: transparent; border: 2px solid var(--neon-blue);
+    color: var(--neon-blue); padding: 15px; cursor: pointer;
+    font-weight: bold; transition: 0.3s;
+}
+
+.btn-neon:hover {
+    background: var(--neon-blue); color: black;
+    box-shadow: 0 0 20px var(--neon-blue);
+}
+
+.overlay-screen {
+    text-align: center; padding-top: 50px;
+}
+
+h1.glitch { font-size: 4rem; color: var(--neon-blue); }
+
+/* Mobile */
+@media (max-width: 600px) {
+    #options-grid { grid-template-columns: 1fr; }
+    #hud { font-size: 0.8rem; }
+}
+.navbar{
+    position:fixed;
+    top:20px;
+    left:-85px; /* deja visible una parte */
+    z-index:1000;
+    transition:0.4s ease;
+}
+
+/* al pasar el mouse sale completo */
+.navbar:hover{
+    left:20px;
+}
+
+.back-btn{
+    text-decoration:none;
+    color:white;
+    background:#111;
+    padding:12px 20px;
+    border-radius:12px;
+    display:flex;
+    align-items:center;
+    gap:8px;
+    font-weight:bold;
+}

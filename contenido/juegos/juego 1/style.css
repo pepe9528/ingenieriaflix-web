@@ -1,0 +1,222 @@
+/* Variables de diseño moderno */
+:root {
+    --primary: #6366f1;
+    --primary-dark: #4f46e5;
+    --secondary: #a855f7;
+    --bg-dark: #0f172a;
+    --card-bg: #1e293b;
+    --text-light: #f8fafc;
+    --success: #22c55e;
+    --error: #ef4444;
+    --warning: #f59e0b;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-light);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+#game-container {
+    width: 100%;
+    max-width: 650px;
+    background: var(--card-bg);
+    border-radius: 24px;
+    padding: 2rem;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Manejo de pantallas */
+.screen {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    animation: slideUp 0.4s ease-out;
+}
+
+.screen.active {
+    display: flex;
+}
+
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Header de Juego */
+.game-header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.stat-group { display: flex; gap: 15px; }
+
+.stat {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 8px 15px;
+    border-radius: 12px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.ph-heart-fill { color: var(--error); }
+.ph-coins-fill { color: var(--warning); }
+
+.progress-wrapper {
+    flex: 1;
+    height: 12px;
+    background: rgba(255, 255, 255, 0.1);
+    margin: 0 15px;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+#progress-bar {
+    width: 0%;
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
+    transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Elementos de pregunta */
+.level-indicator {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--primary);
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+#question-text {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    text-align: center;
+    line-height: 1.4;
+}
+
+#answers-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    width: 100%;
+}
+
+.answer-btn {
+    background: rgba(255, 255, 255, 0.03);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    color: white;
+    padding: 1.2rem;
+    border-radius: 16px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: all 0.2s;
+    text-align: left;
+}
+
+.answer-btn:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: var(--primary);
+    transform: translateY(-2px);
+}
+
+.answer-btn.correct { background: var(--success) !important; border-color: transparent; }
+.answer-btn.wrong { background: var(--error) !important; border-color: transparent; }
+
+/* Feedback */
+.hidden { display: none; }
+
+#feedback-area {
+    margin-top: 1.5rem;
+    width: 100%;
+    animation: fadeIn 0.3s ease;
+}
+
+.feedback-content {
+    background: rgba(0, 0, 0, 0.2);
+    padding: 1.5rem;
+    border-radius: 16px;
+    border-left: 4px solid var(--primary);
+}
+
+#explanation-text {
+    font-size: 0.95rem;
+    margin: 10px 0;
+    color: #cbd5e1;
+}
+
+/* Botones */
+.btn-main, .btn-next {
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    width: 100%;
+    transition: 0.3s;
+}
+
+.btn-main:hover { background: var(--primary-dark); box-shadow: 0 0 20px rgba(99, 102, 241, 0.4); }
+
+.btn-hint {
+    background: transparent;
+    color: var(--warning);
+    border: 1px solid var(--warning);
+    padding: 10px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+/* Responsive */
+@media (max-width: 500px) {
+    #answers-grid { grid-template-columns: 1fr; }
+    h1 { font-size: 2rem; }
+    #question-text { font-size: 1.2rem; }
+}
+.navbar{
+    position:fixed;
+    top:20px;
+    left:-85px; /* deja visible una parte */
+    z-index:1000;
+    transition:0.4s ease;
+}
+
+/* al pasar el mouse sale completo */
+.navbar:hover{
+    left:20px;
+}
+
+.back-btn{
+    text-decoration:none;
+    color:white;
+    background:#111;
+    padding:12px 20px;
+    border-radius:12px;
+    display:flex;
+    align-items:center;
+    gap:8px;
+    font-weight:bold;
+
+}
