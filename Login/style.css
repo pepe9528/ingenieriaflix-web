@@ -1,0 +1,56 @@
+:root {
+    --google-blue: #4285f4;
+    --fb-blue: #1877f2;
+    --text-main: #202124;
+    --bg-gray: #f8f9fa;
+}
+
+body {
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--bg-gray);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.login-card {
+    background: white;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+}
+
+.brand-logo { width: 75px; margin-bottom: 20px; }
+
+.btn-social {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid #dadce0;
+    border-radius: 4px;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.btn-social:hover { background: #f7f8f8; }
+.btn-social img { width: 18px; }
+
+.divider {
+    margin: 25px 0;
+    border-bottom: 1px solid #dadce0;
+    line-height: 0.1em;
+}
+.divider span { background:#fff; padding:0 10px; color: #70757a; }
+
+.profile-pic { width: 40px; border-radius: 50%; }
