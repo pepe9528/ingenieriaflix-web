@@ -1,0 +1,91 @@
+/* =========================
+TABLETS
+========================= */
+@media (max-width: 900px){
+
+    #hud{
+        padding:10px;
+        font-size:14px;
+    }
+
+    .timer-container{
+        width:40%;
+    }
+
+    #player-base{
+        width:80px;
+        height:80px;
+    }
+
+    #ui-overlay{
+        padding:15px;
+        min-height:45%;
+    }
+
+    h1.glitch{
+        font-size:3rem;
+    }
+
+}
+
+
+/* =========================
+CELULARES
+========================= */
+@media (max-width: 600px){
+
+    #hud{
+        flex-wrap:wrap;
+        gap:10px;
+        font-size:12px;
+        padding:10px;
+    }
+
+    .timer-container{
+        width:100%;
+    }
+
+    #player-base{
+        width:60px;
+        height:60px;
+    }
+
+    .base-core{
+        margin:30%;
+    }
+
+    .enemy{
+        width:30px;
+        height:30px;
+    }
+
+    #ui-overlay{
+        padding:12px;
+        min-height:50%;
+    }
+
+    #options-grid{
+        grid-template-columns:1fr;
+        gap:10px;
+    }
+
+    .btn-neon{
+        padding:12px;
+        font-size:14px;
+    }
+
+    h1.glitch{
+        font-size:2rem;
+    }
+
+    .navbar{
+        left:10px;
+        top:10px;
+    }
+
+    .back-btn{
+        padding:10px 14px;
+        font-size:14px;
+    }
+
+}
