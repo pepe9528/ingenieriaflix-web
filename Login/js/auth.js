@@ -1,4 +1,5 @@
 console.log("auth.js cargado correctamente");
+
 import { auth } from "./firebase-config.js";
 import {
   signInWithEmailAndPassword,
@@ -21,7 +22,6 @@ loginBtn.addEventListener("click", async () => {
   try {
     const userCredential = await signInWithEmailAndPassword(auth, email.value, password.value);
 
-    // Validar si el correo ya fue verificado
     if (userCredential.user.emailVerified) {
       window.location.replace("../index.html");
     } else {
@@ -32,14 +32,11 @@ loginBtn.addEventListener("click", async () => {
   }
 });
 
-// 📝 Registro de nueva cuenta con verificación de correo
+// 📝 Registro con verificación de correo
 registerBtn.addEventListener("click", async () => {
   try {
     const userCredential = await createUserWithEmailAndPassword(auth, email.value, password.value);
-
-    // Enviar correo de verificación
     await sendEmailVerification(userCredential.user);
-
     alert("Se envió un correo de verificación. Revisa tu bandeja de entrada.");
   } catch (error) {
     alert("Error al registrar: " + error.code);
@@ -67,5 +64,3 @@ githubBtn.addEventListener("click", async () => {
     alert("Error con GitHub: " + error.code);
   }
 });
-
-
