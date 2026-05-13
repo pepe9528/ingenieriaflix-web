@@ -1,6 +1,5 @@
-// Importar funciones necesarias
-import { initializeApp } from "firebase/app";
-import { getAuth } from "firebase/auth";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getAuth } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
 // Configuración de tu proyecto Firebase
 const firebaseConfig = {
