@@ -42,15 +42,24 @@
   <header class="navbar">
 
     <div id="userArea">
+  <!-- Avatar circular (solo si hay usuario logueado) -->
+  <div class="user-avatar" style="display:none;">
+    <img id="avatarBtn" src="../img/default-user.png" alt="Usuario">
+  </div>
 
-        <a
-           href="./Login/login.html" class="login-btn">
+  <!-- Botón de login (solo si NO hay usuario logueado) -->
+  <a href="./Login/login.html" id="loginBtn" class="login-btn">
+    Iniciar sesión
+  </a>
 
-            Iniciar sesión
-
-        </a>
-
+  <!-- Menú oculto -->
+  <div id="userMenu" class="user-menu">
+    <p id="userName"></p>
+    <p id="userEmail"></p>
+    <button id="logoutBtn" class="btn btn-danger btn-sm">Cerrar sesión</button>
+  </div>
     </div>
+
 
     <div class="logo-area">
       <img src="img/logo.png" alt="Logo IngenieríaFlix" class="logo">
@@ -159,6 +168,8 @@
 
   <script src="js/app.js"></script>
   <script type="module" src="./js/index-auth.js"></script>
+  <script type="module" src="./js/userMenu.js"></script>
+
 
 
 </body>

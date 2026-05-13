@@ -396,3 +396,22 @@ html{
     transform:translateY(-2px);
 
 }
+.user-avatar img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%; /* círculo */
+  cursor: pointer;
+  border: 2px solid #fff;
+}
+
+.user-menu {
+  display: none;
+  position: absolute;
+  top: 60px;
+  right: 20px;
+  background: #1e293b;
+  color: #fff;
+  padding: 1rem;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}

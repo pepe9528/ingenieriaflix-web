@@ -1,3 +1,16 @@
+console.log("dashboard.js cargado correctamente");
+
+import { auth, signOut, updatePassword } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+// Botón cerrar sesión
+const logoutBtn = document.getElementById("logoutBtn");
+if (logoutBtn) {
+  logoutBtn.addEventListener("click", async () => {
+    await signOut(auth);
+    window.location.href = "../Login/login.html";
+  });
+}
+
 import { auth } from "firebase-config.js";
 import {
   onAuthStateChanged,
