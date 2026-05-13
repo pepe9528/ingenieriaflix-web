@@ -16,12 +16,15 @@ new GoogleAuthProvider();
 
 
 
-// LOGIN CORREO
+
+
+// LOGIN CON CORREO
 
 document
 .getElementById("loginBtn")
 
 .addEventListener(
+
 "click",
 
 async()=>{
@@ -29,13 +32,20 @@ async()=>{
     try{
 
         const email =
-        document.getElementById("email").value;
+
+        document.getElementById(
+            "email"
+        ).value;
+
+
 
         const password =
-        document.getElementById("password").value;
+
+        document.getElementById(
+            "password"
+        ).value;
 
 
-        const userCredential =
 
         await signInWithEmailAndPassword(
 
@@ -46,27 +56,17 @@ async()=>{
         );
 
 
-        console.log(
-            "Login exitoso:",
-            userCredential.user
+
+        window.location.replace(
+            "../index.html"
         );
 
 
-        alert("Bienvenido");
-
-
-        window.location.href =
-        "../index.html";
-
     }
-
 
     catch(error){
 
-        console.error(error);
-
         alert(
-            "Error: " +
             error.code
         );
 
@@ -78,24 +78,21 @@ async()=>{
 
 
 
+
+
 // LOGIN GOOGLE
 
 document
 .getElementById("googleBtn")
 
 .addEventListener(
+
 "click",
 
 async()=>{
 
     try{
 
-        console.log(
-            "Intentando Google..."
-        );
-
-
-        const result =
 
         await signInWithPopup(
 
@@ -105,31 +102,15 @@ async()=>{
         );
 
 
-        console.log(
-            "Usuario:",
-            result.user
+
+        window.location.replace(
+            "../index.html"
         );
 
-
-        alert(
-
-            "Bienvenido " +
-
-            result.user.displayName
-
-        );
-
-
-        window.location.href =
-        "dashboard.html";
 
     }
 
-
     catch(error){
-
-        console.error(error);
-
 
         alert(
 
