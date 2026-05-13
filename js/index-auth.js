@@ -1,4 +1,4 @@
-import { auth } from "./firebase-config.js";
+import { auth } from "./Login/js/firebase-config.js";
 
 
 import {
@@ -20,6 +20,7 @@ document.getElementById(
 
 
 
+
 onAuthStateChanged(
 
     auth,
@@ -27,14 +28,21 @@ onAuthStateChanged(
     (user)=>{
 
 
+        console.log(
+            "Usuario:",
+            user
+        );
+
+
+
         if(user){
 
             userArea.innerHTML = `
 
                 <a
-                    href="dashboard.html"
+                    href="./Login/configuracion.html"
 
-                    class="btn btn-outline-light">
+                    class="login-btn">
 
 
                     👤
@@ -47,6 +55,24 @@ onAuthStateChanged(
 
                     }
 
+
+                </a>
+
+            `;
+
+        }
+
+
+        else{
+
+            userArea.innerHTML = `
+
+                <a
+                    href="./Login/login.html"
+
+                    class="login-btn">
+
+                    Iniciar sesión
 
                 </a>
 
