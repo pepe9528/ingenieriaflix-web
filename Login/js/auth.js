@@ -1,125 +1,53 @@
 import { auth } from "./firebase-config.js";
-
 import {
+  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
+  GoogleAuthProvider,
+  GithubAuthProvider,
+  signInWithPopup
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
-    signInWithEmailAndPassword,
-    GoogleAuthProvider,
-    signInWithPopup
+const email = document.getElementById("email");
+const password = document.getElementById("password");
+const loginBtn = document.getElementById("loginBtn");
+const registerBtn = document.getElementById("registerBtn");
+const googleBtn = document.getElementById("googleBtn");
+const githubBtn = document.getElementById("githubBtn");
 
-}
-from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-
-
-
-const provider =
-new GoogleAuthProvider();
-
-
-
-
-
-// LOGIN CON CORREO
-
-document
-.getElementById("loginBtn")
-
-.addEventListener(
-
-"click",
-
-async()=>{
-
-    try{
-
-        const email =
-
-        document.getElementById(
-            "email"
-        ).value;
-
-
-
-        const password =
-
-        document.getElementById(
-            "password"
-        ).value;
-
-
-
-        await signInWithEmailAndPassword(
-
-            auth,
-            email,
-            password
-
-        );
-
-
-
-        window.location.replace(
-            "../index.html"
-        );
-
-
-    }
-
-    catch(error){
-
-        alert(
-            error.code
-        );
-
-    }
-
+loginBtn.addEventListener("click", async () => {
+  try {
+    await signInWithEmailAndPassword(auth, email.value, password.value);
+    window.location.replace("../index.html");
+  } catch (error) {
+    alert("Error al iniciar sesión: " + error.code);
+  }
 });
 
+registerBtn.addEventListener("click", async () => {
+  try {
+    await createUserWithEmailAndPassword(auth, email.value, password.value);
+    window.location.replace("../index.html");
+  } catch (error) {
+    alert("Error al registrar: " + error.code);
+  }
+});
 
+googleBtn.addEventListener("click", async () => {
+  const provider = new GoogleAuthProvider();
+  try {
+    await signInWithPopup(auth, provider);
+    window.location.replace("../index.html");
+  } catch (error) {
+    alert("Error con Google: " + error.code);
+  }
+});
 
-
-
-
-
-// LOGIN GOOGLE
-
-document
-.getElementById("googleBtn")
-
-.addEventListener(
-
-"click",
-
-async()=>{
-
-    try{
-
-
-        await signInWithPopup(
-
-            auth,
-            provider
-
-        );
-
-
-
-        window.location.replace(
-            "../index.html"
-        );
-
-
-    }
-
-    catch(error){
-
-        alert(
-
-            "Google Error: " +
-
-            error.code
-
-        );
-
-    }
-
+githubBtn.addEventListener("click", async () => {
+  const provider = new GithubAuthProvider();
+  try {
+    await signInWithPopup(auth, provider);
+    window.location.replace("../index.html");
+  } catch (error) {
+    alert("Error con GitHub: " + error.code);
+  }
 });
