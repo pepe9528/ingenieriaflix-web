@@ -23,7 +23,7 @@ loginBtn.addEventListener("click", async () => {
     const userCredential = await signInWithEmailAndPassword(auth, email.value, password.value);
 
     if (userCredential.user.emailVerified) {
-      window.location.replace("../index.html");
+      window.location.replace("/");
     } else {
       alert("Debes verificar tu correo antes de iniciar sesión.");
     }
@@ -48,7 +48,7 @@ googleBtn.addEventListener("click", async () => {
   const provider = new GoogleAuthProvider();
   try {
     await signInWithPopup(auth, provider);
-    window.location.replace("../index.html");
+    window.location.replace("/");
   } catch (error) {
     alert("Error con Google: " + error.code);
   }
@@ -59,7 +59,7 @@ githubBtn.addEventListener("click", async () => {
   const provider = new GithubAuthProvider();
   try {
     await signInWithPopup(auth, provider);
-    window.location.replace("../index.html");
+    window.location.replace("/");
   } catch (error) {
     alert("Error con GitHub: " + error.code);
   }

@@ -42,7 +42,7 @@ onAuthStateChanged(auth, (user) => {
 logoutBtn?.addEventListener("click", async () => {
   try {
     await signOut(auth);
-    window.location.href = "../index.html"; // 🔑 redirección clara
+    window.location.href = "/"; // 🔑 redirección clara
   } catch (error) {
     alert("Error al cerrar sesión: " + error.code);
   }

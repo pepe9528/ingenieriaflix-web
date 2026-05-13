@@ -48,7 +48,7 @@ avatarBtn?.addEventListener("click", () => {
 logoutBtn?.addEventListener("click", async () => {
   try {
     await signOut(auth);
-    window.location.href = "../index.html"; // 🔑 siempre regresa a index
+    window.location.href = "/"; // 🔑 siempre regresa a index
   } catch (error) {
     alert("Error al cerrar sesión: " + error.code);
   }

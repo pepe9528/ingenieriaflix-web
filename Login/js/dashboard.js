@@ -11,7 +11,7 @@ import {
 const userName = document.getElementById("userName");
 onAuthStateChanged(auth, (user) => {
   if (!user) {
-    window.location.href = "../index.html"; // 🔑 si no hay sesión, manda a index
+    window.location.href = "/"; // 🔑 si no hay sesión, manda a index
     return;
   }
   if (userName) {
@@ -25,7 +25,7 @@ if (logoutBtn) {
   logoutBtn.addEventListener("click", async () => {
     try {
       await signOut(auth);
-      window.location.href = "../index.html"; // 🔑 siempre regresa a index
+      window.location.href = "/"; // 🔑 siempre regresa a index
     } catch (error) {
       alert("Error al cerrar sesión: " + error.code);
     }
