@@ -56,7 +56,7 @@ async()=>{
 
 
         window.location.href =
-        "dashboard.html";
+        "../index.html";
 
     }
 
