@@ -1,4 +1,5 @@
-import { auth } from "firebase-config.js";
+console.log("auth.js cargado correctamente");
+import { auth } from "./firebase-config.js";
 import {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
@@ -66,5 +67,5 @@ githubBtn.addEventListener("click", async () => {
     alert("Error con GitHub: " + error.code);
   }
 });
-console.log("auth.js cargado correctamente");
+
 
