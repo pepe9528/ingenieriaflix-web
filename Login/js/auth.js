@@ -14,6 +14,7 @@ const registerBtn = document.getElementById("registerBtn");
 const googleBtn = document.getElementById("googleBtn");
 const githubBtn = document.getElementById("githubBtn");
 
+// 🔑 Login con correo y contraseña
 loginBtn.addEventListener("click", async () => {
   try {
     await signInWithEmailAndPassword(auth, email.value, password.value);
@@ -23,6 +24,7 @@ loginBtn.addEventListener("click", async () => {
   }
 });
 
+// 📝 Registro de nueva cuenta
 registerBtn.addEventListener("click", async () => {
   try {
     await createUserWithEmailAndPassword(auth, email.value, password.value);
@@ -32,6 +34,7 @@ registerBtn.addEventListener("click", async () => {
   }
 });
 
+// 🌐 Login con Google
 googleBtn.addEventListener("click", async () => {
   const provider = new GoogleAuthProvider();
   try {
@@ -42,6 +45,7 @@ googleBtn.addEventListener("click", async () => {
   }
 });
 
+// 🐙 Login con GitHub
 githubBtn.addEventListener("click", async () => {
   const provider = new GithubAuthProvider();
   try {
