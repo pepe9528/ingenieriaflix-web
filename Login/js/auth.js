@@ -3,16 +3,8 @@ import {
   signInWithEmailAndPassword,
   GoogleAuthProvider,
   GithubAuthProvider,
-  signInWithPopup,
-  onAuthStateChanged
+  signInWithPopup
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-
-// Si ya hay sesión activa, ir al index
-onAuthStateChanged(auth, (user) => {
-  if (user) {
-    window.location.replace("/");
-  }
-});
 
 // Login con correo
 document.getElementById("loginBtn")?.addEventListener("click", async () => {
