@@ -1,4 +1,4 @@
-import { auth } from "/Login/js/firebase-config.js";
+import { auth } from "/login/js/firebase-config.js";
 import {
   signInWithEmailAndPassword,
   GoogleAuthProvider,
@@ -40,5 +40,5 @@ document.getElementById("githubBtn")?.addEventListener("click", async () => {
 
 // Registro
 document.getElementById("registerBtn")?.addEventListener("click", () => {
-  window.location.href = "/Login/register.html";
+  window.location.href = "/login/register.html";
 });
