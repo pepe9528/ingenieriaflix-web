@@ -1,66 +1,62 @@
-console.log("auth.js cargado correctamente");
-
 import { auth } from "./firebase-config.js";
 import {
   signInWithEmailAndPassword,
-  createUserWithEmailAndPassword,
   GoogleAuthProvider,
   GithubAuthProvider,
   signInWithPopup,
-  sendEmailVerification
+  onAuthStateChanged
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
-const email = document.getElementById("email");
-const password = document.getElementById("password");
+// Botones
 const loginBtn = document.getElementById("loginBtn");
-const registerBtn = document.getElementById("registerBtn");
 const googleBtn = document.getElementById("googleBtn");
 const githubBtn = document.getElementById("githubBtn");
+const registerBtn = document.getElementById("registerBtn");
 
-// 🔑 Login con correo y contraseña
-loginBtn.addEventListener("click", async () => {
+// Iniciar sesión con correo y contraseña
+loginBtn?.addEventListener("click", async () => {
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
   try {
-    const userCredential = await signInWithEmailAndPassword(auth, email.value, password.value);
-
-    if (userCredential.user.emailVerified) {
-      window.location.replace("/");
-    } else {
-      alert("Debes verificar tu correo antes de iniciar sesión.");
-    }
+    await signInWithEmailAndPassword(auth, email, password);
+    window.location.replace("/"); // ✅ siempre regresa al index
   } catch (error) {
     alert("Error al iniciar sesión: " + error.code);
   }
 });
 
-// 📝 Registro con verificación de correo
-registerBtn.addEventListener("click", async () => {
+// Iniciar sesión con Google
+googleBtn?.addEventListener("click", async () => {
   try {
-    const userCredential = await createUserWithEmailAndPassword(auth, email.value, password.value);
-    await sendEmailVerification(userCredential.user);
-    alert("Se envió un correo de verificación. Revisa tu bandeja de entrada.");
-  } catch (error) {
-    alert("Error al registrar: " + error.code);
-  }
-});
-
-// 🌐 Login con Google
-googleBtn.addEventListener("click", async () => {
-  const provider = new GoogleAuthProvider();
-  try {
+    const provider = new GoogleAuthProvider();
     await signInWithPopup(auth, provider);
-    window.location.replace("/");
+    window.location.replace("/"); // ✅ index
   } catch (error) {
     alert("Error con Google: " + error.code);
   }
 });
 
-// 🐙 Login con GitHub
-githubBtn.addEventListener("click", async () => {
-  const provider = new GithubAuthProvider();
+// Iniciar sesión con GitHub
+githubBtn?.addEventListener("click", async () => {
   try {
+    const provider = new GithubAuthProvider();
     await signInWithPopup(auth, provider);
-    window.location.replace("/");
+    window.location.replace("/"); // ✅ index
   } catch (error) {
     alert("Error con GitHub: " + error.code);
+  }
+});
+
+// Registro → redirigir a página de registro
+registerBtn?.addEventListener("click", () => {
+  window.location.href = "/Login/register.html";
+});
+
+// Detectar sesión (no redirige al login)
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    console.log("Usuario activo:", user.email);
+  } else {
+    console.log("No hay sesión activa");
   }
 });
