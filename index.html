@@ -3,7 +3,6 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <title>IngenieríaFlix</title>
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/responsive.css">
@@ -13,11 +12,7 @@
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-RFHCZCEDHJ"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
-
-    function gtag() {
-      dataLayer.push(arguments);
-    }
-
+    function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
     gtag('config', 'G-RFHCZCEDHJ');
   </script>
@@ -27,146 +22,98 @@
 
   <!-- Google Tag Manager (noscript) -->
   <noscript>
-    <iframe
-      src="https://www.googletagmanager.com/ns.html?id=GTM-MZWZQQZM"
-      height="0"
-      width="0"
-      style="display:none;visibility:hidden">
-    </iframe>
+    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MZWZQQZM"
+      height="0" width="0" style="display:none;visibility:hidden"></iframe>
   </noscript>
-
 
   <header class="navbar">
 
     <div id="userArea">
-  <!-- Avatar circular (solo si hay usuario logueado) -->
-  <div class="user-avatar" style="display:none;">
-    <img id="avatarBtn" src="../img/default-user.png" alt="Usuario">
-  </div>
 
-  <!-- Botón de login (solo si NO hay usuario logueado) -->
-  <a href="./Login/login.html" id="loginBtn" class="login-btn">
-    Iniciar sesión
-  </a>
+      <div class="user-avatar" style="display:none;">
+        <img id="avatarBtn" src="img/default-user.png" alt="Usuario">
+      </div>
 
-  <!-- Menú oculto -->
-  <div id="userMenu" class="user-menu">
-    <p id="userName"></p>
-    <p id="userEmail"></p>
-    <button id="logoutBtn" class="btn btn-danger btn-sm">Cerrar sesión</button>
-  </div>
+      <a href="/login/login.html" id="loginBtn" class="login-btn">
+        Iniciar sesión
+      </a>
+
+      <div id="userMenu" class="user-menu">
+        <p id="userName"></p>
+        <p id="userEmail"></p>
+        <button id="logoutBtn" class="btn btn-danger btn-sm">Cerrar sesión</button>
+      </div>
+
     </div>
-
 
     <div class="logo-area">
       <img src="img/logo.png" alt="Logo IngenieríaFlix" class="logo">
       <h1>Ingeniería<span>Flex</span></h1>
     </div>
 
-    <div class="menu-btn" onclick="toggleMenu()">
-      ☰
-    </div>
+    <div class="menu-btn" onclick="toggleMenu()">☰</div>
 
   </header>
 
-
   <div class="sidebar" id="sidebar">
-
-    <div class="close-btn" onclick="toggleMenu()">
-      ✕
-    </div>
-
+    <div class="close-btn" onclick="toggleMenu()">✕</div>
     <a href="index.html">Inicio</a>
     <a href="catalogo.html">Cursos</a>
     <a href="juegos.html">Juegos</a>
     <a href="recursos.html">Recursos</a>
-
   </div>
 
-
   <section class="hero">
-
-    <div class="badge">
-      APRENDIZAJE + TECNOLOGÍA
-    </div>
-
+    <div class="badge">APRENDIZAJE + TECNOLOGÍA</div>
     <h2>Catálogo de cursos</h2>
-
-    <p>
-      Más de 100 cursos diseñados por ingenieros, para ingenieros.
-    </p>
-
+    <p>Más de 100 cursos diseñados por ingenieros, para ingenieros.</p>
     <a href="catalogo.html">
-      <button class="explore-btn">
-        Explorar
-      </button>
+      <button class="explore-btn">Explorar</button>
     </a>
-
   </section>
-
 
   <div class="cards">
 
     <a href="matematicas.html" class="card">
-      <div class="icon">
-        <i class="fa-solid fa-square-root-variable"></i>
-      </div>
+      <div class="icon"><i class="fa-solid fa-square-root-variable"></i></div>
       <h4>Matemáticas</h4>
       <p>25 cursos</p>
     </a>
 
-
     <a href="programacion.html" class="card">
-      <div class="icon">
-        <i class="fa-solid fa-code"></i>
-      </div>
+      <div class="icon"><i class="fa-solid fa-code"></i></div>
       <h4>Programación</h4>
       <p>30 cursos</p>
     </a>
 
-
     <a href="electronica.html" class="card">
-      <div class="icon">
-        <i class="fa-solid fa-microchip"></i>
-      </div>
+      <div class="icon"><i class="fa-solid fa-microchip"></i></div>
       <h4>Electrónica</h4>
       <p>18 cursos</p>
     </a>
 
-
     <a href="estadistica.html" class="card">
-      <div class="icon">
-        <i class="fa-solid fa-chart-line"></i>
-      </div>
+      <div class="icon"><i class="fa-solid fa-chart-line"></i></div>
       <h4>Probabilidad y Estadística</h4>
       <p>12 cursos</p>
     </a>
 
-
     <a href="juegos.html" class="card">
-      <div class="icon">
-        <i class="fa-solid fa-gamepad"></i>
-      </div>
+      <div class="icon"><i class="fa-solid fa-gamepad"></i></div>
       <h4>Juegos</h4>
       <p>Diviértete mientras aprendes</p>
     </a>
 
-
     <a href="biblioteca.html" class="card">
-      <div class="icon">
-        <i class="fa-solid fa-file-pdf"></i>
-      </div>
+      <div class="icon"><i class="fa-solid fa-file-pdf"></i></div>
       <h4>Biblioteca PDF</h4>
       <p>Fórmulas, guías, apuntes y recursos</p>
     </a>
 
   </div>
 
-
-  <script src="js/app.js"></script>
   <script src="js/app.js"></script>
   <script type="module" src="js/userMenu.js"></script>
-
 
 </body>
 </html>
