@@ -1,5 +1,4 @@
 import { auth } from "/Login/js/firebase-config.js";
-
 import {
   signInWithEmailAndPassword,
   GoogleAuthProvider,
@@ -8,56 +7,46 @@ import {
   onAuthStateChanged
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
-// Botones
-const loginBtn = document.getElementById("loginBtn");
-const googleBtn = document.getElementById("googleBtn");
-const githubBtn = document.getElementById("githubBtn");
-const registerBtn = document.getElementById("registerBtn");
+// Si ya hay sesión activa, ir al index
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    window.location.replace("/");
+  }
+});
 
-// Iniciar sesión con correo y contraseña
-loginBtn?.addEventListener("click", async () => {
+// Login con correo
+document.getElementById("loginBtn")?.addEventListener("click", async () => {
   const email = document.getElementById("email").value;
   const password = document.getElementById("password").value;
   try {
     await signInWithEmailAndPassword(auth, email, password);
-    window.location.replace("/"); // ✅ siempre regresa al index
+    window.location.replace("/");
   } catch (error) {
-    alert("Error al iniciar sesión: " + error.code);
+    alert("Error: " + error.code);
   }
 });
 
-// Iniciar sesión con Google
-googleBtn?.addEventListener("click", async () => {
+// Login con Google
+document.getElementById("googleBtn")?.addEventListener("click", async () => {
   try {
-    const provider = new GoogleAuthProvider();
-    await signInWithPopup(auth, provider);
-    window.location.replace("/"); // ✅ index
+    await signInWithPopup(auth, new GoogleAuthProvider());
+    window.location.replace("/");
   } catch (error) {
     alert("Error con Google: " + error.code);
   }
 });
 
-// Iniciar sesión con GitHub
-githubBtn?.addEventListener("click", async () => {
+// Login con GitHub
+document.getElementById("githubBtn")?.addEventListener("click", async () => {
   try {
-    const provider = new GithubAuthProvider();
-    await signInWithPopup(auth, provider);
-    window.location.replace("/"); // ✅ index
+    await signInWithPopup(auth, new GithubAuthProvider());
+    window.location.replace("/");
   } catch (error) {
     alert("Error con GitHub: " + error.code);
   }
 });
 
-// Registro → redirigir a página de registro
-registerBtn?.addEventListener("click", () => {
+// Registro
+document.getElementById("registerBtn")?.addEventListener("click", () => {
   window.location.href = "/Login/register.html";
-});
-
-// Detectar sesión (no redirige al login)
-onAuthStateChanged(auth, (user) => {
-  if (user) {
-    console.log("Usuario activo:", user.email);
-  } else {
-    console.log("No hay sesión activa");
-  }
 });
