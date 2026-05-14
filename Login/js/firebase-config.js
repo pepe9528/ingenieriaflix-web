@@ -4,7 +4,7 @@ import { getAuth } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-aut
 // Configuración de tu proyecto Firebase
 const firebaseConfig = {
   apiKey: "AIzaSyDRn856EAdCrVxH8FbOUkFemTB1dFv_iqY",
-  authDomain: "ingenieriaflix.firebaseapp.com",
+  authDomain: "silver-wisp-f33951.netlify.app",
   projectId: "ingenieriaflix",
   storageBucket: "ingenieriaflix.appspot.com", // 👈 corrige aquí, no "firebasestorage.app"
   messagingSenderId: "129261287747",
