@@ -30,6 +30,22 @@
     .bg-glow.one { background: #3b82f6; top: -100px; left: -100px; }
     .bg-glow.two { background: #8b5cf6; bottom: -100px; right: -100px; }
 
+    .back-btn {
+      position: fixed;
+      top: 1.2rem;
+      left: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: rgba(255,255,255,0.5);
+      text-decoration: none;
+      font-size: 0.88rem;
+      transition: color 0.2s;
+      z-index: 10;
+    }
+    .back-btn:hover { color: #fff; }
+    .back-btn i { font-size: 0.85rem; }
+
     .card {
       position: relative;
       background: rgba(255,255,255,0.04);
@@ -48,22 +64,9 @@
       gap: 10px;
       margin-bottom: 2rem;
     }
-
-    .logo-wrap img {
-      width: 40px;
-      height: 40px;
-      object-fit: contain;
-    }
-
-    .logo-wrap h1 {
-      font-size: 1.4rem;
-      font-weight: 700;
-      color: #fff;
-    }
-
-    .logo-wrap h1 span {
-      color: #3b82f6;
-    }
+    .logo-wrap img { width: 40px; height: 40px; object-fit: contain; }
+    .logo-wrap h1 { font-size: 1.4rem; font-weight: 700; color: #fff; }
+    .logo-wrap h1 span { color: #3b82f6; }
 
     h2 {
       font-size: 1.1rem;
@@ -73,10 +76,7 @@
       margin-bottom: 1.75rem;
     }
 
-    .field {
-      margin-bottom: 1rem;
-    }
-
+    .field { margin-bottom: 1rem; }
     .field label {
       display: block;
       font-size: 0.8rem;
@@ -85,7 +85,6 @@
       letter-spacing: 0.05em;
       text-transform: uppercase;
     }
-
     .field input {
       width: 100%;
       background: rgba(255,255,255,0.06);
@@ -97,9 +96,7 @@
       outline: none;
       transition: border-color 0.2s;
     }
-
     .field input::placeholder { color: rgba(255,255,255,0.25); }
-
     .field input:focus {
       border-color: #3b82f6;
       background: rgba(59,130,246,0.08);
@@ -129,7 +126,6 @@
       transition: background 0.2s, transform 0.1s;
       margin-bottom: 0.75rem;
     }
-
     .btn-primary:hover { background: #2563eb; }
     .btn-primary:active { transform: scale(0.98); }
 
@@ -156,11 +152,7 @@
       height: 1px;
       background: rgba(255,255,255,0.08);
     }
-    .divider span {
-      font-size: 0.78rem;
-      color: rgba(255,255,255,0.3);
-      white-space: nowrap;
-    }
+    .divider span { font-size: 0.78rem; color: rgba(255,255,255,0.3); }
 
     .btn-social {
       width: 100%;
@@ -192,7 +184,6 @@
       font-size: 0.85rem;
       color: rgba(255,255,255,0.35);
     }
-
     .btn-register {
       background: none;
       border: none;
@@ -209,6 +200,11 @@
 
   <div class="bg-glow one"></div>
   <div class="bg-glow two"></div>
+
+  <!-- Botón volver al index -->
+  <a href="/" class="back-btn">
+    <i class="fa-solid fa-arrow-left"></i> Volver al inicio
+  </a>
 
   <div class="card">
     <div class="logo-wrap">

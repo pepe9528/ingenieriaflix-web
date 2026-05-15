@@ -16,11 +16,126 @@
     gtag('js', new Date());
     gtag('config', 'G-RFHCZCEDHJ');
   </script>
+
+  <style>
+    /* ── Menú desplegable de usuario ── */
+    .user-menu {
+      display: none;
+      position: absolute;
+      top: 60px;
+      right: 0;
+      width: 260px;
+      background: #1e293b;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 14px;
+      padding: 1rem;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+      z-index: 1000;
+      animation: fadeIn 0.2s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-8px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .user-menu .menu-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 1rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+    }
+
+    .user-menu .menu-header img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .user-menu .menu-header .info p { margin: 0; }
+    #userName { font-weight: 600; color: #fff; font-size: 0.9rem; }
+    #userEmail { color: rgba(255,255,255,0.4); font-size: 0.75rem; }
+
+    .menu-section {
+      display: none;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 0.75rem;
+    }
+    .menu-section.visible { display: flex; }
+
+    .menu-section .section-title {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: rgba(255,255,255,0.3);
+      margin: 0 0 2px;
+    }
+
+    .menu-section input {
+      width: 100%;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 8px;
+      padding: 0.5rem 0.75rem;
+      font-size: 0.85rem;
+      color: #fff;
+      outline: none;
+    }
+    .menu-section input:focus { border-color: #3b82f6; }
+    .menu-section input::placeholder { color: rgba(255,255,255,0.25); }
+
+    .btn-menu {
+      width: 100%;
+      padding: 0.5rem;
+      border: none;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .btn-save { background: #3b82f6; color: #fff; margin-top: 4px; }
+    .btn-save:hover { background: #2563eb; }
+
+    .btn-logout {
+      background: rgba(239,68,68,0.15);
+      color: #f87171;
+      border: 1px solid rgba(239,68,68,0.2);
+      margin-top: 0.5rem;
+      width: 100%;
+    }
+    .btn-logout:hover { background: rgba(239,68,68,0.25); }
+
+    .menu-msg {
+      font-size: 0.78rem;
+      color: #34d399;
+      text-align: center;
+      display: none;
+      margin-top: 4px;
+    }
+
+    #userArea { position: relative; }
+
+    .user-avatar img {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      object-fit: cover;
+      cursor: pointer;
+      border: 2px solid #3b82f6;
+      transition: transform 0.2s;
+    }
+    .user-avatar img:hover { transform: scale(1.08); }
+  </style>
 </head>
 
 <body>
 
-  <!-- Google Tag Manager (noscript) -->
   <noscript>
     <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MZWZQQZM"
       height="0" width="0" style="display:none;visibility:hidden"></iframe>
@@ -39,11 +154,29 @@
       </a>
 
       <div id="userMenu" class="user-menu">
-        <p id="userName"></p>
-        <p id="userEmail"></p>
-        <button id="logoutBtn" class="btn btn-danger btn-sm">Cerrar sesión</button>
-      </div>
 
+        <div class="menu-header">
+          <img id="menuPhoto" src="img/default-user.png" alt="foto">
+          <div class="info">
+            <p id="userName"></p>
+            <p id="userEmail"></p>
+          </div>
+        </div>
+
+        <!-- Solo visible si inició con correo -->
+        <div class="menu-section" id="editSection">
+          <p class="section-title">Editar perfil</p>
+          <input id="inputName" type="text" placeholder="Nuevo nombre">
+          <input id="inputPhoto" type="url" placeholder="URL de nueva foto">
+          <button class="btn-menu btn-save" id="saveBtn">Guardar cambios</button>
+          <p class="menu-msg" id="saveMsg">¡Cambios guardados!</p>
+        </div>
+
+        <button class="btn-menu btn-logout" id="logoutBtn">
+          <i class="fa-solid fa-right-from-bracket"></i> Cerrar sesión
+        </button>
+
+      </div>
     </div>
 
     <div class="logo-area">
