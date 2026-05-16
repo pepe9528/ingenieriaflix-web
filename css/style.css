@@ -361,11 +361,12 @@ a:hover{
     transform:scale(1.08);
 }
 
+/* El menú se abre hacia ABAJO y hacia la DERECHA del avatar */
 .user-menu{
     display:none;
-    position:absolute;
-    top:50px;
-    right:0;
+    position:fixed;
+    top:85px;
+    left:10px;
     width:270px;
     background:#1e293b;
     border:1px solid rgba(255,255,255,0.08);
@@ -501,5 +502,9 @@ a:hover{
     .navbar{ padding:0 15px; }
     .hero h2{ font-size:35px; }
     .hero p{ font-size:18px; }
-    .user-menu{ width:260px; right:-10px; }
+    .user-menu{
+        width:260px;
+        left:10px;
+        top:75px;
+    }
 }
