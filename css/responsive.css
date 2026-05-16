@@ -103,4 +103,10 @@ CELULARES
         font-size:14px;
     }
 
+    /* User menu en móvil */
+    .user-menu{
+        width: 260px;
+        right: -10px;
+    }
+
 }

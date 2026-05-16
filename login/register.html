@@ -75,7 +75,6 @@
       margin-bottom: 1.5rem;
     }
 
-    /* Tabs */
     .tabs {
       display: flex;
       background: rgba(255,255,255,0.04);
@@ -84,7 +83,6 @@
       margin-bottom: 1.5rem;
       gap: 4px;
     }
-
     .tab-btn {
       flex: 1;
       padding: 0.55rem;
@@ -97,10 +95,7 @@
       color: rgba(255,255,255,0.4);
       transition: all 0.2s;
     }
-    .tab-btn.active {
-      background: #8b5cf6;
-      color: #fff;
-    }
+    .tab-btn.active { background: #8b5cf6; color: #fff; }
 
     .tab-content { display: none; }
     .tab-content.active { display: block; }
@@ -126,15 +121,9 @@
       transition: border-color 0.2s;
     }
     .field input::placeholder { color: rgba(255,255,255,0.25); }
-    .field input:focus {
-      border-color: #8b5cf6;
-      background: rgba(139,92,246,0.08);
-    }
+    .field input:focus { border-color: #8b5cf6; background: rgba(139,92,246,0.08); }
 
-    .phone-wrap {
-      display: flex;
-      gap: 8px;
-    }
+    .phone-wrap { display: flex; gap: 8px; }
     .phone-wrap select {
       background: rgba(255,255,255,0.06);
       border: 1px solid rgba(255,255,255,0.1);
@@ -143,7 +132,7 @@
       font-size: 0.9rem;
       color: #fff;
       outline: none;
-      width: 110px;
+      width: 120px;
       flex-shrink: 0;
     }
     .phone-wrap select option { background: #1e293b; }
@@ -204,16 +193,13 @@
     }
     .btn-secondary:hover { background: rgba(139,92,246,0.25); }
 
-    /* reCAPTCHA container */
     #recaptcha-container {
       display: flex;
       justify-content: center;
       margin-bottom: 1rem;
     }
 
-    .otp-wrap {
-      display: none;
-    }
+    .otp-wrap { display: none; }
     .otp-wrap.visible { display: block; }
 
     .login-wrap {
@@ -222,11 +208,7 @@
       font-size: 0.85rem;
       color: rgba(255,255,255,0.35);
     }
-    .login-wrap a {
-      color: #8b5cf6;
-      text-decoration: none;
-      font-weight: 600;
-    }
+    .login-wrap a { color: #8b5cf6; text-decoration: none; font-weight: 600; }
     .login-wrap a:hover { text-decoration: underline; }
   </style>
 </head>
@@ -247,7 +229,6 @@
 
     <h2>Crea tu cuenta</h2>
 
-    <!-- Tabs -->
     <div class="tabs">
       <button class="tab-btn active" id="tabEmail">
         <i class="fa-solid fa-envelope"></i> Correo
@@ -300,7 +281,7 @@
             <option value="+51">🇵🇪 +51</option>
             <option value="+58">🇻🇪 +58</option>
           </select>
-          <input id="phoneNumber" type="tel" placeholder="Número sin código">
+          <input id="phoneNumber" type="tel" placeholder="10 dígitos sin espacios">
         </div>
       </div>
 
@@ -333,23 +314,18 @@
     } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
     // ── TABS ──
-    const tabEmail = document.getElementById("tabEmail");
-    const tabPhone = document.getElementById("tabPhone");
-    const contentEmail = document.getElementById("contentEmail");
-    const contentPhone = document.getElementById("contentPhone");
-
-    tabEmail.addEventListener("click", () => {
-      tabEmail.classList.add("active");
-      tabPhone.classList.remove("active");
-      contentEmail.classList.add("active");
-      contentPhone.classList.remove("active");
+    document.getElementById("tabEmail").addEventListener("click", () => {
+      document.getElementById("tabEmail").classList.add("active");
+      document.getElementById("tabPhone").classList.remove("active");
+      document.getElementById("contentEmail").classList.add("active");
+      document.getElementById("contentPhone").classList.remove("active");
     });
 
-    tabPhone.addEventListener("click", () => {
-      tabPhone.classList.add("active");
-      tabEmail.classList.remove("active");
-      contentPhone.classList.add("active");
-      contentEmail.classList.remove("active");
+    document.getElementById("tabPhone").addEventListener("click", () => {
+      document.getElementById("tabPhone").classList.add("active");
+      document.getElementById("tabEmail").classList.remove("active");
+      document.getElementById("contentPhone").classList.add("active");
+      document.getElementById("contentEmail").classList.remove("active");
       initRecaptcha();
     });
 
@@ -387,12 +363,10 @@
         await updateProfile(cred.user, { displayName: name });
         await sendEmailVerification(cred.user);
 
-        successEl.textContent = "¡Cuenta creada! Revisa tu correo para verificar tu cuenta.";
+        successEl.textContent = "¡Cuenta creada! Revisa tu correo para verificarla.";
         successEl.style.display = "block";
 
-        setTimeout(() => {
-          window.location.replace("/login/login.html");
-        }, 3000);
+        setTimeout(() => window.location.replace("/login/login.html"), 3000);
 
       } catch (error) {
         mostrarError(errorEl, traducirError(error.code));
@@ -415,6 +389,16 @@
       window.recaptchaVerifier.render();
     }
 
+    function formatPhone(code, number) {
+      // Limpiar espacios y guiones
+      number = number.replace(/\D/g, "");
+      // México necesita +521 para celulares de 10 dígitos
+      if (code === "+52" && number.length === 10) {
+        return "+521" + number;
+      }
+      return code + number;
+    }
+
     document.getElementById("sendOtpBtn").addEventListener("click", async () => {
       const code = document.getElementById("countryCode").value;
       const number = document.getElementById("phoneNumber").value.trim();
@@ -426,7 +410,7 @@
         return;
       }
 
-      const fullPhone = code + number;
+      const fullPhone = formatPhone(code, number);
       const btn = document.getElementById("sendOtpBtn");
       btn.textContent = "Enviando...";
       btn.disabled = true;
@@ -435,16 +419,17 @@
         confirmationResult = await signInWithPhoneNumber(auth, fullPhone, window.recaptchaVerifier);
         document.getElementById("otpWrap").classList.add("visible");
         const successEl = document.getElementById("successPhone");
-        successEl.textContent = "Código enviado. Revisa tus mensajes.";
+        successEl.textContent = "Código enviado a " + fullPhone + ". Revisa tus mensajes.";
         successEl.style.display = "block";
         btn.textContent = "Reenviar código";
         btn.disabled = false;
       } catch (error) {
+        console.error(error);
         mostrarError(errorEl, traducirError(error.code));
         btn.textContent = "Enviar código SMS";
         btn.disabled = false;
         recaptchaInitialized = false;
-        window.recaptchaVerifier.clear();
+        try { window.recaptchaVerifier.clear(); } catch(e) {}
         initRecaptcha();
       }
     });
@@ -484,10 +469,12 @@
         "auth/invalid-email": "Correo electrónico inválido.",
         "auth/weak-password": "La contraseña es muy débil.",
         "auth/too-many-requests": "Demasiados intentos. Intenta más tarde.",
-        "auth/invalid-phone-number": "Número de teléfono inválido.",
+        "auth/invalid-phone-number": "Número de teléfono inválido. Verifica que sean 10 dígitos.",
         "auth/quota-exceeded": "Límite de SMS alcanzado. Intenta más tarde.",
+        "auth/captcha-check-failed": "Error en reCAPTCHA. Intenta de nuevo.",
+        "auth/missing-phone-number": "Ingresa tu número de teléfono.",
       };
-      return errores[code] || "Error inesperado. Intenta de nuevo.";
+      return errores[code] || "Error al enviar SMS. Verifica tu número e intenta de nuevo.";
     }
   </script>
 
