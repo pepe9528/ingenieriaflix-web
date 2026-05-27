@@ -3,10 +3,29 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Curso de Python - IngenieríaFlix</title>
+  <link rel="icon" type="image/png" href="/img/logo.png">
+  <link rel="icon" type="image/png" href="/img/logo.png">
+  <title>Curso de Python Gratis | IngenieríaFlex</title>
+  <meta name="description" content="Aprende Python desde cero. Variables, funciones, listas, POO, ciencia de datos y proyectos reales. Videos en español gratis para ingenieros y principiantes.">
+  <meta name="keywords" content="curso python gratis, aprender python desde cero, python español, programacion python, ciencia de datos python, inteligencia artificial python">
+  <meta name="author" content="IngenieríaFlex">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link rel="stylesheet" href="../../css/style.css">
   <link rel="stylesheet" href="../../css/responsive.css">
+  <style>
+    .course-intro { max-width: 900px; margin: 0 auto; padding: 40px 20px 0; text-align: center; color: #aaa; font-size: 1rem; line-height: 1.8; }
+    .topic-title { max-width: 900px; margin: 40px auto 0; padding: 0 20px; }
+    .topic-title h2 { font-size: 1.4rem; color: #fff; margin-bottom: 8px; }
+    .topic-title p { color: #888; font-size: 0.95rem; line-height: 1.6; margin-bottom: 12px; }
+    .back-btn { display: flex; align-items: center; gap: 8px; color: #aaa; font-size: 0.9rem; text-decoration: none; transition: color 0.2s; }
+    .back-btn:hover { color: #fff; }
+    .site-footer { border-top: 1px solid #1a1a1a; padding: 2rem 10%; margin-top: 60px; display: flex; flex-direction: column; align-items: center; gap: 1rem; text-align: center; }
+    .footer-links { display: flex; gap: 1.5rem; flex-wrap: wrap; justify-content: center; }
+    .footer-links a { color: #666; font-size: 0.85rem; transition: color 0.2s; }
+    .footer-links a:hover { color: #fff; }
+    .footer-copy { color: #333; font-size: 0.8rem; }
+    .section-divider { border: none; border-top: 1px solid #1a1a1a; margin: 3rem 10%; }
+  </style>
 </head>
 <body>
 
@@ -14,64 +33,154 @@
     <a href="../../programacion.html" class="back-btn">
       <i class="fa-solid fa-arrow-left"></i> Regresar
     </a>
-
     <div class="logo-area">
-      <img src="../../img/logo.png" class="logo" alt="Logo IngenieríaFlix">
+      <img src="../../img/logo.png" class="logo" alt="Logo IngenieríaFlex">
       <h1>Ingeniería<span>Flex</span></h1>
     </div>
-     <div class="menu-btn" onclick="toggleMenu()">☰</div>
+    <div class="menu-btn" onclick="toggleMenu()">☰</div>
   </header>
 
   <div class="sidebar" id="sidebar">
     <div class="close-btn" onclick="toggleMenu()">✕</div>
-    <a href="../../index.html">Inicio</a>
-    <a href="../../catalogo.html">Cursos</a>
-    <a href="../../juegos.html">Juegos</a>
-    <a href="../../recursos.html">Recursos</a>
+    <div class="sidebar-logo">
+      <img src="/img/logo.png" alt="Logo">
+      <span>Ingeniería<em>Flex</em></span>
+    </div>
+    <a href="/index.html"><i class="fa-solid fa-house"></i> Inicio</a>
+      <a href="/catalogo.html" class="active-link"><i class="fa-solid fa-book"></i> Cursos</a> alt="Logo">
+      <span>Ingeniería<em>Flex</em></span>
+    </div>
+    <a href="/index.html"><i class="fa-solid fa-house"></i> Inicio</a>
+    <a href="/catalogo.html"><i class="fa-solid fa-book"></i> Cursos</a>
+    <a href="/juegos.html"><i class="fa-solid fa-gamepad"></i> Juegos</a>
+    <a href="/recursos.html"><i class="fa-solid fa-folder"></i> Recursos</a>
+    <a href="/acerca.html"><i class="fa-solid fa-circle-info"></i> Acerca de</a>
+  </div>
+    <a href="/juegos.html"><i class="fa-solid fa-gamepad"></i> Juegos</a>
+    <a href="/recursos.html"><i class="fa-solid fa-folder"></i> Recursos</a>
+    <a href="/acerca.html"><i class="fa-solid fa-circle-info"></i> Acerca de</a>
   </div>
 
-  </header>->
   <section class="hero">
     <div class="badge">PROGRAMACIÓN</div>
     <h2>Curso de Python</h2>
     <p>Aprende a crear aplicaciones con Python paso a paso.</p>
   </section>
-  <!-- Video -->
-   <!-- CONCEPTOS DE PROGRAMACION -->
-<section class="hero">
-    <h1><i class="fas fa-code"></i> Aprende Conceptos Antes de Código</h1>
-    <p>
-        Desarrolla lógica de programación, algoritmos
-        y pensamiento computacional antes de programar.
-    </p>
-</section>
 
-<section class="video-container">
-    <iframe
-        src="https://www.youtube.com/embed/ImOR0o-QHOQ"
-        title="Conceptos de programación"
-        allowfullscreen>
-    </iframe>
-</section>
+  <div class="course-intro">
+    <p>Python es el lenguaje de programación más popular en el mundo actualmente. Es usado en inteligencia artificial, ciencia de datos, automatización, desarrollo web y mucho más. Su sintaxis clara y sencilla lo hace ideal para principiantes, pero su potencia lo hace indispensable para ingenieros y científicos. Aquí encontrarás todo lo que necesitas para aprender Python desde cero.</p>
+  </div>
 
+  <!-- 1 -->
+  <div class="topic-title">
+    <h2><i class="fas fa-code"></i> Aprende Conceptos Antes de Código</h2>
+    <p>Antes de escribir código, es fundamental desarrollar lógica de programación y pensamiento computacional. Este video te enseña algoritmos, diagramas de flujo y pseudocódigo para que aprendas a pensar como programador.</p>
+  </div>
+  <section class="video-container">
+    <iframe src="https://www.youtube.com/embed/ImOR0o-QHOQ" title="Conceptos de programación" frameborder="0" allowfullscreen></iframe>
+  </section>
 
-<!-- PYTHON -->
-<section class="hero">
-    <h1><i class="fab fa-python"></i> Python Desde Cero para Principiantes</h1>
-    <p>
-        Aprende variables, ciclos, funciones,
-        listas y programación paso a paso con Python.
-    </p>
-</section>
+  <!-- 2 -->
+  <div class="topic-title">
+    <h2><i class="fab fa-python"></i> Python desde Cero para Principiantes</h2>
+    <p>Aprende variables, ciclos, funciones, listas y programación paso a paso con Python. Este video es el punto de partida ideal para cualquier persona que quiera aprender a programar con Python.</p>
+  </div>
+  <section class="video-container">
+    <iframe src="https://www.youtube.com/embed/TkN2i-_4N4g" title="Python desde cero" frameborder="0" allowfullscreen></iframe>
+  </section>
 
-<section class="video-container">
-    <iframe
-        src="https://www.youtube.com/embed/TkN2i-_4N4g"
-        title="Python desde cero"
-        allowfullscreen>
-    </iframe>
-</section>
-   <script src="../../js/app.js"></script>
+  <!-- 3 -->
+  <div class="topic-title">
+    <h2><i class="fas fa-box"></i> Variables, Tipos de Datos y Operadores</h2>
+    <p>Aprende a declarar variables en Python, los tipos de datos disponibles (int, float, string, bool) y cómo usar operadores aritméticos, de comparación y lógicos en tus programas.</p>
+  </div>
+  <section class="video-container">
+    <iframe src="https://www.youtube.com/embed/numQzIgpOo0" title="Variables Python" frameborder="0" allowfullscreen></iframe>
+  </section>
 
+  <!-- 4 -->
+  <div class="topic-title">
+    <h2><i class="fas fa-code-branch"></i> Condicionales y Bucles en Python</h2>
+    <p>Aprende a controlar el flujo de tus programas con if, elif, else, for y while. Estos son los bloques de construcción fundamentales de cualquier programa en Python.</p>
+  </div>
+  <section class="video-container">
+    <iframe src="https://www.youtube.com/embed/eU5L7HtwSWM" title="Condicionales bucles Python" frameborder="0" allowfullscreen></iframe>
+  </section>
+
+  <!-- 5 -->
+  <div class="topic-title">
+    <h2><i class="fas fa-list-ol"></i> Listas, Tuplas y Diccionarios</h2>
+    <p>Las estructuras de datos son fundamentales en Python. Aprende a usar listas, tuplas y diccionarios para almacenar, organizar y manipular datos de forma eficiente en tus programas.</p>
+  </div>
+  <section class="video-container">
+    <iframe src="https://www.youtube.com/embed/CCUNuqqn7PQ" title="Listas tuplas diccionarios Python" frameborder="0" allowfullscreen></iframe>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- 6 -->
+  <div class="topic-title">
+    <h2><i class="fas fa-function"></i> Funciones en Python</h2>
+    <p>Las funciones te permiten organizar y reutilizar tu código. Aprende a definir funciones, pasar argumentos, retornar valores y usar funciones lambda en Python.</p>
+  </div>
+  <section class="video-container">
+    <iframe src="https://www.youtube.com/embed/9Os0o3wzS_I" title="Funciones Python" frameborder="0" allowfullscreen></iframe>
+  </section>
+
+  <!-- 7 -->
+  <div class="topic-title">
+    <h2><i class="fas fa-cube"></i> Programación Orientada a Objetos con Python</h2>
+    <p>Python soporta completamente la POO. Aprende a crear clases, instanciar objetos, usar herencia y encapsulamiento para escribir código más organizado y escalable.</p>
+  </div>
+  <section class="video-container">
+    <iframe src="https://www.youtube.com/embed/HtKqSJX7VoM" title="POO Python" frameborder="0" allowfullscreen></iframe>
+  </section>
+
+  <!-- 8 -->
+  <div class="topic-title">
+    <h2><i class="fas fa-file-code"></i> Manejo de Archivos en Python</h2>
+    <p>Aprende a leer y escribir archivos de texto, CSV y JSON con Python. Una habilidad esencial para procesar datos, guardar resultados y automatizar tareas en ingeniería.</p>
+  </div>
+  <section class="video-container">
+    <iframe src="https://www.youtube.com/embed/71xSLk8l25Q" title="Archivos Python" frameborder="0" allowfullscreen></iframe>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- 9 -->
+  <div class="topic-title">
+    <h2><i class="fas fa-chart-bar"></i> Python para Ciencia de Datos</h2>
+    <p>Python es el lenguaje número uno para ciencia de datos e inteligencia artificial. Aprende las librerías más importantes: NumPy, Pandas y Matplotlib para analizar y visualizar datos.</p>
+  </div>
+  <section class="video-container">
+    <iframe src="https://www.youtube.com/embed/PpLtEo3TvFw" title="Python ciencia de datos" frameborder="0" allowfullscreen></iframe>
+  </section>
+
+  <!-- 10 -->
+  <div class="topic-title">
+    <h2><i class="fas fa-trophy"></i> Proyecto Completo con Python</h2>
+    <p>Pon en práctica todo lo aprendido creando un proyecto real con Python. La mejor forma de consolidar tus conocimientos y tener un proyecto para mostrar en tu portafolio.</p>
+  </div>
+  <section class="video-container">
+    <iframe src="https://www.youtube.com/embed/8ext9G7xspg" title="Proyecto Python completo" frameborder="0" allowfullscreen></iframe>
+  </section>
+
+  <footer class="site-footer">
+    <div class="logo-area" style="gap:10px;">
+      <img src="../../img/logo.png" alt="Logo" style="width:28px; animation:giro 8s linear infinite;">
+      <span style="font-size:1rem; font-weight:700;">Ingeniería<span style="color:red;">Flex</span></span>
+    </div>
+    <div class="footer-links">
+      <a href="/privacidad.html">Política de Privacidad</a>
+      <a href="/terminos.html">Términos de Uso</a>
+      <a href="mailto:pepechuysantiago714@gmail.com">Contacto</a>
+    </div>
+    <p class="footer-copy">© 2026 IngenieríaFlex. Todos los derechos reservados.</p>
+  </footer>
+
+  <script src="../../js/app.js"></script>
+
+<div id="sidebarOverlay"></div>
+<div id="sidebarOverlay"></div>
 </body>
 </html>

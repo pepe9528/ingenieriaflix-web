@@ -3,10 +3,28 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Electrónica Digital - IngenieríaFlix</title>
+  <link rel="icon" type="image/png" href="/img/logo.png">
+  <title>Curso de Electrónica Digital Gratis | IngenieríaFlex</title>
+  <meta name="description" content="Aprende electrónica digital desde cero. Sistemas binarios, compuertas lógicas, álgebra de Boole, circuitos combinacionales y secuenciales. Videos en español gratis.">
+  <meta name="keywords" content="electronica digital gratis, sistemas binarios, compuertas logicas, algebra de boole, circuitos combinacionales, flip flops, ingenieria electronica">
+  <meta name="author" content="IngenieríaFlex">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link rel="stylesheet" href="../../css/style.css">
   <link rel="stylesheet" href="../../css/responsive.css">
+  <style>
+    .course-intro { max-width: 900px; margin: 0 auto; padding: 40px 20px 0; text-align: center; color: #aaa; font-size: 1rem; line-height: 1.8; }
+    .topic-title { max-width: 900px; margin: 40px auto 0; padding: 0 20px; }
+    .topic-title h2 { font-size: 1.4rem; color: #fff; margin-bottom: 8px; }
+    .topic-title p { color: #888; font-size: 0.95rem; line-height: 1.6; margin-bottom: 12px; }
+    .back-btn { display: flex; align-items: center; gap: 8px; color: #aaa; font-size: 0.9rem; text-decoration: none; transition: color 0.2s; }
+    .back-btn:hover { color: #fff; }
+    .site-footer { border-top: 1px solid #1a1a1a; padding: 2rem 10%; margin-top: 60px; display: flex; flex-direction: column; align-items: center; gap: 1rem; text-align: center; }
+    .footer-links { display: flex; gap: 1.5rem; flex-wrap: wrap; justify-content: center; }
+    .footer-links a { color: #666; font-size: 0.85rem; transition: color 0.2s; }
+    .footer-links a:hover { color: #fff; }
+    .footer-copy { color: #333; font-size: 0.8rem; }
+    .section-divider { border: none; border-top: 1px solid #1a1a1a; margin: 3rem 10%; }
+  </style>
 </head>
 <body>
 
@@ -14,30 +32,153 @@
     <a href="../../electronica.html" class="back-btn">
       <i class="fa-solid fa-arrow-left"></i> Regresar
     </a>
-
     <div class="logo-area">
-      <img src="../../img/logo.png" class="logo" alt="Logo IngenieríaFlix">
+      <img src="../../img/logo.png" class="logo" alt="Logo IngenieríaFlex">
       <h1>Ingeniería<span>Flex</span></h1>
     </div>
-     <div class="menu-btn" onclick="toggleMenu()">☰</div>
+    <div class="menu-btn" onclick="toggleMenu()">☰</div>
   </header>
 
   <div class="sidebar" id="sidebar">
     <div class="close-btn" onclick="toggleMenu()">✕</div>
-    <a href="../../index.html">Inicio</a>
-    <a href="../../catalogo.html">Cursos</a>
-    <a href="../../juegos.html">Juegos</a>
-    <a href="../../recursos.html">Recursos</a>
+    <div class="sidebar-logo">
+      <img src="/img/logo.png" alt="Logo">
+      <span>Ingeniería<em>Flex</em></span>
+    </div>
+    <a href="/index.html"><i class="fa-solid fa-house"></i> Inicio</a>
+      <a href="/catalogo.html" class="active-link"><i class="fa-solid fa-book"></i> Cursos</a> alt="Logo">
+      <span>Ingeniería<em>Flex</em></span>
+    </div>
+    <a href="/index.html"><i class="fa-solid fa-house"></i> Inicio</a>
+    <a href="/catalogo.html"><i class="fa-solid fa-book"></i> Cursos</a>
+    <a href="/juegos.html"><i class="fa-solid fa-gamepad"></i> Juegos</a>
+    <a href="/recursos.html"><i class="fa-solid fa-folder"></i> Recursos</a>
+    <a href="/acerca.html"><i class="fa-solid fa-circle-info"></i> Acerca de</a>
+  </div>
+    <a href="/juegos.html"><i class="fa-solid fa-gamepad"></i> Juegos</a>
+    <a href="/recursos.html"><i class="fa-solid fa-folder"></i> Recursos</a>
+    <a href="/acerca.html"><i class="fa-solid fa-circle-info"></i> Acerca de</a>
   </div>
 
-  </header>->
   <section class="hero">
     <div class="badge">ELECTRÓNICA</div>
     <h2>Curso de Electrónica Digital</h2>
     <p>Aprende a analizar y diseñar circuitos digitales desde lo básico hasta lo avanzado.</p>
   </section>
-  <!-- Video -->
-   <script src="../../js/app.js"></script>
 
+  <div class="course-intro">
+    <p>La electrónica digital es la base de todas las computadoras, teléfonos, microcontroladores y sistemas embebidos. A diferencia de la electrónica analógica, trabaja con señales discretas de 0 y 1. Entender cómo funcionan los circuitos digitales te permitirá diseñar sistemas de control, procesadores y dispositivos inteligentes. Esta página te guiará desde los fundamentos hasta circuitos secuenciales avanzados.</p>
+  </div>
+
+  <!-- 1 -->
+  <div class="topic-title">
+    <h2><i class="fas fa-desktop"></i> Introducción a la Electrónica Digital</h2>
+    <p>Aprende qué es la electrónica digital, cómo se diferencia de la analógica y por qué es la base de toda la tecnología moderna. Una introducción clara y completa para comenzar desde cero.</p>
+  </div>
+  <section class="video-container">
+    <iframe src="https://www.youtube.com/embed/M0mx8S05v60" title="Introducción electrónica digital" frameborder="0" allowfullscreen></iframe>
+  </section>
+
+  <!-- 2 -->
+  <div class="topic-title">
+    <h2><i class="fas fa-binary"></i> Sistema Binario y Conversión de Bases</h2>
+    <p>Toda la electrónica digital trabaja con el sistema binario (0s y 1s). Aprende cómo convertir números entre binario, decimal, hexadecimal y octal, habilidades fundamentales para entender cómo funcionan las computadoras.</p>
+  </div>
+  <section class="video-container">
+    <iframe src="https://www.youtube.com/embed/LpuPe81bc2w" title="Sistema binario conversión" frameborder="0" allowfullscreen></iframe>
+  </section>
+
+  <!-- 3 -->
+  <div class="topic-title">
+    <h2><i class="fas fa-code-branch"></i> Compuertas Lógicas — AND, OR, NOT y más</h2>
+    <p>Las compuertas lógicas son los bloques de construcción de todos los circuitos digitales. Aprende cómo funcionan AND, OR, NOT, NAND, NOR y XOR, con sus tablas de verdad y aplicaciones prácticas.</p>
+  </div>
+  <section class="video-container">
+    <iframe src="https://www.youtube.com/embed/INEtYZqtjTo" title="Compuertas lógicas" frameborder="0" allowfullscreen></iframe>
+  </section>
+
+  <!-- 4 -->
+  <div class="topic-title">
+    <h2><i class="fas fa-table"></i> Álgebra de Boole y Tablas de Verdad</h2>
+    <p>El álgebra de Boole es la matemática de los circuitos digitales. Aprende las leyes booleanas, cómo simplificar expresiones lógicas y cómo construir tablas de verdad para cualquier función lógica.</p>
+  </div>
+  <section class="video-container">
+    <iframe src="https://www.youtube.com/embed/K_HXH3gC_M8" title="Álgebra de Boole" frameborder="0" allowfullscreen></iframe>
+  </section>
+
+  <!-- 5 -->
+  <div class="topic-title">
+    <h2><i class="fas fa-th"></i> Mapas de Karnaugh — Simplificación de Circuitos</h2>
+    <p>Los mapas de Karnaugh son una herramienta visual para simplificar funciones booleanas y minimizar el número de compuertas en un circuito. Aprende a usarlos paso a paso con ejemplos prácticos.</p>
+  </div>
+  <section class="video-container">
+    <iframe src="https://www.youtube.com/embed/RpBlYf9STzY" title="Mapas de Karnaugh" frameborder="0" allowfullscreen></iframe>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- 6 -->
+  <div class="topic-title">
+    <h2><i class="fas fa-plus-circle"></i> Circuitos Combinacionales — Sumadores y Decodificadores</h2>
+    <p>Los circuitos combinacionales producen salidas que dependen únicamente de las entradas actuales. Aprende a diseñar sumadores, restadores, multiplexores y decodificadores, componentes clave en procesadores y sistemas digitales.</p>
+  </div>
+  <section class="video-container">
+    <iframe src="https://www.youtube.com/embed/sz7W2u1THdQ" title="Circuitos combinacionales" frameborder="0" allowfullscreen></iframe>
+  </section>
+
+  <!-- 7 -->
+  <div class="topic-title">
+    <h2><i class="fas fa-memory"></i> Flip-Flops y Circuitos Secuenciales</h2>
+    <p>Los circuitos secuenciales tienen memoria — sus salidas dependen de las entradas actuales y del estado anterior. Aprende sobre flip-flops SR, D, JK y T, que son la base de registros, contadores y memorias digitales.</p>
+  </div>
+  <section class="video-container">
+    <iframe src="https://www.youtube.com/embed/XH-0tc5bH1Y" title="Flip flops circuitos secuenciales" frameborder="0" allowfullscreen></iframe>
+  </section>
+
+  <!-- 8 -->
+  <div class="topic-title">
+    <h2><i class="fas fa-sort-numeric-up"></i> Contadores Digitales</h2>
+    <p>Los contadores son circuitos secuenciales que cuentan pulsos de reloj. Aprende a diseñar contadores síncronos y asíncronos, y cómo se usan en relojes digitales, temporizadores y sistemas de control.</p>
+  </div>
+  <section class="video-container">
+    <iframe src="https://www.youtube.com/embed/iaIu5SYmWVM" title="Contadores digitales" frameborder="0" allowfullscreen></iframe>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- 9 -->
+  <div class="topic-title">
+    <h2><i class="fas fa-microchip"></i> Introducción a los Microcontroladores</h2>
+    <p>Los microcontroladores son circuitos integrados que combinan procesador, memoria y periféricos en un solo chip. Son la base de Arduino, sistemas embebidos y dispositivos IoT. Aprende cómo funcionan y cómo programarlos.</p>
+  </div>
+  <section class="video-container">
+    <iframe src="https://www.youtube.com/embed/jKT4H0bstH8" title="Microcontroladores introducción" frameborder="0" allowfullscreen></iframe>
+  </section>
+
+  <!-- 10 -->
+  <div class="topic-title">
+    <h2><i class="fas fa-trophy"></i> Proyecto — Circuito Digital Completo</h2>
+    <p>Aplica todo lo aprendido diseñando un circuito digital completo. Desde la especificación hasta la implementación con compuertas lógicas, este proyecto te ayudará a consolidar todos los conceptos de electrónica digital.</p>
+  </div>
+  <section class="video-container">
+    <iframe src="https://www.youtube.com/embed/OJcojNpP5_c" title="Proyecto circuito digital" frameborder="0" allowfullscreen></iframe>
+  </section>
+
+  <footer class="site-footer">
+    <div class="logo-area" style="gap:10px;">
+      <img src="../../img/logo.png" alt="Logo" style="width:28px; animation:giro 8s linear infinite;">
+      <span style="font-size:1rem; font-weight:700;">Ingeniería<span style="color:red;">Flex</span></span>
+    </div>
+    <div class="footer-links">
+      <a href="/privacidad.html">Política de Privacidad</a>
+      <a href="/terminos.html">Términos de Uso</a>
+      <a href="mailto:pepechuysantiago714@gmail.com">Contacto</a>
+    </div>
+    <p class="footer-copy">© 2026 IngenieríaFlex. Todos los derechos reservados.</p>
+  </footer>
+
+  <script src="../../js/app.js"></script>
+
+<div id="sidebarOverlay"></div>
 </body>
 </html>

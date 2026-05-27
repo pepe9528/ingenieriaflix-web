@@ -3,10 +3,65 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Curso de Cálculo - IngenieríaFlix</title>
+  <link rel="icon" type="image/png" href="/img/logo.png">
+  <title>Curso de Cálculo Gratis | IngenieríaFlex</title>
+  <meta name="description" content="Aprende cálculo diferencial e integral desde cero. Límites, derivadas, integrales y más. Videos en español de JulioProfe, Math2Me y Khan Academy. Gratis para ingenieros.">
+  <meta name="keywords" content="curso calculo diferencial, calculo integral gratis, limites derivadas integrales, matematicas ingenieria, calculo desde cero español">
+  <meta name="author" content="IngenieríaFlex">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link rel="stylesheet" href="../../css/style.css">
   <link rel="stylesheet" href="../../css/responsive.css">
+  <style>
+    .course-intro {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 40px 20px 0;
+      text-align: center;
+      color: #aaa;
+      font-size: 1rem;
+      line-height: 1.8;
+    }
+    .topic-title {
+      max-width: 900px;
+      margin: 40px auto 0;
+      padding: 0 20px;
+    }
+    .topic-title h2 {
+      font-size: 1.4rem;
+      color: #fff;
+      margin-bottom: 8px;
+    }
+    .topic-title p {
+      color: #888;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin-bottom: 12px;
+    }
+    .back-btn {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #aaa;
+      font-size: 0.9rem;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .back-btn:hover { color: #fff; }
+    .site-footer {
+      border-top: 1px solid #1a1a1a;
+      padding: 2rem 10%;
+      margin-top: 60px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      text-align: center;
+    }
+    .footer-links { display: flex; gap: 1.5rem; flex-wrap: wrap; justify-content: center; }
+    .footer-links a { color: #666; font-size: 0.85rem; transition: color 0.2s; }
+    .footer-links a:hover { color: #fff; }
+    .footer-copy { color: #333; font-size: 0.8rem; }
+  </style>
 </head>
 <body>
 
@@ -14,85 +69,185 @@
     <a href="../../matematicas.html" class="back-btn">
       <i class="fa-solid fa-arrow-left"></i> Regresar
     </a>
-
     <div class="logo-area">
-      <img src="../../img/logo.png" class="logo" alt="Logo IngenieríaFlix">
+      <img src="../../img/logo.png" class="logo" alt="Logo IngenieríaFlex">
       <h1>Ingeniería<span>Flex</span></h1>
     </div>
-     <div class="menu-btn" onclick="toggleMenu()">☰</div>
+    <div class="menu-btn" onclick="toggleMenu()">☰</div>
   </header>
 
   <div class="sidebar" id="sidebar">
     <div class="close-btn" onclick="toggleMenu()">✕</div>
-    <a href="../../index.html">Inicio</a>
-    <a href="../../catalogo.html">Cursos</a>
-    <a href="../../juegos.html">Juegos</a>
-    <a href="../../recursos.html">Recursos</a>
+    <div class="sidebar-logo">
+      <img src="/img/logo.png" alt="Logo">
+      <span>Ingeniería<em>Flex</em></span>
+    </div>
+    <a href="/index.html"><i class="fa-solid fa-house"></i> Inicio</a>
+      <a href="/catalogo.html" class="active-link"><i class="fa-solid fa-book"></i> Cursos</a> alt="Logo">
+      <span>Ingeniería<em>Flex</em></span>
+    </div>
+    <a href="/index.html"><i class="fa-solid fa-house"></i> Inicio</a>
+    <a href="/catalogo.html"><i class="fa-solid fa-book"></i> Cursos</a>
+    <a href="/juegos.html"><i class="fa-solid fa-gamepad"></i> Juegos</a>
+    <a href="/recursos.html"><i class="fa-solid fa-folder"></i> Recursos</a>
+    <a href="/acerca.html"><i class="fa-solid fa-circle-info"></i> Acerca de</a>
+  </div>
+    <a href="/juegos.html"><i class="fa-solid fa-gamepad"></i> Juegos</a>
+    <a href="/recursos.html"><i class="fa-solid fa-folder"></i> Recursos</a>
+    <a href="/acerca.html"><i class="fa-solid fa-circle-info"></i> Acerca de</a>
   </div>
 
-  </header>->
   <section class="hero">
     <div class="badge">MATEMÁTICAS</div>
     <h2>Curso de Cálculo</h2>
-    <p>Aprende las bases del cálculo paso a paso.</p>
+    <p>Aprende cálculo diferencial e integral desde cero con los mejores recursos en español.</p>
   </section>
-  <!-- Video -->
-    <section class="hero">
-     <h1>Lenguaje algebraico|parte 1</h1>
-    </section>
-  <section class="video-container">
-   <iframe
-        width="100%"
-        height="500"
-        src="https://www.youtube.com/embed/DV3C_RawfBg"
-        title="Lenguaje algebraico|parte 1"
-        frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowfullscreen>
-    </iframe>
-  </section>
-      <section class="hero">
-     <h1>¿QUE ES ALGEBRA?</h1>
-    </section>
-  <section class="video-container">
-   <iframe
-        width="100%"
-        height="500"
-        src="https://www.youtube.com/embed/EKeMeKv8c-I"
-        title=""
-        frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowfullscreen>
-    </iframe>
-  </section>    <section class="hero">
-     <h1>Lo basico sobre el lenguaje algebraico</h1>
-    </section>
-  <section class="video-container">
-   <iframe
-        width="100%"
-        height="500"
-        src="https://www.youtube.com/embed/jaIyFnKzKuE"
-        title="lo basico sobre el lenguaje algebraico"
-        frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowfullscreen>
-    </iframe>
-  </section>
-      <section class="hero">
-     <h1>Lenguaje algebraico|parte 2</h1>
-    </section>
-  <section class="video-container">
-   <iframe
-        width="100%"
-        height="500"
-        src="https://www.youtube.com/embed/KMxn6817nJA"
-        title="Lenguaje algebraico|parte 2"
-        frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowfullscreen>
-    </iframe>
-  </section>
-   <script src="../../js/app.js"></script>
 
+  <div class="course-intro">
+    <p>El cálculo es una de las materias más importantes en ingeniería. Desde modelar el movimiento de un objeto hasta analizar circuitos eléctricos o diseñar estructuras, el cálculo está en todo. En esta página encontrarás los mejores videos en español organizados por tema, desde los conceptos más básicos hasta integrales y aplicaciones avanzadas.</p>
+  </div>
+
+  <!-- 1 -->
+  <div class="topic-title">
+    <h2><i class="fas fa-question-circle"></i> ¿Qué es el Cálculo Diferencial?</h2>
+    <p>Antes de entrar en fórmulas, es importante entender qué es el cálculo y para qué sirve. Este video introductorio te explica de forma clara y sencilla el concepto de cálculo diferencial y su importancia en ciencias e ingeniería.</p>
+  </div>
+  <section class="video-container">
+    <iframe src="https://www.youtube.com/embed/Ll_qHUG6OWs" title="Qué es el cálculo diferencial" frameborder="0" allowfullscreen></iframe>
+  </section>
+
+  <!-- 2 -->
+  <div class="topic-title">
+    <h2><i class="fas fa-chart-line"></i> Funciones — Base del Cálculo</h2>
+    <p>Para entender límites y derivadas primero debes dominar las funciones. Aprende qué es una función, cómo se representa y cuáles son los tipos más comunes que aparecen en cálculo.</p>
+  </div>
+  <section class="video-container">
+    <iframe src="https://www.youtube.com/embed/kvGsIo1TmsM" title="Funciones matemáticas" frameborder="0" allowfullscreen></iframe>
+  </section>
+
+  <!-- 3 -->
+  <div class="topic-title">
+    <h2><i class="fas fa-arrows-alt-h"></i> Límites — Introducción</h2>
+    <p>Los límites son el corazón del cálculo. JulioProfe te explica desde cero qué es un límite, cómo se calcula y cuáles son sus propiedades fundamentales con ejemplos claros y paso a paso.</p>
+  </div>
+  <section class="video-container">
+    <iframe src="https://www.youtube.com/embed/rrbS5l--1Ss" title="Límites JulioProfe" frameborder="0" allowfullscreen></iframe>
+  </section>
+
+  <!-- 4 -->
+  <div class="topic-title">
+    <h2><i class="fas fa-infinity"></i> Límites al Infinito</h2>
+    <p>Una vez que entiendes los límites básicos, es momento de aprender los límites cuando x tiende al infinito. Este concepto es clave para entender el comportamiento de las funciones a largo plazo.</p>
+  </div>
+  <section class="video-container">
+    <iframe src="https://www.youtube.com/embed/tZCRomAgvXc" title="Límites al infinito" frameborder="0" allowfullscreen></iframe>
+  </section>
+
+  <!-- 5 -->
+  <div class="topic-title">
+    <h2><i class="fas fa-link"></i> Continuidad de Funciones</h2>
+    <p>Una función es continua cuando no tiene saltos ni interrupciones. Aprende el concepto de continuidad, cómo verificarla y por qué es tan importante en cálculo diferencial.</p>
+  </div>
+  <section class="video-container">
+    <iframe src="https://www.youtube.com/embed/joewRl1CTL8" title="Continuidad de funciones" frameborder="0" allowfullscreen></iframe>
+  </section>
+
+  <!-- 6 -->
+  <div class="topic-title">
+    <h2><i class="fas fa-pen"></i> Introducción a las Derivadas</h2>
+    <p>La derivada mide la rapidez con que cambia una función. Math2Me te explica el concepto de derivada desde cero, su definición formal y su interpretación geométrica como la pendiente de una recta tangente.</p>
+  </div>
+  <section class="video-container">
+    <iframe src="https://www.youtube.com/embed/lN-MKB7TJd4" title="Introducción derivadas" frameborder="0" allowfullscreen></iframe>
+  </section>
+
+  <!-- 7 -->
+  <div class="topic-title">
+    <h2><i class="fas fa-calculator"></i> Reglas de Derivación</h2>
+    <p>Aprende las reglas más importantes para derivar funciones: regla de la potencia, regla del producto, regla del cociente y regla de la cadena. Con estas herramientas podrás derivar prácticamente cualquier función.</p>
+  </div>
+  <section class="video-container">
+    <iframe src="https://www.youtube.com/embed/T42-57sojsA" title="Reglas de derivación" frameborder="0" allowfullscreen></iframe>
+  </section>
+
+  <!-- 8 -->
+  <div class="topic-title">
+    <h2><i class="fas fa-link"></i> Regla de la Cadena</h2>
+    <p>La regla de la cadena es una de las herramientas más poderosas del cálculo diferencial. Aprende a derivar funciones compuestas paso a paso con JulioProfe.</p>
+  </div>
+  <section class="video-container">
+    <iframe src="https://www.youtube.com/embed/H-ybCx8gt-8" title="Regla de la cadena" frameborder="0" allowfullscreen></iframe>
+  </section>
+
+  <!-- 9 -->
+  <div class="topic-title">
+    <h2><i class="fas fa-chart-bar"></i> Máximos y Mínimos</h2>
+    <p>Una de las aplicaciones más importantes de las derivadas es encontrar los puntos máximos y mínimos de una función. Aprende a identificarlos y a resolver problemas de optimización.</p>
+  </div>
+  <section class="video-container">
+    <iframe src="https://www.youtube.com/embed/ppI4NKTScxw" title="Máximos y mínimos" frameborder="0" allowfullscreen></iframe>
+  </section>
+
+  <!-- 10 -->
+  <div class="topic-title">
+    <h2><i class="fas fa-integral"></i> Introducción a las Integrales</h2>
+    <p>El cálculo integral es la otra gran rama del cálculo. Aprende qué es una integral, cómo se relaciona con el área bajo una curva y cuál es su relación con la derivada a través del Teorema Fundamental del Cálculo.</p>
+  </div>
+  <section class="video-container">
+    <iframe src="https://www.youtube.com/embed/rfG8ce4nNh0" title="Introducción integrales" frameborder="0" allowfullscreen></iframe>
+  </section>
+
+  <!-- 11 -->
+  <div class="topic-title">
+    <h2><i class="fas fa-superscript"></i> Integrales Indefinidas</h2>
+    <p>Aprende a calcular integrales indefinidas usando las reglas básicas de integración. Este es el punto de partida para dominar el cálculo integral y sus aplicaciones en ingeniería.</p>
+  </div>
+  <section class="video-container">
+    <iframe src="https://www.youtube.com/embed/o75AqTInKDU" title="Integrales indefinidas" frameborder="0" allowfullscreen></iframe>
+  </section>
+
+  <!-- 12 -->
+  <div class="topic-title">
+    <h2><i class="fas fa-square"></i> Integrales Definidas</h2>
+    <p>Las integrales definidas permiten calcular áreas, volúmenes y otras cantidades. Aprende a evaluarlas usando el Teorema Fundamental del Cálculo con ejemplos paso a paso.</p>
+  </div>
+  <section class="video-container">
+    <iframe src="https://www.youtube.com/embed/TocqVkBzDrA" title="Integrales definidas" frameborder="0" allowfullscreen></iframe>
+  </section>
+
+  <!-- 13 -->
+  <div class="topic-title">
+    <h2><i class="fas fa-book"></i> Curso Completo de Cálculo</h2>
+    <p>Una playlist completa de cálculo diferencial e integral desde cero. Ideal para seguir un curso estructurado y completo que cubre todos los temas que necesitas para ingeniería.</p>
+  </div>
+  <section class="video-container">
+    <iframe src="https://www.youtube.com/embed/videoseries?list=PL46-B5QR6sHk3ad29jP13CidB2m46fKBf" title="Curso completo cálculo" allowfullscreen></iframe>
+  </section>
+
+  <!-- 14 -->
+  <div class="topic-title">
+    <h2><i class="fas fa-trophy"></i> Ejercicios de Cálculo Resueltos</h2>
+    <p>La práctica es fundamental para dominar el cálculo. Resuelve ejercicios completos de límites, derivadas e integrales paso a paso para prepararte para tus exámenes.</p>
+  </div>
+  <section class="video-container">
+    <iframe src="https://www.youtube.com/embed/gLmsUSvYc10" title="Ejercicios de cálculo resueltos" frameborder="0" allowfullscreen></iframe>
+  </section>
+
+  <footer class="site-footer">
+    <div class="logo-area" style="gap:10px;">
+      <img src="../../img/logo.png" alt="Logo" style="width:28px; animation:giro 8s linear infinite;">
+      <span style="font-size:1rem; font-weight:700;">Ingeniería<span style="color:red;">Flex</span></span>
+    </div>
+    <div class="footer-links">
+      <a href="/privacidad.html">Política de Privacidad</a>
+      <a href="/terminos.html">Términos de Uso</a>
+      <a href="mailto:pepechuysantiago714@gmail.com">Contacto</a>
+    </div>
+    <p class="footer-copy">© 2026 IngenieríaFlex. Todos los derechos reservados.</p>
+  </footer>
+
+  <script src="../../js/app.js"></script>
+
+<div id="sidebarOverlay"></div>
 </body>
 </html>

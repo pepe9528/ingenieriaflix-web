@@ -3,10 +3,29 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Probabilidad y estadística - IngenieríaFlix</title>
+  <link rel="icon" type="image/png" href="/img/logo.png">
+  <link rel="icon" type="image/png" href="/img/logo.png">
+  <title>Curso de Probabilidad y Estadística Gratis | IngenieríaFlex</title>
+  <meta name="description" content="Aprende probabilidad y estadística desde cero. Estadística descriptiva, probabilidad clásica, distribuciones, inferencia estadística y más. Videos en español gratis.">
+  <meta name="keywords" content="probabilidad estadistica gratis, estadistica descriptiva, probabilidad clasica, distribucion normal, inferencia estadistica, matematicas ingenieria">
+  <meta name="author" content="IngenieríaFlex">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link rel="stylesheet" href="../../css/style.css">
   <link rel="stylesheet" href="../../css/responsive.css">
+  <style>
+    .course-intro { max-width: 900px; margin: 0 auto; padding: 40px 20px 0; text-align: center; color: #aaa; font-size: 1rem; line-height: 1.8; }
+    .topic-title { max-width: 900px; margin: 40px auto 0; padding: 0 20px; }
+    .topic-title h2 { font-size: 1.4rem; color: #fff; margin-bottom: 8px; }
+    .topic-title p { color: #888; font-size: 0.95rem; line-height: 1.6; margin-bottom: 12px; }
+    .back-btn { display: flex; align-items: center; gap: 8px; color: #aaa; font-size: 0.9rem; text-decoration: none; transition: color 0.2s; }
+    .back-btn:hover { color: #fff; }
+    .site-footer { border-top: 1px solid #1a1a1a; padding: 2rem 10%; margin-top: 60px; display: flex; flex-direction: column; align-items: center; gap: 1rem; text-align: center; }
+    .footer-links { display: flex; gap: 1.5rem; flex-wrap: wrap; justify-content: center; }
+    .footer-links a { color: #666; font-size: 0.85rem; transition: color 0.2s; }
+    .footer-links a:hover { color: #fff; }
+    .footer-copy { color: #333; font-size: 0.8rem; }
+    .section-divider { border: none; border-top: 1px solid #1a1a1a; margin: 3rem 10%; }
+  </style>
 </head>
 <body>
 
@@ -14,104 +33,145 @@
     <a href="../../estadistica.html" class="back-btn">
       <i class="fa-solid fa-arrow-left"></i> Regresar
     </a>
-
     <div class="logo-area">
-      <img src="../../img/logo.png" class="logo" alt="Logo IngenieríaFlix">
+      <img src="../../img/logo.png" class="logo" alt="Logo IngenieríaFlex">
       <h1>Ingeniería<span>Flex</span></h1>
     </div>
-     <div class="menu-btn" onclick="toggleMenu()">☰</div>
+    <div class="menu-btn" onclick="toggleMenu()">☰</div>
   </header>
 
   <div class="sidebar" id="sidebar">
     <div class="close-btn" onclick="toggleMenu()">✕</div>
-    <a href="../../index.html">Inicio</a>
-    <a href="../../catalogo.html">Cursos</a>
-    <a href="../../juegos.html">Juegos</a>
-    <a href="../../recursos.html">Recursos</a>
-  </div>
+    <div class="sidebar-logo">
+      <img src="/img/logo.png" alt="Logo">
+      <span>Ingeniería<em>Flex</em></span>
+    </div>
+    <a href="/index.html"><i class="fa-solid fa-house"></i> Inicio</a>
+    <a href="/catalogo.html"><i class="fa-solid fa-book"></i> Cursos</a>
+    <a href="/juegos.html"><i class="fa-solid fa-gamepad"></i> Juegos</a>
+    <a href="/recursos.html"><i class="fa-solid fa-folder"></i> Recursos</a>
+    <a href="/acerca.html"><i class="fa-solid fa-circle-info"></i> Acerca de</a>
 
-  </header>->
+
   <section class="hero">
     <div class="badge">ESTADÍSTICA</div>
     <h2>Curso de Probabilidad y Estadística</h2>
     <p>Aprende conceptos fundamentales de probabilidad y estadística aplicados a ingeniería y ciencia.</p>
   </section>
-  <!-- Video -->
-   <!-- ESTADISTICA Y PROBABILIDAD -->
-<section class="hero">
-    <h1><i class="fas fa-chart-bar"></i> Estadística y Probabilidad Desde Cero</h1>
-    <p>
-        Aprende estadística descriptiva,
-        probabilidad, análisis de datos
-        y conceptos fundamentales desde cero.
-    </p>
-</section>
 
-<section class="video-container">
-    <iframe
-        src="https://www.youtube.com/embed/videoseries?list=PLNtn5nZ-EhtJ8pKX_4q1NfolGpmv-fQwS"
-        title="Estadística y probabilidad"
-        allowfullscreen>
-    </iframe>
-</section>
+  <div class="course-intro">
+    <p>La probabilidad y la estadística son herramientas indispensables para cualquier ingeniero o científico. Permiten analizar datos, tomar decisiones bajo incertidumbre, diseñar experimentos y modelar fenómenos del mundo real. En esta página encontrarás una selección completa de videos en español que te llevarán desde los conceptos más básicos hasta temas intermedios de inferencia estadística.</p>
+  </div>
 
+  <!-- 1 -->
+  <div class="topic-title">
+    <h2><i class="fas fa-chart-line"></i> ¿Qué es la Estadística?</h2>
+    <p>Descubre qué es la estadística, para qué sirve y cómo se aplica en ingeniería, ciencia y negocios. Una introducción clara que te ayudará a entender por qué la estadística es una de las materias más útiles en tu carrera.</p>
+  </div>
+  <section class="video-container">
+    <iframe src="https://www.youtube.com/embed/0_ybaigJd1s" title="Qué es la estadística" frameborder="0" allowfullscreen></iframe>
+  </section>
 
-<!-- PROBABILIDAD CLASICA -->
-<section class="hero">
-    <h1><i class="fas fa-dice"></i> Probabilidad Clásica</h1>
-    <p>
-        Aprende eventos, espacio muestral,
-        casos favorables y cálculo de
-        probabilidades paso a paso.
-    </p>
-</section>
+  <!-- 2 -->
+  <div class="topic-title">
+    <h2><i class="fas fa-chart-pie"></i> Conceptos Básicos de Estadística</h2>
+    <p>Aprende media, mediana, moda, rango y las medidas estadísticas esenciales para analizar datos. Estos conceptos son la base de toda la estadística y son indispensables para cualquier análisis de datos.</p>
+  </div>
+  <section class="video-container">
+    <iframe src="https://www.youtube.com/embed/Xq3thcQqwbc" title="Conceptos básicos estadística" frameborder="0" allowfullscreen></iframe>
+  </section>
 
-<section class="video-container">
-    <iframe
-        src="https://www.youtube.com/embed/33rpg1NcGBc"
-        title="Probabilidad clásica"
-        allowfullscreen>
-    </iframe>
-</section>
+  <!-- 3 -->
+  <div class="topic-title">
+    <h2><i class="fas fa-chart-bar"></i> Estadística y Probabilidad desde Cero — Curso Completo</h2>
+    <p>Una playlist completa que cubre estadística descriptiva, probabilidad, análisis de datos y conceptos fundamentales desde cero. Ideal para seguir un curso estructurado de principio a fin.</p>
+  </div>
+  <section class="video-container">
+    <iframe src="https://www.youtube.com/embed/videoseries?list=PLNtn5nZ-EhtJ8pKX_4q1NfolGpmv-fQwS" title="Estadística y probabilidad completo" frameborder="0" allowfullscreen></iframe>
+  </section>
 
+  <!-- 4 -->
+  <div class="topic-title">
+    <h2><i class="fas fa-dice"></i> Probabilidad Clásica</h2>
+    <p>Aprende eventos, espacio muestral, casos favorables y cómo calcular probabilidades paso a paso. La probabilidad clásica es el punto de partida para entender todos los conceptos más avanzados.</p>
+  </div>
+  <section class="video-container">
+    <iframe src="https://www.youtube.com/embed/33rpg1NcGBc" title="Probabilidad clásica" frameborder="0" allowfullscreen></iframe>
+  </section>
 
-<!-- CONCEPTOS BASICOS -->
-<section class="hero">
-    <h1><i class="fas fa-chart-pie"></i> Conceptos Básicos de Estadística</h1>
-    <p>
-        Aprende media, mediana, moda,
-        rango y medidas estadísticas
-        esenciales para analizar datos.
-    </p>
-</section>
+  <hr class="section-divider">
 
-<section class="video-container">
-    <iframe
-        src="https://www.youtube.com/embed/Xq3thcQqwbc"
-        title="Conceptos básicos de estadística"
-        allowfullscreen>
-    </iframe>
-</section>
+  <!-- 5 -->
+  <div class="topic-title">
+    <h2><i class="fas fa-ruler-combined"></i> Medidas de Dispersión — Varianza y Desviación Estándar</h2>
+    <p>Las medidas de dispersión indican qué tan esparcidos están los datos alrededor de la media. Aprende a calcular e interpretar la varianza y la desviación estándar, fundamentales para cualquier análisis estadístico.</p>
+  </div>
+  <section class="video-container">
+    <iframe src="https://www.youtube.com/embed/E4HAYd0QnRc" title="Varianza desviación estándar" frameborder="0" allowfullscreen></iframe>
+  </section>
 
+  <!-- 6 -->
+  <div class="topic-title">
+    <h2><i class="fas fa-bar-chart"></i> Tablas de Frecuencia e Histogramas</h2>
+    <p>Las tablas de frecuencia e histogramas son herramientas clave para organizar y visualizar datos. Aprende a construirlas paso a paso y cómo interpretarlas para extraer conclusiones útiles de tus datos.</p>
+  </div>
+  <section class="video-container">
+    <iframe src="https://www.youtube.com/embed/gSEYtAjuZ-Y" title="Tablas frecuencia histogramas" frameborder="0" allowfullscreen></iframe>
+  </section>
 
-<!-- QUE ES ESTADISTICA -->
-<section class="hero">
-    <h1><i class="fas fa-chart-line"></i> ¿Qué es la Estadística?</h1>
-    <p>
-        Descubre qué es la estadística,
-        para qué sirve y cómo se aplica
-        en ingeniería, ciencia y negocios.
-    </p>
-</section>
+  <!-- 7 -->
+  <div class="topic-title">
+    <h2><i class="fas fa-bell"></i> Distribución Normal</h2>
+    <p>La distribución normal es la más importante en estadística. Aprende sus propiedades, la regla empírica 68-95-99.7, cómo estandarizar con la variable Z y calcular probabilidades usando la tabla normal.</p>
+  </div>
+  <section class="video-container">
+    <iframe src="https://www.youtube.com/embed/rzFX5NWojp0" title="Distribución normal" frameborder="0" allowfullscreen></iframe>
+  </section>
 
-<section class="video-container">
-    <iframe
-        src="https://www.youtube.com/embed/0_ybaigJd1s"
-        title="Qué es la estadística"
-        allowfullscreen>
-    </iframe>
-</section>
-   <script src="../../js/app.js"></script>
+  <hr class="section-divider">
 
+  <!-- 8 -->
+  <div class="topic-title">
+    <h2><i class="fas fa-flask"></i> Pruebas de Hipótesis</h2>
+    <p>Las pruebas de hipótesis permiten tomar decisiones basadas en datos. Aprende qué es una hipótesis nula y alternativa, el nivel de significancia, el valor p y cómo interpretar los resultados de una prueba estadística.</p>
+  </div>
+  <section class="video-container">
+    <iframe src="https://www.youtube.com/embed/bf3egy7TQ2Q" title="Pruebas de hipótesis" frameborder="0" allowfullscreen></iframe>
+  </section>
+
+  <!-- 9 -->
+  <div class="topic-title">
+    <h2><i class="fas fa-arrows-alt-h"></i> Intervalos de Confianza</h2>
+    <p>Un intervalo de confianza es un rango de valores que probablemente contiene el parámetro real de una población. Aprende a construirlos e interpretarlos para estimar medias y proporciones con un nivel de confianza dado.</p>
+  </div>
+  <section class="video-container">
+    <iframe src="https://www.youtube.com/embed/jQT7R7rVh7I" title="Intervalos de confianza" frameborder="0" allowfullscreen></iframe>
+  </section>
+
+  <!-- 10 -->
+  <div class="topic-title">
+    <h2><i class="fas fa-trophy"></i> Ejercicios de Probabilidad y Estadística Resueltos</h2>
+    <p>Practica con ejercicios completos de probabilidad y estadística resueltos paso a paso. Media, varianza, probabilidad, distribución normal y pruebas de hipótesis para consolidar todo lo aprendido.</p>
+  </div>
+  <section class="video-container">
+    <iframe src="https://www.youtube.com/embed/OHcrx-BCDKc" title="Ejercicios probabilidad estadística" frameborder="0" allowfullscreen></iframe>
+  </section>
+
+  <footer class="site-footer">
+    <div class="logo-area" style="gap:10px;">
+      <img src="../../img/logo.png" alt="Logo" style="width:28px; animation:giro 8s linear infinite;">
+      <span style="font-size:1rem; font-weight:700;">Ingeniería<span style="color:red;">Flex</span></span>
+    </div>
+    <div class="footer-links">
+      <a href="/privacidad.html">Política de Privacidad</a>
+      <a href="/terminos.html">Términos de Uso</a>
+      <a href="mailto:pepechuysantiago714@gmail.com">Contacto</a>
+    </div>
+    <p class="footer-copy">© 2026 IngenieríaFlex. Todos los derechos reservados.</p>
+  </footer>
+
+  <script src="../../js/app.js"></script>
+
+<div id="sidebarOverlay"></div>
 </body>
 </html>

@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recursos | IngenieríaFlex</title>
+  <meta name="description" content="Herramientas online gratuitas para ingenieros, calculadoras, simuladores, recursos educativos y créditos a los creadores de contenido de IngenieríaFlex.">
+  <link rel="icon" type="image/png" href="/img/logo.png">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    .recursos-container {
+      max-width: 1000px;
+      margin: 100px auto 60px;
+      padding: 0 20px;
+    }
+
+    .section-title {
+      font-size: 1.8rem;
+      color: #fff;
+      margin-bottom: 0.5rem;
+      border-left: 4px solid red;
+      padding-left: 1rem;
+    }
+
+    .section-desc {
+      color: #888;
+      font-size: 0.95rem;
+      margin-bottom: 1.5rem;
+      padding-left: 1.2rem;
+    }
+
+    .recursos-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+      margin-bottom: 3rem;
+    }
+
+    .recurso-card {
+      background: #0d0d0d;
+      border: 1px solid #1a1a1a;
+      border-radius: 16px;
+      padding: 1.25rem 1.5rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      text-decoration: none;
+      color: inherit;
+      transition: all 0.2s;
+    }
+
+    .recurso-card:hover {
+      border-color: red;
+      background: #110000;
+      transform: translateY(-3px);
+      color: inherit;
+    }
+
+    .recurso-icon {
+      width: 44px;
+      height: 44px;
+      background: rgba(255,0,0,0.1);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      color: red;
+      flex-shrink: 0;
+    }
+
+    .recurso-info h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 4px;
+    }
+
+    .recurso-info p {
+      font-size: 0.82rem;
+      color: #666;
+      line-height: 1.5;
+    }
+
+    .recurso-tag {
+      display: inline-block;
+      background: rgba(255,0,0,0.08);
+      color: #f87171;
+      font-size: 0.7rem;
+      padding: 2px 8px;
+      border-radius: 20px;
+      margin-top: 6px;
+      border: 1px solid rgba(255,0,0,0.15);
+    }
+
+    .seccion-divider {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      margin: 2.5rem 0;
+    }
+
+    /* Créditos */
+    .creditos-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 14px;
+      margin-bottom: 3rem;
+    }
+
+    .credito-card {
+      background: #0d0d0d;
+      border: 1px solid #1a1a1a;
+      border-radius: 14px;
+      padding: 1rem 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: inherit;
+      transition: all 0.2s;
+    }
+
+    .credito-card:hover {
+      border-color: #333;
+      background: #111;
+      color: inherit;
+    }
+
+    .credito-icon {
+      width: 38px;
+      height: 38px;
+      background: rgba(255,0,0,0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: red;
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+
+    .credito-info h4 {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 2px;
+    }
+
+    .credito-info p {
+      font-size: 0.75rem;
+      color: #555;
+    }
+
+    /* Aviso de créditos */
+    .aviso-creditos {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid #1a1a1a;
+      border-radius: 14px;
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 2rem;
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+    }
+
+    .aviso-creditos i {
+      color: #f59e0b;
+      font-size: 1.2rem;
+      margin-top: 2px;
+      flex-shrink: 0;
+    }
+
+    .aviso-creditos p {
+      font-size: 0.88rem;
+      color: #888;
+      line-height: 1.7;
+    }
+
+    .aviso-creditos a {
+      color: #f59e0b;
+    }
+
+    /* Footer */
+    .site-footer {
+      border-top: 1px solid #1a1a1a;
+      padding: 2rem 10%;
+      margin-top: 60px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      text-align: center;
+    }
+    .footer-links { display: flex; gap: 1.5rem; flex-wrap: wrap; justify-content: center; }
+    .footer-links a { color: #666; font-size: 0.85rem; transition: color 0.2s; }
+    .footer-links a:hover { color: #fff; }
+    .footer-copy { color: #333; font-size: 0.8rem; }
+
+    @media(max-width:600px){
+      .section-title { font-size: 1.4rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="navbar">
+    <div id="userArea">
+      <div class="user-avatar" style="display:none;">
+        <img id="avatarBtn" src="img/default-user.png" alt="Usuario">
+      </div>
+      <a href="/login/login.html" id="loginBtn" class="login-btn">Iniciar sesión</a>
+      <div id="userMenu" class="user-menu">
+        <div class="menu-header">
+          <img id="menuPhoto" src="img/default-user.png" alt="foto">
+          <div class="info">
+            <p id="userName"></p>
+            <p id="userEmail"></p>
+          </div>
+        </div>
+        <div class="menu-section" id="editSection">
+          <p class="section-title" style="border:none; padding:0; font-size:0.7rem;">Editar nombre</p>
+          <input id="inputName" type="text" placeholder="Nuevo nombre">
+          <button class="btn-menu btn-save" id="saveBtn">Guardar cambios</button>
+          <p class="menu-msg" id="saveMsg"></p>
+        </div>
+        <button class="btn-menu btn-logout" id="logoutBtn">
+          <i class="fa-solid fa-right-from-bracket"></i> Cerrar sesión
+        </button>
+      </div>
+    </div>
+    <div class="logo-area">
+      <img src="img/logo.png" alt="Logo" class="logo">
+      <h1>Ingeniería<span>Flex</span></h1>
+    </div>
+    <div class="menu-btn" onclick="toggleMenu()">☰</div>
+  </header>
+
+  <div class="sidebar" id="sidebar">
+    <div class="close-btn" onclick="toggleMenu()">✕</div>
+    <div class="sidebar-logo">
+      <img src="/img/logo.png" alt="Logo">
+      <span>Ingeniería<em>Flex</em></span>
+    </div>
+    <a href="/index.html"><i class="fa-solid fa-house"></i> Inicio</a>
+      <a href="/catalogo.html" class="active-link"><i class="fa-solid fa-book"></i> Cursos</a> alt="Logo">
+      <span>Ingeniería<em>Flex</em></span>
+    </div>
+    <a href="/index.html"><i class="fa-solid fa-house"></i> Inicio</a>
+    <a href="/catalogo.html"><i class="fa-solid fa-book"></i> Cursos</a>
+    <a href="/juegos.html"><i class="fa-solid fa-gamepad"></i> Juegos</a>
+    <a href="/recursos.html"><i class="fa-solid fa-folder"></i> Recursos</a>
+    <a href="/acerca.html"><i class="fa-solid fa-circle-info"></i> Acerca de</a>
+  </div>
+    <a href="/juegos.html"><i class="fa-solid fa-gamepad"></i> Juegos</a>
+    <a href="/recursos.html" class="active-link"><i class="fa-solid fa-folder"></i> Recursos</a>
+    <a href="/acerca.html"><i class="fa-solid fa-circle-info"></i> Acerca de</a>
+  </div>
+
+  <div class="recursos-container">
+
+    <!-- HERRAMIENTAS ONLINE -->
+    <h2 class="section-title">🛠️ Herramientas Online</h2>
+    <p class="section-desc">Calculadoras, simuladores y herramientas gratuitas útiles para ingenieros y estudiantes.</p>
+
+    <div class="recursos-grid">
+
+      <a href="https://www.wolframalpha.com" target="_blank" class="recurso-card">
+        <div class="recurso-icon"><i class="fas fa-calculator"></i></div>
+        <div class="recurso-info">
+          <h3>Wolfram Alpha</h3>
+          <p>Motor de cálculo que resuelve ecuaciones, derivadas, integrales y más.</p>
+          <span class="recurso-tag">Matemáticas</span>
+        </div>
+      </a>
+
+      <a href="https://www.geogebra.org" target="_blank" class="recurso-card">
+        <div class="recurso-icon"><i class="fas fa-chart-line"></i></div>
+        <div class="recurso-info">
+          <h3>GeoGebra</h3>
+          <p>Grafica funciones, geometría interactiva, álgebra y cálculo en línea.</p>
+          <span class="recurso-tag">Matemáticas</span>
+        </div>
+      </a>
+
+      <a href="https://www.desmos.com/calculator" target="_blank" class="recurso-card">
+        <div class="recurso-icon"><i class="fas fa-superscript"></i></div>
+        <div class="recurso-info">
+          <h3>Desmos</h3>
+          <p>Calculadora gráfica online muy intuitiva para graficar cualquier función.</p>
+          <span class="recurso-tag">Matemáticas</span>
+        </div>
+      </a>
+
+      <a href="https://www.falstad.com/circuit/" target="_blank" class="recurso-card">
+        <div class="recurso-icon"><i class="fas fa-bolt"></i></div>
+        <div class="recurso-info">
+          <h3>Falstad Circuit Simulator</h3>
+          <p>Simulador de circuitos eléctricos online, gratuito e interactivo.</p>
+          <span class="recurso-tag">Electrónica</span>
+        </div>
+      </a>
+
+      <a href="https://www.tinkercad.com" target="_blank" class="recurso-card">
+        <div class="recurso-icon"><i class="fas fa-microchip"></i></div>
+        <div class="recurso-info">
+          <h3>Tinkercad</h3>
+          <p>Simula circuitos con Arduino, diseño 3D y electrónica desde el navegador.</p>
+          <span class="recurso-tag">Electrónica</span>
+        </div>
+      </a>
+
+      <a href="https://colab.research.google.com" target="_blank" class="recurso-card">
+        <div class="recurso-icon"><i class="fab fa-python"></i></div>
+        <div class="recurso-info">
+          <h3>Google Colab</h3>
+          <p>Escribe y ejecuta Python en tu navegador sin instalar nada. Ideal para ciencia de datos.</p>
+          <span class="recurso-tag">Programación</span>
+        </div>
+      </a>
+
+      <a href="https://replit.com" target="_blank" class="recurso-card">
+        <div class="recurso-icon"><i class="fas fa-code"></i></div>
+        <div class="recurso-info">
+          <h3>Replit</h3>
+          <p>IDE online para programar en Python, Java, JavaScript y más desde el navegador.</p>
+          <span class="recurso-tag">Programación</span>
+        </div>
+      </a>
+
+      <a href="https://www.rapidtables.com" target="_blank" class="recurso-card">
+        <div class="recurso-icon"><i class="fas fa-exchange-alt"></i></div>
+        <div class="recurso-info">
+          <h3>RapidTables</h3>
+          <p>Conversores de unidades, calculadoras eléctricas y tablas de referencia técnica.</p>
+          <span class="recurso-tag">General</span>
+        </div>
+      </a>
+
+      <a href="https://www.symbolab.com" target="_blank" class="recurso-card">
+        <div class="recurso-icon"><i class="fas fa-integral"></i></div>
+        <div class="recurso-info">
+          <h3>Symbolab</h3>
+          <p>Resuelve ecuaciones, derivadas, integrales y álgebra lineal paso a paso.</p>
+          <span class="recurso-tag">Matemáticas</span>
+        </div>
+      </a>
+
+      <a href="https://www.codecademy.com/es" target="_blank" class="recurso-card">
+        <div class="recurso-icon"><i class="fas fa-laptop-code"></i></div>
+        <div class="recurso-info">
+          <h3>Codecademy</h3>
+          <p>Aprende a programar con cursos interactivos de Python, JavaScript, SQL y más.</p>
+          <span class="recurso-tag">Programación</span>
+        </div>
+      </a>
+
+      <a href="https://khan.academy.org/es" target="_blank" class="recurso-card">
+        <div class="recurso-icon"><i class="fas fa-graduation-cap"></i></div>
+        <div class="recurso-info">
+          <h3>Khan Academy</h3>
+          <p>Plataforma educativa gratuita con cursos de matemáticas, ciencias y programación.</p>
+          <span class="recurso-tag">General</span>
+        </div>
+      </a>
+
+      <a href="https://www.mathway.com/es" target="_blank" class="recurso-card">
+        <div class="recurso-icon"><i class="fas fa-square-root-variable"></i></div>
+        <div class="recurso-info">
+          <h3>Mathway</h3>
+          <p>Resuelve problemas de álgebra, trigonometría, cálculo y estadística al instante.</p>
+          <span class="recurso-tag">Matemáticas</span>
+        </div>
+      </a>
+
+    </div>
+
+    <hr class="seccion-divider">
+
+    <!-- CRÉDITOS -->
+    <h2 class="section-title">🎬 Créditos a los Creadores</h2>
+    <p class="section-desc">Todo el contenido de video de IngenieríaFlex pertenece a sus respectivos creadores en YouTube.</p>
+
+    <div class="aviso-creditos">
+      <i class="fas fa-triangle-exclamation"></i>
+      <p>IngenieríaFlex <strong>no es propietaria de ningún video</strong> presentado en esta plataforma. Todo el contenido audiovisual pertenece a sus respectivos creadores y canales de YouTube. Esta plataforma funciona como un directorio educativo que organiza y facilita el acceso a recursos públicos disponibles en YouTube. Si eres creador y deseas que tu contenido sea retirado, contáctanos en <a href="mailto:pepechuysantiago714@gmail.com">pepechuysantiago714@gmail.com</a>.</p>
+    </div>
+
+    <div class="creditos-grid">
+
+      <a href="https://www.youtube.com/@JulioProfe" target="_blank" class="credito-card">
+        <div class="credito-icon"><i class="fab fa-youtube"></i></div>
+        <div class="credito-info">
+          <h4>JulioProfe</h4>
+          <p>Matemáticas y física</p>
+        </div>
+      </a>
+
+      <a href="https://www.youtube.com/@Math2me" target="_blank" class="credito-card">
+        <div class="credito-icon"><i class="fab fa-youtube"></i></div>
+        <div class="credito-info">
+          <h4>Math2Me</h4>
+          <p>Matemáticas en español</p>
+        </div>
+      </a>
+
+      <a href="https://www.youtube.com/@khanacademyespanol" target="_blank" class="credito-card">
+        <div class="credito-icon"><i class="fab fa-youtube"></i></div>
+        <div class="credito-info">
+          <h4>Khan Academy Español</h4>
+          <p>Educación gratuita general</p>
+        </div>
+      </a>
+
+      <a href="https://www.youtube.com/@HolaMundoDev" target="_blank" class="credito-card">
+        <div class="credito-icon"><i class="fab fa-youtube"></i></div>
+        <div class="credito-info">
+          <h4>Hola Mundo</h4>
+          <p>Programación y desarrollo web</p>
+        </div>
+      </a>
+
+      <a href="https://www.youtube.com/@Fazt" target="_blank" class="credito-card">
+        <div class="credito-icon"><i class="fab fa-youtube"></i></div>
+        <div class="credito-info">
+          <h4>Fazt</h4>
+          <p>Programación y tecnología</p>
+        </div>
+      </a>
+
+      <a href="https://www.youtube.com/@midulive" target="_blank" class="credito-card">
+        <div class="credito-icon"><i class="fab fa-youtube"></i></div>
+        <div class="credito-info">
+          <h4>midudev</h4>
+          <p>JavaScript y desarrollo web</p>
+        </div>
+      </a>
+
+      <a href="https://www.youtube.com/@EDteam" target="_blank" class="credito-card">
+        <div class="credito-icon"><i class="fab fa-youtube"></i></div>
+        <div class="credito-info">
+          <h4>EDteam</h4>
+          <p>Programación en español</p>
+        </div>
+      </a>
+
+      <a href="https://www.youtube.com/@DoingProgramming" target="_blank" class="credito-card">
+        <div class="credito-icon"><i class="fab fa-youtube"></i></div>
+        <div class="credito-info">
+          <h4>Doing Programming</h4>
+          <p>Programación y algoritmos</p>
+        </div>
+      </a>
+
+      <a href="https://www.youtube.com" target="_blank" class="credito-card">
+        <div class="credito-icon"><i class="fab fa-youtube"></i></div>
+        <div class="credito-info">
+          <h4>Y muchos más...</h4>
+          <p>Todos los creadores de YouTube</p>
+        </div>
+      </a>
+
+    </div>
+
+    <hr class="seccion-divider">
+
+    <!-- SITIOS RECOMENDADOS -->
+    <h2 class="section-title">🌐 Sitios Educativos Recomendados</h2>
+    <p class="section-desc">Otros sitios donde puedes seguir aprendiendo de forma gratuita.</p>
+
+    <div class="recursos-grid">
+
+      <a href="https://es.khanacademy.org" target="_blank" class="recurso-card">
+        <div class="recurso-icon"><i class="fas fa-school"></i></div>
+        <div class="recurso-info">
+          <h3>Khan Academy</h3>
+          <p>Cursos gratuitos de matemáticas, ciencias, programación y más en español.</p>
+          <span class="recurso-tag">General</span>
+        </div>
+      </a>
+
+      <a href="https://www.coursera.org" target="_blank" class="recurso-card">
+        <div class="recurso-icon"><i class="fas fa-university"></i></div>
+        <div class="recurso-info">
+          <h3>Coursera</h3>
+          <p>Cursos de universidades de todo el mundo. Muchos gratuitos en modo auditoría.</p>
+          <span class="recurso-tag">General</span>
+        </div>
+      </a>
+
+      <a href="https://www.edx.org" target="_blank" class="recurso-card">
+        <div class="recurso-icon"><i class="fas fa-book-open"></i></div>
+        <div class="recurso-info">
+          <h3>edX</h3>
+          <p>Plataforma con cursos del MIT, Harvard y otras universidades top del mundo.</p>
+          <span class="recurso-tag">General</span>
+        </div>
+      </a>
+
+      <a href="https://developer.mozilla.org/es/" target="_blank" class="recurso-card">
+        <div class="recurso-icon"><i class="fab fa-firefox"></i></div>
+        <div class="recurso-info">
+          <h3>MDN Web Docs</h3>
+          <p>La documentación más completa sobre HTML, CSS y JavaScript en español.</p>
+          <span class="recurso-tag">Programación</span>
+        </div>
+      </a>
+
+    </div>
+
+  </div>
+
+  <footer class="site-footer">
+    <div class="logo-area" style="gap:10px;">
+      <img src="img/logo.png" alt="Logo" style="width:28px; animation:giro 8s linear infinite;">
+      <span style="font-size:1rem; font-weight:700;">Ingeniería<span style="color:red;">Flex</span></span>
+    </div>
+    <div class="footer-links">
+      <a href="/privacidad.html">Política de Privacidad</a>
+      <a href="/terminos.html">Términos de Uso</a>
+      <a href="mailto:pepechuysantiago714@gmail.com">Contacto</a>
+    </div>
+    <p class="footer-copy">© 2026 IngenieríaFlex. Todos los derechos reservados.</p>
+  </footer>
+
+  <div id="sidebarOverlay"></div>
+
+  <script src="js/app.js"></script>
+  <script type="module" src="js/userMenu.js"></script>
+
+</body>
+</html>

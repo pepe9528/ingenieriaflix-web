@@ -3,10 +3,29 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Curso de JavaScript - IngenieríaFlix</title>
+  <link rel="icon" type="image/png" href="/img/logo.png">
+  <link rel="icon" type="image/png" href="/img/logo.png">
+  <title>Curso de JavaScript Gratis | IngenieríaFlex</title>
+  <meta name="description" content="Aprende JavaScript desde cero. Variables, funciones, DOM, eventos, arrays, objetos y proyectos reales. Videos en español gratis para principiantes y estudiantes.">
+  <meta name="keywords" content="curso javascript gratis, aprender javascript desde cero, javascript español, programacion web, DOM eventos, javascript proyectos">
+  <meta name="author" content="IngenieríaFlex">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link rel="stylesheet" href="../../css/style.css">
   <link rel="stylesheet" href="../../css/responsive.css">
+  <style>
+    .course-intro { max-width: 900px; margin: 0 auto; padding: 40px 20px 0; text-align: center; color: #aaa; font-size: 1rem; line-height: 1.8; }
+    .topic-title { max-width: 900px; margin: 40px auto 0; padding: 0 20px; }
+    .topic-title h2 { font-size: 1.4rem; color: #fff; margin-bottom: 8px; }
+    .topic-title p { color: #888; font-size: 0.95rem; line-height: 1.6; margin-bottom: 12px; }
+    .back-btn { display: flex; align-items: center; gap: 8px; color: #aaa; font-size: 0.9rem; text-decoration: none; transition: color 0.2s; }
+    .back-btn:hover { color: #fff; }
+    .site-footer { border-top: 1px solid #1a1a1a; padding: 2rem 10%; margin-top: 60px; display: flex; flex-direction: column; align-items: center; gap: 1rem; text-align: center; }
+    .footer-links { display: flex; gap: 1.5rem; flex-wrap: wrap; justify-content: center; }
+    .footer-links a { color: #666; font-size: 0.85rem; transition: color 0.2s; }
+    .footer-links a:hover { color: #fff; }
+    .footer-copy { color: #333; font-size: 0.8rem; }
+    .section-divider { border: none; border-top: 1px solid #1a1a1a; margin: 3rem 10%; }
+  </style>
 </head>
 <body>
 
@@ -14,31 +33,154 @@
     <a href="../../programacion.html" class="back-btn">
       <i class="fa-solid fa-arrow-left"></i> Regresar
     </a>
-
     <div class="logo-area">
-      <img src="../../img/logo.png" class="logo" alt="Logo IngenieríaFlix">
+      <img src="../../img/logo.png" class="logo" alt="Logo IngenieríaFlex">
       <h1>Ingeniería<span>Flex</span></h1>
     </div>
-     <div class="menu-btn" onclick="toggleMenu()">☰</div>
+    <div class="menu-btn" onclick="toggleMenu()">☰</div>
   </header>
 
   <div class="sidebar" id="sidebar">
     <div class="close-btn" onclick="toggleMenu()">✕</div>
-    <a href="../../index.html">Inicio</a>
-    <a href="../../catalogo.html">Cursos</a>
-    <a href="../../juegos.html">Juegos</a>
-    <a href="../../recursos.html">Recursos</a>
+    <div class="sidebar-logo">
+      <img src="/img/logo.png" alt="Logo">
+      <span>Ingeniería<em>Flex</em></span>
+    </div>
+    <a href="/index.html"><i class="fa-solid fa-house"></i> Inicio</a>
+      <a href="/catalogo.html" class="active-link"><i class="fa-solid fa-book"></i> Cursos</a> alt="Logo">
+      <span>Ingeniería<em>Flex</em></span>
+    </div>
+    <a href="/index.html"><i class="fa-solid fa-house"></i> Inicio</a>
+    <a href="/catalogo.html"><i class="fa-solid fa-book"></i> Cursos</a>
+    <a href="/juegos.html"><i class="fa-solid fa-gamepad"></i> Juegos</a>
+    <a href="/recursos.html"><i class="fa-solid fa-folder"></i> Recursos</a>
+    <a href="/acerca.html"><i class="fa-solid fa-circle-info"></i> Acerca de</a>
+  </div>
+    <a href="/juegos.html"><i class="fa-solid fa-gamepad"></i> Juegos</a>
+    <a href="/recursos.html"><i class="fa-solid fa-folder"></i> Recursos</a>
+    <a href="/acerca.html"><i class="fa-solid fa-circle-info"></i> Acerca de</a>
   </div>
 
-  </header>->
   <section class="hero">
     <div class="badge">PROGRAMACIÓN</div>
     <h2>Curso de JavaScript</h2>
-    <p>Aprende a crear aplicaciones con JavaScript paso a paso.</p>
+    <p>Aprende a crear aplicaciones web interactivas con JavaScript.</p>
   </section>
-  <!-- Video -->
-   <script src="../../js/app.js"></script>
 
+  <div class="course-intro">
+    <p>JavaScript es el lenguaje de programación más usado en el mundo y es esencial para el desarrollo web. Con JavaScript puedes hacer que tus páginas web sean interactivas, crear aplicaciones completas, trabajar con APIs y mucho más. Esta página reúne los mejores videos en español para aprender JavaScript desde cero hasta un nivel intermedio-avanzado.</p>
+  </div>
+
+  <!-- 1 -->
+  <div class="topic-title">
+    <h2><i class="fab fa-js"></i> JavaScript desde Cero — Curso Completo</h2>
+    <p>El mejor punto de partida para aprender JavaScript. Este curso completo cubre todos los fundamentos: variables, tipos de datos, operadores, condicionales, bucles y funciones explicados de forma clara y práctica.</p>
+  </div>
+  <section class="video-container">
+    <iframe src="https://www.youtube.com/embed/1glVfFxj8a4" title="JavaScript desde cero" frameborder="0" allowfullscreen></iframe>
+  </section>
+
+  <!-- 2 -->
+  <div class="topic-title">
+    <h2><i class="fas fa-box"></i> Variables y Tipos de Datos</h2>
+    <p>Aprende cómo declarar variables con var, let y const, cuáles son los tipos de datos en JavaScript (strings, números, booleanos, arrays y objetos) y cuándo usar cada uno.</p>
+  </div>
+  <section class="video-container">
+    <iframe src="https://www.youtube.com/embed/_lNtSsEcnwc" title="Variables JavaScript" frameborder="0" allowfullscreen></iframe>
+  </section>
+
+  <!-- 3 -->
+  <div class="topic-title">
+    <h2><i class="fas fa-code-branch"></i> Condicionales y Bucles</h2>
+    <p>Las estructuras de control son la base de cualquier programa. Aprende if, else, switch, for, while y do-while con ejemplos prácticos para tomar decisiones y repetir acciones en tu código.</p>
+  </div>
+  <section class="video-container">
+    <iframe src="https://www.youtube.com/embed/RaWfeVgkWbE" title="Condicionales y bucles JS" frameborder="0" allowfullscreen></iframe>
+  </section>
+
+  <!-- 4 -->
+  <div class="topic-title">
+    <h2><i class="fas fa-function"></i> Funciones en JavaScript</h2>
+    <p>Las funciones son bloques de código reutilizables y son fundamentales en JavaScript. Aprende funciones declaradas, expresadas, arrow functions y el concepto de scope.</p>
+  </div>
+  <section class="video-container">
+    <iframe src="https://www.youtube.com/embed/RqQ1d1qEWlE" title="Funciones JavaScript" frameborder="0" allowfullscreen></iframe>
+  </section>
+
+  <!-- 5 -->
+  <div class="topic-title">
+    <h2><i class="fas fa-list-ol"></i> Arrays y Objetos</h2>
+    <p>Los arrays y objetos son las estructuras de datos más importantes de JavaScript. Aprende a crearlos, modificarlos y recorrerlos con los métodos más usados como map, filter y reduce.</p>
+  </div>
+  <section class="video-container">
+    <iframe src="https://www.youtube.com/embed/ljExWqnWQvo" title="Arrays y objetos JavaScript" frameborder="0" allowfullscreen></iframe>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- 6 -->
+  <div class="topic-title">
+    <h2><i class="fas fa-tree"></i> Manipulación del DOM</h2>
+    <p>El DOM es la interfaz que permite a JavaScript interactuar con el HTML de la página. Aprende a seleccionar elementos, modificar su contenido, cambiar estilos y crear elementos dinámicamente.</p>
+  </div>
+  <section class="video-container">
+    <iframe src="https://www.youtube.com/embed/gkys9sdmvus" title="DOM JavaScript" frameborder="0" allowfullscreen></iframe>
+  </section>
+
+  <!-- 7 -->
+  <div class="topic-title">
+    <h2><i class="fas fa-mouse-pointer"></i> Eventos en JavaScript</h2>
+    <p>Los eventos hacen que tu página reaccione a las acciones del usuario: clics, teclas, movimientos del mouse y más. Aprende addEventListener y cómo manejar eventos de forma eficiente.</p>
+  </div>
+  <section class="video-container">
+    <iframe src="https://www.youtube.com/embed/03eid8Lc8V8" title="Eventos JavaScript" frameborder="0" allowfullscreen></iframe>
+  </section>
+
+  <!-- 8 -->
+  <div class="topic-title">
+    <h2><i class="fas fa-clock"></i> JavaScript Asíncrono — Promesas y Async/Await</h2>
+    <p>El código asíncrono permite hacer peticiones a servidores sin bloquear la página. Aprende callbacks, promesas y async/await, conceptos clave para trabajar con APIs y datos externos.</p>
+  </div>
+  <section class="video-container">
+    <iframe src="https://www.youtube.com/embed/rKK1q7nFt7M" title="Promesas async await JavaScript" frameborder="0" allowfullscreen></iframe>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- 9 -->
+  <div class="topic-title">
+    <h2><i class="fas fa-laptop-code"></i> Proyecto — Calculadora con JavaScript</h2>
+    <p>Aprende haciendo. En este proyecto crearás una calculadora funcional usando HTML, CSS y JavaScript. Un ejercicio clásico e ideal para consolidar todo lo que aprendiste sobre el DOM y eventos.</p>
+  </div>
+  <section class="video-container">
+    <iframe src="https://www.youtube.com/embed/j59qQ7YWLxw" title="Calculadora JavaScript" frameborder="0" allowfullscreen></iframe>
+  </section>
+
+  <!-- 10 -->
+  <div class="topic-title">
+    <h2><i class="fas fa-trophy"></i> Proyecto Completo — Aplicación con JavaScript</h2>
+    <p>Pon en práctica todo lo aprendido creando una aplicación completa con JavaScript. Manejo del DOM, eventos, arrays y lógica de programación aplicada a un proyecto real.</p>
+  </div>
+  <section class="video-container">
+    <iframe src="https://www.youtube.com/embed/6AMKwVcpYTk" title="Proyecto completo JavaScript" frameborder="0" allowfullscreen></iframe>
+  </section>
+
+  <footer class="site-footer">
+    <div class="logo-area" style="gap:10px;">
+      <img src="../../img/logo.png" alt="Logo" style="width:28px; animation:giro 8s linear infinite;">
+      <span style="font-size:1rem; font-weight:700;">Ingeniería<span style="color:red;">Flex</span></span>
+    </div>
+    <div class="footer-links">
+      <a href="/privacidad.html">Política de Privacidad</a>
+      <a href="/terminos.html">Términos de Uso</a>
+      <a href="mailto:pepechuysantiago714@gmail.com">Contacto</a>
+    </div>
+    <p class="footer-copy">© 2026 IngenieríaFlex. Todos los derechos reservados.</p>
+  </footer>
+
+  <script src="../../js/app.js"></script>
+
+<div id="sidebarOverlay"></div>
+<div id="sidebarOverlay"></div>
 </body>
 </html>
-    

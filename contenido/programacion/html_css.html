@@ -3,10 +3,28 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Curso de HTML Y CSS - IngenieríaFlix</title>
+  <link rel="icon" type="image/png" href="/img/logo.png">
+  <title>Curso de HTML y CSS Gratis | IngenieríaFlex</title>
+  <meta name="description" content="Aprende HTML y CSS desde cero y crea páginas web profesionales. Videos en español paso a paso. Gratis para principiantes y estudiantes de ingeniería.">
+  <meta name="keywords" content="curso HTML CSS gratis, aprender HTML desde cero, diseño web español, crear paginas web, CSS estilos, programacion web">
+  <meta name="author" content="IngenieríaFlex">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link rel="stylesheet" href="../../css/style.css">
   <link rel="stylesheet" href="../../css/responsive.css">
+  <style>
+    .course-intro { max-width: 900px; margin: 0 auto; padding: 40px 20px 0; text-align: center; color: #aaa; font-size: 1rem; line-height: 1.8; }
+    .topic-title { max-width: 900px; margin: 40px auto 0; padding: 0 20px; }
+    .topic-title h2 { font-size: 1.4rem; color: #fff; margin-bottom: 8px; }
+    .topic-title p { color: #888; font-size: 0.95rem; line-height: 1.6; margin-bottom: 12px; }
+    .back-btn { display: flex; align-items: center; gap: 8px; color: #aaa; font-size: 0.9rem; text-decoration: none; transition: color 0.2s; }
+    .back-btn:hover { color: #fff; }
+    .site-footer { border-top: 1px solid #1a1a1a; padding: 2rem 10%; margin-top: 60px; display: flex; flex-direction: column; align-items: center; gap: 1rem; text-align: center; }
+    .footer-links { display: flex; gap: 1.5rem; flex-wrap: wrap; justify-content: center; }
+    .footer-links a { color: #666; font-size: 0.85rem; transition: color 0.2s; }
+    .footer-links a:hover { color: #fff; }
+    .footer-copy { color: #333; font-size: 0.8rem; }
+    .section-divider { border: none; border-top: 1px solid #1a1a1a; margin: 3rem 10%; }
+  </style>
 </head>
 <body>
 
@@ -14,63 +32,130 @@
     <a href="../../programacion.html" class="back-btn">
       <i class="fa-solid fa-arrow-left"></i> Regresar
     </a>
-
     <div class="logo-area">
-      <img src="../../img/logo.png" class="logo" alt="Logo IngenieríaFlix">
+      <img src="../../img/logo.png" class="logo" alt="Logo IngenieríaFlex">
       <h1>Ingeniería<span>Flex</span></h1>
     </div>
-     <div class="menu-btn" onclick="toggleMenu()">☰</div>
+    <div class="menu-btn" onclick="toggleMenu()">☰</div>
   </header>
 
   <div class="sidebar" id="sidebar">
     <div class="close-btn" onclick="toggleMenu()">✕</div>
-    <a href="../../index.html">Inicio</a>
-    <a href="../../catalogo.html">Cursos</a>
-    <a href="../../juegos.html">Juegos</a>
-    <a href="../../recursos.html">Recursos</a>
+    <div class="sidebar-logo">
+      <img src="/img/logo.png" alt="Logo">
+      <span>Ingeniería<em>Flex</em></span>
+    </div>
+    <a href="/index.html"><i class="fa-solid fa-house"></i> Inicio</a>
+      <a href="/catalogo.html" class="active-link"><i class="fa-solid fa-book"></i> Cursos</a> alt="Logo">
+      <span>Ingeniería<em>Flex</em></span>
+    </div>
+    <a href="/index.html"><i class="fa-solid fa-house"></i> Inicio</a>
+    <a href="/catalogo.html"><i class="fa-solid fa-book"></i> Cursos</a>
+    <a href="/juegos.html"><i class="fa-solid fa-gamepad"></i> Juegos</a>
+    <a href="/recursos.html"><i class="fa-solid fa-folder"></i> Recursos</a>
+    <a href="/acerca.html"><i class="fa-solid fa-circle-info"></i> Acerca de</a>
+  </div>
+    <a href="/juegos.html"><i class="fa-solid fa-gamepad"></i> Juegos</a>
+    <a href="/recursos.html"><i class="fa-solid fa-folder"></i> Recursos</a>
+    <a href="/acerca.html"><i class="fa-solid fa-circle-info"></i> Acerca de</a>
   </div>
 
-  </header>->
   <section class="hero">
     <div class="badge">PROGRAMACIÓN</div>
-    <h2>Curso de HTML Y CSS</h2>
-    <p>Aprende a crear páginas web con HTML y CSS paso a paso.</p>
+    <h2>Curso de HTML y CSS</h2>
+    <p>Aprende a crear páginas web profesionales desde cero.</p>
   </section>
-  <!-- Video -->
-   <section class="hero">
-    <h1><i class="fab fa-html5"></i> Aprende HTML Desde Cero</h1>
-    <p>
-        Crea páginas web profesionales aprendiendo
-        etiquetas, estructura, formularios, imágenes,
-        enlaces y diseño web desde cero.
-    </p>
-</section>
 
-<section class="video-container">
-    <iframe
-        src="https://www.youtube.com/embed/MJkdaVFHrto"
-        title="HTML desde cero"
-        allowfullscreen>
-    </iframe>
-</section>
-<!-- CREAR APP -->
-<section class="hero">
-    <h1><i class="fas fa-mobile-screen"></i> Cómo Crear una App</h1>
-    <p>
-        Aprende el proceso de desarrollo móvil,
-        diseño de interfaces, lógica y creación
-        de aplicaciones paso a paso.
-    </p>
-</section>
+  <div class="course-intro">
+    <p>HTML y CSS son los lenguajes fundamentales de la web. Con HTML estructuras el contenido y con CSS le das estilo y diseño. Son la puerta de entrada al desarrollo web y son habilidades muy demandadas en el mercado laboral. En esta página encontrarás todo lo que necesitas para ir desde cero hasta crear páginas web completas y responsivas.</p>
+  </div>
 
-<section class="video-container">
-    <iframe
-        src="https://www.youtube.com/embed/0a7jqSCN1vw"
-        title="Crear una app"
-        allowfullscreen>
-    </iframe>
-</section>
-   <script src="../../js/app.js"></script>
+  <!-- HTML -->
+  <div class="topic-title">
+    <h2><i class="fab fa-html5"></i> Aprende HTML Desde Cero</h2>
+    <p>Crea páginas web profesionales aprendiendo etiquetas, estructura, formularios, imágenes, enlaces y diseño web desde cero. Este es el punto de partida para cualquier desarrollador web.</p>
+  </div>
+  <section class="video-container">
+    <iframe src="https://www.youtube.com/embed/MJkdaVFHrto" title="HTML desde cero" frameborder="0" allowfullscreen></iframe>
+  </section>
 
+  <div class="topic-title">
+    <h2><i class="fas fa-code"></i> Estructura Básica de HTML</h2>
+    <p>Aprende la estructura fundamental de un documento HTML: DOCTYPE, head, body, etiquetas semánticas y cómo organizar correctamente el contenido de una página web.</p>
+  </div>
+  <section class="video-container">
+    <iframe src="https://www.youtube.com/embed/rbuYtrNUxg4" title="Estructura HTML" frameborder="0" allowfullscreen></iframe>
+  </section>
+
+  <div class="topic-title">
+    <h2><i class="fas fa-list"></i> Etiquetas HTML más Importantes</h2>
+    <p>Conoce las etiquetas HTML que usarás en todo proyecto web: encabezados, párrafos, listas, enlaces, imágenes, tablas y formularios. Con ejemplos prácticos para cada una.</p>
+  </div>
+  <section class="video-container">
+    <iframe src="https://www.youtube.com/embed/JBCDIsM-Fks" title="Etiquetas HTML" frameborder="0" allowfullscreen></iframe>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- CSS -->
+  <div class="topic-title">
+    <h2><i class="fab fa-css3-alt"></i> CSS Desde Cero — Estilos para tu Web</h2>
+    <p>CSS te permite controlar el aspecto visual de tu página web. Aprende selectores, propiedades, colores, tipografías, márgenes y todo lo necesario para diseñar páginas atractivas.</p>
+  </div>
+  <section class="video-container">
+    <iframe src="https://www.youtube.com/embed/wZniZEbPAzk" title="CSS desde cero" frameborder="0" allowfullscreen></iframe>
+  </section>
+
+  <div class="topic-title">
+    <h2><i class="fas fa-th"></i> Flexbox — Layout Moderno</h2>
+    <p>Flexbox es la herramienta más poderosa de CSS para crear layouts modernos. Aprende a alinear y distribuir elementos de forma flexible y responsiva en cualquier pantalla.</p>
+  </div>
+  <section class="video-container">
+    <iframe src="https://www.youtube.com/embed/vQAvjof1oe4" title="Flexbox CSS" frameborder="0" allowfullscreen></iframe>
+  </section>
+
+  <div class="topic-title">
+    <h2><i class="fas fa-mobile-alt"></i> Diseño Responsivo con CSS</h2>
+    <p>Un sitio web moderno debe verse bien en celulares, tablets y computadoras. Aprende media queries, diseño responsivo y cómo adaptar tu página a cualquier tamaño de pantalla.</p>
+  </div>
+  <section class="video-container">
+    <iframe src="https://www.youtube.com/embed/udGrXWeJp1Y" title="Diseño responsivo CSS" frameborder="0" allowfullscreen></iframe>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- PROYECTO -->
+  <div class="topic-title">
+    <h2><i class="fas fa-laptop-code"></i> Proyecto Completo — Página Web con HTML y CSS</h2>
+    <p>Aprende haciendo. En este video crearás una página web completa desde cero usando HTML y CSS. El mejor ejercicio para consolidar todo lo que aprendiste en este curso.</p>
+  </div>
+  <section class="video-container">
+    <iframe src="https://www.youtube.com/embed/XqFR2lqBYPs" title="Proyecto HTML CSS" frameborder="0" allowfullscreen></iframe>
+  </section>
+
+  <div class="topic-title">
+    <h2><i class="fas fa-mobile-screen"></i> Cómo Crear una App</h2>
+    <p>Una vez que dominas HTML y CSS, el siguiente paso es entender el desarrollo de aplicaciones móviles. Aprende el proceso completo: diseño de interfaces, lógica y creación de apps paso a paso.</p>
+  </div>
+  <section class="video-container">
+    <iframe src="https://www.youtube.com/embed/0a7jqSCN1vw" title="Crear una app" frameborder="0" allowfullscreen></iframe>
+  </section>
+
+  <footer class="site-footer">
+    <div class="logo-area" style="gap:10px;">
+      <img src="../../img/logo.png" alt="Logo" style="width:28px; animation:giro 8s linear infinite;">
+      <span style="font-size:1rem; font-weight:700;">Ingeniería<span style="color:red;">Flex</span></span>
+    </div>
+    <div class="footer-links">
+      <a href="/privacidad.html">Política de Privacidad</a>
+      <a href="/terminos.html">Términos de Uso</a>
+      <a href="mailto:pepechuysantiago714@gmail.com">Contacto</a>
+    </div>
+    <p class="footer-copy">© 2026 IngenieríaFlex. Todos los derechos reservados.</p>
+  </footer>
+
+  <script src="../../js/app.js"></script>
+
+<div id="sidebarOverlay"></div>
 </body>
 </html>

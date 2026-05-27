@@ -3,10 +3,29 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Probabilidad Avanzada - IngenieríaFlix</title>
+  <link rel="icon" type="image/png" href="/img/logo.png">
+  <link rel="icon" type="image/png" href="/img/logo.png">
+  <title>Curso de Probabilidad Avanzada Gratis | IngenieríaFlex</title>
+  <meta name="description" content="Aprende probabilidad avanzada desde cero. Distribuciones, variables aleatorias, teorema de Bayes, cadenas de Markov y más. Videos en español gratis para ingenieros.">
+  <meta name="keywords" content="probabilidad avanzada gratis, distribuciones probabilidad, variables aleatorias, teorema de bayes, cadenas markov, estadistica ingenieria">
+  <meta name="author" content="IngenieríaFlex">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link rel="stylesheet" href="../../css/style.css">
   <link rel="stylesheet" href="../../css/responsive.css">
+  <style>
+    .course-intro { max-width: 900px; margin: 0 auto; padding: 40px 20px 0; text-align: center; color: #aaa; font-size: 1rem; line-height: 1.8; }
+    .topic-title { max-width: 900px; margin: 40px auto 0; padding: 0 20px; }
+    .topic-title h2 { font-size: 1.4rem; color: #fff; margin-bottom: 8px; }
+    .topic-title p { color: #888; font-size: 0.95rem; line-height: 1.6; margin-bottom: 12px; }
+    .back-btn { display: flex; align-items: center; gap: 8px; color: #aaa; font-size: 0.9rem; text-decoration: none; transition: color 0.2s; }
+    .back-btn:hover { color: #fff; }
+    .site-footer { border-top: 1px solid #1a1a1a; padding: 2rem 10%; margin-top: 60px; display: flex; flex-direction: column; align-items: center; gap: 1rem; text-align: center; }
+    .footer-links { display: flex; gap: 1.5rem; flex-wrap: wrap; justify-content: center; }
+    .footer-links a { color: #666; font-size: 0.85rem; transition: color 0.2s; }
+    .footer-links a:hover { color: #fff; }
+    .footer-copy { color: #333; font-size: 0.8rem; }
+    .section-divider { border: none; border-top: 1px solid #1a1a1a; margin: 3rem 10%; }
+  </style>
 </head>
 <body>
 
@@ -14,31 +33,166 @@
     <a href="../../estadistica.html" class="back-btn">
       <i class="fa-solid fa-arrow-left"></i> Regresar
     </a>
-
     <div class="logo-area">
-      <img src="../../img/logo.png" class="logo" alt="Logo IngenieríaFlix">
+      <img src="../../img/logo.png" class="logo" alt="Logo IngenieríaFlex">
       <h1>Ingeniería<span>Flex</span></h1>
     </div>
-     <div class="menu-btn" onclick="toggleMenu()">☰</div>
+    <div class="menu-btn" onclick="toggleMenu()">☰</div>
   </header>
 
   <div class="sidebar" id="sidebar">
     <div class="close-btn" onclick="toggleMenu()">✕</div>
-    <a href="../../index.html">Inicio</a>
-    <a href="../../catalogo.html">Cursos</a>
-    <a href="../../juegos.html">Juegos</a>
-    <a href="../../recursos.html">Recursos</a>
+    <div class="sidebar-logo">
+      <img src="/img/logo.png" alt="Logo">
+      <span>Ingeniería<em>Flex</em></span>
+    </div>
+    <a href="/index.html"><i class="fa-solid fa-house"></i> Inicio</a>
+      <a href="/catalogo.html" class="active-link"><i class="fa-solid fa-book"></i> Cursos</a> alt="Logo">
+      <span>Ingeniería<em>Flex</em></span>
+    </div>
+    <a href="/index.html"><i class="fa-solid fa-house"></i> Inicio</a>
+    <a href="/catalogo.html"><i class="fa-solid fa-book"></i> Cursos</a>
+    <a href="/juegos.html"><i class="fa-solid fa-gamepad"></i> Juegos</a>
+    <a href="/recursos.html"><i class="fa-solid fa-folder"></i> Recursos</a>
+    <a href="/acerca.html"><i class="fa-solid fa-circle-info"></i> Acerca de</a>
+  </div>
+    <a href="/juegos.html"><i class="fa-solid fa-gamepad"></i> Juegos</a>
+    <a href="/recursos.html"><i class="fa-solid fa-folder"></i> Recursos</a>
+    <a href="/acerca.html"><i class="fa-solid fa-circle-info"></i> Acerca de</a>
+  </div>ref="/index.html"><i class="fa-solid fa-house"></i> Inicio</a>
+      <a href="/catalogo.html" class="active-link"><i class="fa-solid fa-book"></i> Cursos</a> alt="Logo">
+      <span>Ingeniería<em>Flex</em></span>
+    </div>
+    <a href="/index.html"><i class="fa-solid fa-house"></i> Inicio</a>
+    <a href="/catalogo.html"><i class="fa-solid fa-book"></i> Cursos</a>
+    <a href="/juegos.html"><i class="fa-solid fa-gamepad"></i> Juegos</a>
+    <a href="/recursos.html"><i class="fa-solid fa-folder"></i> Recursos</a>
+    <a href="/acerca.html"><i class="fa-solid fa-circle-info"></i> Acerca de</a>
+  </div>
+    <a href="/juegos.html"><i class="fa-solid fa-gamepad"></i> Juegos</a>
+    <a href="/recursos.html"><i class="fa-solid fa-folder"></i> Recursos</a>
+    <a href="/acerca.html"><i class="fa-solid fa-circle-info"></i> Acerca de</a>
   </div>
 
-  </header>->
   <section class="hero">
     <div class="badge">ESTADÍSTICA</div>
     <h2>Curso de Probabilidad Avanzada</h2>
     <p>Aprende conceptos avanzados de probabilidad aplicados a ingeniería y ciencia.</p>
   </section>
-  
-  <!-- Video -->
- <script src="../../js/app.js"></script>
 
+  <div class="course-intro">
+    <p>La probabilidad avanzada es fundamental para ingeniería, ciencia de datos, inteligencia artificial y finanzas. Te permite modelar la incertidumbre, analizar sistemas complejos y tomar decisiones basadas en datos. Esta página reúne los mejores videos en español para llevarte desde los conceptos básicos de probabilidad hasta temas avanzados como distribuciones, Bayes y cadenas de Markov.</p>
+  </div>
+
+  <!-- 1 -->
+  <div class="topic-title">
+    <h2><i class="fas fa-dice"></i> Fundamentos de Probabilidad</h2>
+    <p>Antes de entrar a temas avanzados, es importante dominar los fundamentos: espacio muestral, eventos, probabilidad clásica y condicional. Este video te da una base sólida para todo lo que viene después.</p>
+  </div>
+  <section class="video-container">
+    <iframe src="https://www.youtube.com/embed/SkidyDQuUpk" title="Fundamentos probabilidad" frameborder="0" allowfullscreen></iframe>
+  </section>
+
+  <!-- 2 -->
+  <div class="topic-title">
+    <h2><i class="fas fa-code-branch"></i> Probabilidad Condicional e Independencia</h2>
+    <p>La probabilidad condicional mide la probabilidad de un evento dado que otro ya ocurrió. Aprende la fórmula P(A|B), cuándo dos eventos son independientes y cómo aplicar estos conceptos en problemas reales de ingeniería.</p>
+  </div>
+  <section class="video-container">
+    <iframe src="https://www.youtube.com/embed/H02B3aMNKzE" title="Probabilidad condicional independencia" frameborder="0" allowfullscreen></iframe>
+  </section>
+
+  <!-- 3 -->
+  <div class="topic-title">
+    <h2><i class="fas fa-church"></i> Teorema de Bayes</h2>
+    <p>El teorema de Bayes es uno de los resultados más poderosos de la probabilidad. Aprende cómo actualizar probabilidades con nueva información y sus aplicaciones en diagnóstico médico, filtros de spam e inteligencia artificial.</p>
+  </div>
+  <section class="video-container">
+    <iframe src="https://www.youtube.com/embed/HZGCoVF3YvM" title="Teorema de Bayes" frameborder="0" allowfullscreen></iframe>
+  </section>
+
+  <!-- 4 -->
+  <div class="topic-title">
+    <h2><i class="fas fa-random"></i> Variables Aleatorias Discretas</h2>
+    <p>Una variable aleatoria asigna un valor numérico a cada resultado de un experimento. Aprende qué son las variables aleatorias discretas, cómo calcular su función de probabilidad y su valor esperado.</p>
+  </div>
+  <section class="video-container">
+    <iframe src="https://www.youtube.com/embed/3v9w79NhsfI" title="Variables aleatorias discretas" frameborder="0" allowfullscreen></iframe>
+  </section>
+
+  <!-- 5 -->
+  <div class="topic-title">
+    <h2><i class="fas fa-wave-square"></i> Variables Aleatorias Continuas</h2>
+    <p>Las variables aleatorias continuas pueden tomar cualquier valor dentro de un intervalo. Aprende las funciones de densidad de probabilidad, la función de distribución acumulada y el cálculo de probabilidades con integrales.</p>
+  </div>
+  <section class="video-container">
+    <iframe src="https://www.youtube.com/embed/Fvi9A_tEmXQ" title="Variables aleatorias continuas" frameborder="0" allowfullscreen></iframe>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- 6 -->
+  <div class="topic-title">
+    <h2><i class="fas fa-bell"></i> Distribución Normal — La Campana de Gauss</h2>
+    <p>La distribución normal es la más importante en estadística y probabilidad. Aprende sus propiedades, cómo calcular probabilidades usando la tabla Z y por qué aparece en tantos fenómenos naturales e industriales.</p>
+  </div>
+  <section class="video-container">
+    <iframe src="https://www.youtube.com/embed/rzFX5NWojp0" title="Distribución normal campana Gauss" frameborder="0" allowfullscreen></iframe>
+  </section>
+
+  <!-- 7 -->
+  <div class="topic-title">
+    <h2><i class="fas fa-chart-bar"></i> Distribuciones Binomial y de Poisson</h2>
+    <p>La distribución binomial modela el número de éxitos en n intentos y la distribución de Poisson modela eventos raros en un intervalo de tiempo. Aprende cuándo usar cada una y cómo calcular probabilidades.</p>
+  </div>
+  <section class="video-container">
+    <iframe src="https://www.youtube.com/embed/qICj1N_-HMk" title="Distribución binomial Poisson" frameborder="0" allowfullscreen></iframe>
+  </section>
+
+  <!-- 8 -->
+  <div class="topic-title">
+    <h2><i class="fas fa-equals"></i> Valor Esperado y Varianza</h2>
+    <p>El valor esperado y la varianza son las medidas más importantes de una distribución de probabilidad. Aprende a calcularlos para variables discretas y continuas, y cómo interpretarlos en contextos de ingeniería.</p>
+  </div>
+  <section class="video-container">
+    <iframe src="https://www.youtube.com/embed/OvTEhNL96v0" title="Valor esperado varianza probabilidad" frameborder="0" allowfullscreen></iframe>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- 9 -->
+  <div class="topic-title">
+    <h2><i class="fas fa-project-diagram"></i> Cadenas de Markov</h2>
+    <p>Las cadenas de Markov modelan sistemas que cambian de estado aleatoriamente. Son fundamentales en inteligencia artificial, investigación de operaciones y modelado de sistemas. Aprende sus propiedades y cómo calcular probabilidades de transición.</p>
+  </div>
+  <section class="video-container">
+    <iframe src="https://www.youtube.com/embed/uvYTGEZQTEs" title="Cadenas de Markov" frameborder="0" allowfullscreen></iframe>
+  </section>
+
+  <!-- 10 -->
+  <div class="topic-title">
+    <h2><i class="fas fa-trophy"></i> Ejercicios de Probabilidad Avanzada Resueltos</h2>
+    <p>Practica con ejercicios completos de probabilidad avanzada resueltos paso a paso. Distribuciones, valor esperado, Bayes y más, para prepararte para exámenes y aplicaciones reales en ingeniería.</p>
+  </div>
+  <section class="video-container">
+    <iframe src="https://www.youtube.com/embed/1L8K1UbUtFM" title="Ejercicios probabilidad avanzada" frameborder="0" allowfullscreen></iframe>
+  </section>
+
+  <footer class="site-footer">
+    <div class="logo-area" style="gap:10px;">
+      <img src="../../img/logo.png" alt="Logo" style="width:28px; animation:giro 8s linear infinite;">
+      <span style="font-size:1rem; font-weight:700;">Ingeniería<span style="color:red;">Flex</span></span>
+    </div>
+    <div class="footer-links">
+      <a href="/privacidad.html">Política de Privacidad</a>
+      <a href="/terminos.html">Términos de Uso</a>
+      <a href="mailto:pepechuysantiago714@gmail.com">Contacto</a>
+    </div>
+    <p class="footer-copy">© 2026 IngenieríaFlex. Todos los derechos reservados.</p>
+  </footer>
+
+  <script src="../../js/app.js"></script>
+
+<div id="sidebarOverlay"></div>
 </body>
 </html>

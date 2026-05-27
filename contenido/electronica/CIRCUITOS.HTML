@@ -3,10 +3,28 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Circuitos Eléctricos - IngenieríaFlix</title>
+  <link rel="icon" type="image/png" href="/img/logo.png">
+  <title>Curso de Circuitos Eléctricos Gratis | IngenieríaFlex</title>
+  <meta name="description" content="Aprende circuitos eléctricos desde cero. Ley de Ohm, Kirchhoff, resistencias, condensadores, circuitos AC y DC. Videos en español gratis para ingenieros.">
+  <meta name="keywords" content="curso circuitos electricos gratis, ley de ohm, kirchhoff, resistencias, electronica basica, ingenieria electrica, circuitos AC DC">
+  <meta name="author" content="IngenieríaFlex">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link rel="stylesheet" href="../../css/style.css">
   <link rel="stylesheet" href="../../css/responsive.css">
+  <style>
+    .course-intro { max-width: 900px; margin: 0 auto; padding: 40px 20px 0; text-align: center; color: #aaa; font-size: 1rem; line-height: 1.8; }
+    .topic-title { max-width: 900px; margin: 40px auto 0; padding: 0 20px; }
+    .topic-title h2 { font-size: 1.4rem; color: #fff; margin-bottom: 8px; }
+    .topic-title p { color: #888; font-size: 0.95rem; line-height: 1.6; margin-bottom: 12px; }
+    .back-btn { display: flex; align-items: center; gap: 8px; color: #aaa; font-size: 0.9rem; text-decoration: none; transition: color 0.2s; }
+    .back-btn:hover { color: #fff; }
+    .site-footer { border-top: 1px solid #1a1a1a; padding: 2rem 10%; margin-top: 60px; display: flex; flex-direction: column; align-items: center; gap: 1rem; text-align: center; }
+    .footer-links { display: flex; gap: 1.5rem; flex-wrap: wrap; justify-content: center; }
+    .footer-links a { color: #666; font-size: 0.85rem; transition: color 0.2s; }
+    .footer-links a:hover { color: #fff; }
+    .footer-copy { color: #333; font-size: 0.8rem; }
+    .section-divider { border: none; border-top: 1px solid #1a1a1a; margin: 3rem 10%; }
+  </style>
 </head>
 <body>
 
@@ -14,30 +32,148 @@
     <a href="../../electronica.html" class="back-btn">
       <i class="fa-solid fa-arrow-left"></i> Regresar
     </a>
-
     <div class="logo-area">
-      <img src="../../img/logo.png" class="logo" alt="Logo IngenieríaFlix">
+      <img src="../../img/logo.png" class="logo" alt="Logo IngenieríaFlex">
       <h1>Ingeniería<span>Flex</span></h1>
     </div>
-     <div class="menu-btn" onclick="toggleMenu()">☰</div>
+    <div class="menu-btn" onclick="toggleMenu()">☰</div>
   </header>
 
-  <div class="sidebar" id="sidebar">
-    <div class="close-btn" onclick="toggleMenu()">✕</div>
-    <a href="../../index.html">Inicio</a>
-    <a href="../../catalogo.html">Cursos</a>
-    <a href="../../juegos.html">Juegos</a>
-    <a href="../../recursos.html">Recursos</a>
+   <div id="sidebarOverlay"></div>
+ <div class="sidebar" id="sidebar">
+  <div class="close-btn" onclick="toggleMenu()">✕</div>
+  <div class="sidebar-logo">
+    <img src="/img/logo.png" alt="Logo">
+    <span>Ingeniería<em>Flex</em></span>
   </div>
 
-  </header>->
+      <span>Ingeniería<em>Flex</em></span>
+    </div>
+    <a href="/index.html"><i class="fa-solid fa-house"></i> Inicio</a>
+    <a href="/catalogo.html"><i class="fa-solid fa-book"></i> Cursos</a>
+    <a href="/juegos.html"><i class="fa-solid fa-gamepad"></i> Juegos</a>
+    <a href="/recursos.html"><i class="fa-solid fa-folder"></i> Recursos</a>
+    <a href="/acerca.html"><i class="fa-solid fa-circle-info"></i> Acerca de</a>
+
   <section class="hero">
     <div class="badge">ELECTRÓNICA</div>
     <h2>Curso de Circuitos Eléctricos</h2>
     <p>Aprende a analizar y diseñar circuitos eléctricos desde lo básico hasta lo avanzado.</p>
   </section>
-  <!-- Video -->
-   <script src="../../js/app.js"></script>
 
+  <div class="course-intro">
+    <p>Los circuitos eléctricos son la base de la ingeniería eléctrica, electrónica y mecatrónica. Desde encender un foco hasta diseñar sistemas de control complejos, todo parte de entender cómo fluye la corriente eléctrica. En esta página encontrarás los mejores videos en español para aprender circuitos desde cero, con teoría, cálculos y aplicaciones prácticas.</p>
+  </div>
+
+  <!-- 1 -->
+  <div class="topic-title">
+    <h2><i class="fas fa-bolt"></i> Introducción a los Circuitos Eléctricos</h2>
+    <p>Aprende los conceptos fundamentales de electricidad: qué es la corriente eléctrica, el voltaje, la resistencia y cómo se relacionan. El punto de partida para entender cualquier circuito.</p>
+  </div>
+  <section class="video-container">
+    <iframe src="https://www.youtube.com/embed/mc979OhitAg" title="Introducción circuitos eléctricos" frameborder="0" allowfullscreen></iframe>
+  </section>
+
+  <!-- 2 -->
+  <div class="topic-title">
+    <h2><i class="fas fa-equals"></i> Ley de Ohm</h2>
+    <p>La Ley de Ohm es la relación fundamental entre voltaje, corriente y resistencia (V = I × R). Aprende a aplicarla para calcular cualquier variable en un circuito eléctrico simple.</p>
+  </div>
+  <section class="video-container">
+    <iframe src="https://www.youtube.com/embed/HsLLq6Rm5tU" title="Ley de Ohm" frameborder="0" allowfullscreen></iframe>
+  </section>
+
+  <!-- 3 -->
+  <div class="topic-title">
+    <h2><i class="fas fa-project-diagram"></i> Circuitos en Serie y en Paralelo</h2>
+    <p>Aprende la diferencia entre circuitos en serie y en paralelo, cómo calcular la resistencia equivalente en cada caso y cómo se distribuyen el voltaje y la corriente en ambas configuraciones.</p>
+  </div>
+  <section class="video-container">
+    <iframe src="https://www.youtube.com/embed/7vHh1sfZ5KE" title="Circuitos serie paralelo" frameborder="0" allowfullscreen></iframe>
+  </section>
+
+  <!-- 4 -->
+  <div class="topic-title">
+    <h2><i class="fas fa-code-branch"></i> Leyes de Kirchhoff</h2>
+    <p>Las leyes de Kirchhoff (KVL y KCL) son herramientas fundamentales para analizar circuitos complejos. Aprende la ley de voltajes y la ley de corrientes con ejemplos resueltos paso a paso.</p>
+  </div>
+  <section class="video-container">
+    <iframe src="https://www.youtube.com/embed/1NC9kGDn7Bg" title="Leyes de Kirchhoff" frameborder="0" allowfullscreen></iframe>
+  </section>
+
+  <!-- 5 -->
+  <div class="topic-title">
+    <h2><i class="fas fa-microchip"></i> Resistencias — Tipos y Código de Colores</h2>
+    <p>Aprende todo sobre las resistencias: qué son, cómo funcionan, sus tipos y cómo leer el código de colores para identificar su valor. Un conocimiento esencial para trabajar con electrónica.</p>
+  </div>
+  <section class="video-container">
+    <iframe src="https://www.youtube.com/embed/YdaiLW4WOWo" title="Resistencias código colores" frameborder="0" allowfullscreen></iframe>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- 6 -->
+  <div class="topic-title">
+    <h2><i class="fas fa-battery-full"></i> Condensadores y Capacitores</h2>
+    <p>Los condensadores almacenan energía eléctrica y son componentes clave en filtros, fuentes de poder y circuitos de temporización. Aprende cómo funcionan, sus tipos y cómo calcular su capacitancia.</p>
+  </div>
+  <section class="video-container">
+    <iframe src="https://www.youtube.com/embed/X4EUwTwZ110" title="Condensadores capacitores" frameborder="0" allowfullscreen></iframe>
+  </section>
+
+  <!-- 7 -->
+  <div class="topic-title">
+    <h2><i class="fas fa-wave-square"></i> Corriente Alterna (AC) vs Corriente Directa (DC)</h2>
+    <p>Aprende la diferencia fundamental entre corriente alterna y corriente directa, cómo se generan, sus aplicaciones y por qué la corriente alterna se usa para transmitir energía eléctrica a larga distancia.</p>
+  </div>
+  <section class="video-container">
+    <iframe src="https://www.youtube.com/embed/boQ6hMpp7kI" title="AC DC corriente alterna directa" frameborder="0" allowfullscreen></iframe>
+  </section>
+
+  <!-- 8 -->
+  <div class="topic-title">
+    <h2><i class="fas fa-chart-line"></i> Análisis de Circuitos con Métodos de Mallas y Nodos</h2>
+    <p>Los métodos de mallas y nodos son técnicas sistemáticas para analizar circuitos complejos. Aprende a plantear ecuaciones y resolver sistemas de circuitos usando álgebra lineal.</p>
+  </div>
+  <section class="video-container">
+    <iframe src="https://www.youtube.com/embed/fl1zeOnvkmw" title="Métodos mallas nodos" frameborder="0" allowfullscreen></iframe>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- 9 -->
+  <div class="topic-title">
+    <h2><i class="fas fa-tools"></i> Uso del Multímetro</h2>
+    <p>El multímetro es la herramienta más importante en electrónica. Aprende a medir voltaje, corriente y resistencia correctamente para diagnosticar circuitos y verificar componentes en la práctica.</p>
+  </div>
+  <section class="video-container">
+    <iframe src="https://www.youtube.com/embed/SLkPtmnglOI" title="Uso del multímetro" frameborder="0" allowfullscreen></iframe>
+  </section>
+
+  <!-- 10 -->
+  <div class="topic-title">
+    <h2><i class="fas fa-trophy"></i> Ejercicios de Circuitos Resueltos</h2>
+    <p>Practica con ejercicios completos de circuitos eléctricos resueltos paso a paso. Aplica la Ley de Ohm, Kirchhoff y análisis de mallas para resolver problemas de ingeniería eléctrica.</p>
+  </div>
+  <section class="video-container">
+    <iframe src="https://www.youtube.com/embed/245-usgm-pk" title="Ejercicios circuitos eléctricos" frameborder="0" allowfullscreen></iframe>
+  </section>
+
+  <footer class="site-footer">
+    <div class="logo-area" style="gap:10px;">
+      <img src="../../img/logo.png" alt="Logo" style="width:28px; animation:giro 8s linear infinite;">
+      <span style="font-size:1rem; font-weight:700;">Ingeniería<span style="color:red;">Flex</span></span>
+    </div>
+    <div class="footer-links">
+      <a href="/privacidad.html">Política de Privacidad</a>
+      <a href="/terminos.html">Términos de Uso</a>
+      <a href="mailto:pepechuysantiago714@gmail.com">Contacto</a>
+    </div>
+    <p class="footer-copy">© 2026 IngenieríaFlex. Todos los derechos reservados.</p>
+  </footer>
+
+  <script src="../../js/app.js"></script>
+
+<div id="sidebarOverlay"></div>
 </body>
 </html>

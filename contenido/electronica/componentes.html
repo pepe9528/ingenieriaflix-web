@@ -3,10 +3,28 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Componentes Electrónicos - IngenieríaFlix</title>
+  <link rel="icon" type="image/png" href="/img/logo.png">
+  <title>Curso de Componentes Electrónicos Gratis | IngenieríaFlex</title>
+  <meta name="description" content="Aprende a identificar y usar componentes electrónicos: resistencias, capacitores, diodos, transistores, LEDs y más. Videos en español gratis para ingenieros.">
+  <meta name="keywords" content="componentes electronicos, resistencias capacitores diodos transistores, electronica basica, como usar multimetro, arduino componentes, ingenieria electronica">
+  <meta name="author" content="IngenieríaFlex">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link rel="stylesheet" href="../../css/style.css">
   <link rel="stylesheet" href="../../css/responsive.css">
+  <style>
+    .course-intro { max-width: 900px; margin: 0 auto; padding: 40px 20px 0; text-align: center; color: #aaa; font-size: 1rem; line-height: 1.8; }
+    .topic-title { max-width: 900px; margin: 40px auto 0; padding: 0 20px; }
+    .topic-title h2 { font-size: 1.4rem; color: #fff; margin-bottom: 8px; }
+    .topic-title p { color: #888; font-size: 0.95rem; line-height: 1.6; margin-bottom: 12px; }
+    .back-btn { display: flex; align-items: center; gap: 8px; color: #aaa; font-size: 0.9rem; text-decoration: none; transition: color 0.2s; }
+    .back-btn:hover { color: #fff; }
+    .site-footer { border-top: 1px solid #1a1a1a; padding: 2rem 10%; margin-top: 60px; display: flex; flex-direction: column; align-items: center; gap: 1rem; text-align: center; }
+    .footer-links { display: flex; gap: 1.5rem; flex-wrap: wrap; justify-content: center; }
+    .footer-links a { color: #666; font-size: 0.85rem; transition: color 0.2s; }
+    .footer-links a:hover { color: #fff; }
+    .footer-copy { color: #333; font-size: 0.8rem; }
+    .section-divider { border: none; border-top: 1px solid #1a1a1a; margin: 3rem 10%; }
+  </style>
 </head>
 <body>
 
@@ -14,85 +32,145 @@
     <a href="../../electronica.html" class="back-btn">
       <i class="fa-solid fa-arrow-left"></i> Regresar
     </a>
-
     <div class="logo-area">
-      <img src="../../img/logo.png" class="logo" alt="Logo IngenieríaFlix">
+      <img src="../../img/logo.png" class="logo" alt="Logo IngenieríaFlex">
       <h1>Ingeniería<span>Flex</span></h1>
     </div>
-     <div class="menu-btn" onclick="toggleMenu()">☰</div>
+    <div class="menu-btn" onclick="toggleMenu()">☰</div>
   </header>
 
-  <div class="sidebar" id="sidebar">
-    <div class="close-btn" onclick="toggleMenu()">✕</div>
-    <a href="../../index.html">Inicio</a>
-    <a href="../../catalogo.html">Cursos</a>
-    <a href="../../juegos.html">Juegos</a>
-    <a href="../../recursos.html">Recursos</a>
+   <div id="sidebarOverlay"></div>
+ <div class="sidebar" id="sidebar">
+  <div class="close-btn" onclick="toggleMenu()">✕</div>
+  <div class="sidebar-logo">
+    <img src="/img/logo.png" alt="Logo">
+    <span>Ingeniería<em>Flex</em></span>
   </div>
+  <a href="/index.html"><i class="fa-solid fa-house"></i> Inicio</a>
+    <a href="/catalogo.html" class="active-link"><i class="fa-solid fa-book"></i> Cursos</a> alt="Logo">
+      <span>Ingeniería<em>Flex</em></span>
+    </div>
+    <a href="/index.html"><i class="fa-solid fa-house"></i> Inicio</a>
+    <a href="/catalogo.html"><i class="fa-solid fa-book"></i> Cursos</a>
+    <a href="/juegos.html"><i class="fa-solid fa-gamepad"></i> Juegos</a>
+    <a href="/recursos.html"><i class="fa-solid fa-folder"></i> Recursos</a>
+    <a href="/acerca.html"><i class="fa-solid fa-circle-info"></i> Acerca de</a>
+  </div>
+  <a href="/juegos.html"><i class="fa-solid fa-gamepad"></i> Juegos</a>
+  <a href="/recursos.html"><i class="fa-solid fa-folder"></i> Recursos</a>
+  <a href="/acerca.html"><i class="fa-solid fa-circle-info"></i> Acerca de</a>
+</div>
 
-  </header>->
   <section class="hero">
     <div class="badge">ELECTRÓNICA</div>
     <h2>Curso de Componentes Electrónicos</h2>
-    <p>Aprende a identificar y utilizar componentes electrónicos en circuitos desde lo básico hasta lo avanzado.</p>
+    <p>Aprende a identificar y utilizar los componentes más importantes en electrónica.</p>
   </section>
-  <!-- Video -->
-   <!-- COMPONENTES ELECTRONICOS -->
-<section class="hero">
-    <h1><i class="fas fa-microchip"></i> Componentes Electrónicos</h1>
-    <p>
-        Aprende a identificar resistencias,
-        capacitores, diodos, transistores
-        y los componentes más usados en electrónica.
-    </p>
-</section>
 
-<section class="video-container">
-    <iframe
-        src="https://www.youtube.com/embed/1NRFL6YYtzg"
-        title="Componentes electrónicos"
-        allowfullscreen>
-    </iframe>
-</section>
+  <div class="course-intro">
+    <p>Antes de armar cualquier circuito, necesitas conocer los componentes electrónicos que lo forman. Resistencias, capacitores, diodos, transistores y circuitos integrados son los bloques de construcción de toda la electrónica moderna. En esta página aprenderás qué hace cada componente, cómo identificarlo y cómo usarlo correctamente en tus proyectos.</p>
+  </div>
 
+  <!-- 1 -->
+  <div class="topic-title">
+    <h2><i class="fas fa-microchip"></i> Componentes Electrónicos — Guía Completa</h2>
+    <p>Aprende a identificar resistencias, capacitores, diodos, transistores y los componentes más usados en electrónica. Una guía visual completa para principiantes que quieren entender qué hay dentro de cualquier circuito.</p>
+  </div>
+  <section class="video-container">
+    <iframe src="https://www.youtube.com/embed/1NRFL6YYtzg" title="Componentes electrónicos" frameborder="0" allowfullscreen></iframe>
+  </section>
 
-<!-- ELECTRONICA BASICA -->
-<section class="hero">
-    <h1><i class="fas fa-bolt"></i> Curso de Electrónica Básica</h1>
-    <p>
-        Aprende circuitos, voltaje, corriente,
-        resistencia y fundamentos esenciales
-        de la electrónica desde cero.
-    </p>
-</section>
+  <!-- 2 -->
+  <div class="topic-title">
+    <h2><i class="fas fa-bolt"></i> Curso de Electrónica Básica</h2>
+    <p>Aprende circuitos, voltaje, corriente, resistencia y los fundamentos esenciales de la electrónica desde cero. El mejor punto de partida para entender cómo funciona la electrónica en la práctica.</p>
+  </div>
+  <section class="video-container">
+    <iframe src="https://www.youtube.com/embed/RH9eLKXq2qk" title="Electrónica básica" frameborder="0" allowfullscreen></iframe>
+  </section>
 
-<section class="video-container">
-    <iframe
-        src="https://www.youtube.com/embed/RH9eLKXq2qk"
-        title="Electrónica básica"
-        allowfullscreen>
-    </iframe>
-</section>
+  <!-- 3 -->
+  <div class="topic-title">
+    <h2><i class="fas fa-screwdriver-wrench"></i> Cómo Medir Componentes Electrónicos</h2>
+    <p>Aprende a utilizar el multímetro para medir voltaje, corriente y resistencia, y cómo comprobar si un componente electrónico está funcionando correctamente. Una habilidad esencial para cualquier técnico o ingeniero.</p>
+  </div>
+  <section class="video-container">
+    <iframe src="https://www.youtube.com/embed/h32zF39gwwY" title="Medición de componentes" frameborder="0" allowfullscreen></iframe>
+  </section>
 
+  <hr class="section-divider">
 
-<!-- MEDICION -->
-<section class="hero">
-    <h1><i class="fas fa-screwdriver-wrench"></i> Cómo Medir Componentes Electrónicos</h1>
-    <p>
-        Aprende a utilizar el multímetro,
-        medir voltaje, corriente, resistencia
-        y comprobar componentes electrónicos.
-    </p>
-</section>
+  <!-- 4 -->
+  <div class="topic-title">
+    <h2><i class="fas fa-circle"></i> Diodos — Qué Son y Cómo Funcionan</h2>
+    <p>El diodo es uno de los componentes más importantes en electrónica. Aprende qué es un diodo, cómo permite el paso de corriente en una sola dirección y cuáles son sus aplicaciones más comunes en circuitos reales.</p>
+  </div>
+  <section class="video-container">
+    <iframe src="https://www.youtube.com/embed/Fwj_d3uO5g8" title="Diodos electrónica" frameborder="0" allowfullscreen></iframe>
+  </section>
 
-<section class="video-container">
-    <iframe
-        src="https://www.youtube.com/embed/h32zF39gwwY"
-        title="Medición de componentes"
-        allowfullscreen>
-    </iframe>
-</section>
-   <script src="../../js/app.js"></script>
+  <!-- 5 -->
+  <div class="topic-title">
+    <h2><i class="fas fa-toggle-on"></i> Transistores — El Componente más Importante</h2>
+    <p>El transistor es el componente fundamental de toda la electrónica moderna. Aprende qué es un transistor BJT, cómo funciona como amplificador y como interruptor, y cuáles son sus aplicaciones en circuitos digitales y analógicos.</p>
+  </div>
+  <section class="video-container">
+    <iframe src="https://www.youtube.com/embed/7ukDKVHnac4" title="Transistores BJT" frameborder="0" allowfullscreen></iframe>
+  </section>
 
+  <!-- 6 -->
+  <div class="topic-title">
+    <h2><i class="fas fa-lightbulb"></i> LEDs — Diodos Emisores de Luz</h2>
+    <p>Los LEDs son los componentes más visibles en electrónica. Aprende cómo funcionan, cómo conectarlos correctamente con resistencias limitadoras y cómo usarlos en proyectos con Arduino y circuitos básicos.</p>
+  </div>
+  <section class="video-container">
+    <iframe src="https://www.youtube.com/embed/Yo6JI_bzUzo" title="LEDs electrónica" frameborder="0" allowfullscreen></iframe>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- 7 -->
+  <div class="topic-title">
+    <h2><i class="fas fa-memory"></i> Circuitos Integrados — Introducción</h2>
+    <p>Los circuitos integrados (CI) son chips que contienen miles de componentes en un espacio diminuto. Aprende qué son, cómo se clasifican y cómo usar los más comunes como el NE555 y amplificadores operacionales.</p>
+  </div>
+  <section class="video-container">
+    <iframe src="https://www.youtube.com/embed/aZD_bE9sCfE" title="Circuitos integrados" frameborder="0" allowfullscreen></iframe>
+  </section>
+
+  <!-- 8 -->
+  <div class="topic-title">
+    <h2><i class="fas fa-tools"></i> Cómo Soldar Componentes Electrónicos</h2>
+    <p>Soldar es una habilidad fundamental para cualquier persona que quiera armar circuitos físicos. Aprende las técnicas básicas de soldadura, las herramientas necesarias y los errores más comunes que debes evitar.</p>
+  </div>
+  <section class="video-container">
+    <iframe src="https://www.youtube.com/embed/oqV2xU1fee8" title="Cómo soldar electrónica" frameborder="0" allowfullscreen></iframe>
+  </section>
+
+  <!-- 9 -->
+  <div class="topic-title">
+    <h2><i class="fas fa-trophy"></i> Proyecto Práctico con Componentes Electrónicos</h2>
+    <p>Pon en práctica todo lo que aprendiste armando un proyecto real con componentes electrónicos. La mejor forma de consolidar el conocimiento es construir algo funcional con tus propias manos.</p>
+  </div>
+  <section class="video-container">
+    <iframe src="https://www.youtube.com/embed/eix344ZICKA" title="Proyecto electrónica componentes" frameborder="0" allowfullscreen></iframe>
+  </section>
+
+  <footer class="site-footer">
+    <div class="logo-area" style="gap:10px;">
+      <img src="../../img/logo.png" alt="Logo" style="width:28px; animation:giro 8s linear infinite;">
+      <span style="font-size:1rem; font-weight:700;">Ingeniería<span style="color:red;">Flex</span></span>
+    </div>
+    <div class="footer-links">
+      <a href="/privacidad.html">Política de Privacidad</a>
+      <a href="/terminos.html">Términos de Uso</a>
+      <a href="mailto:pepechuysantiago714@gmail.com">Contacto</a>
+    </div>
+    <p class="footer-copy">© 2026 IngenieríaFlex. Todos los derechos reservados.</p>
+  </footer>
+
+  <script src="../../js/app.js"></script>
+
+<div id="sidebarOverlay"></div>
 </body>
 </html>

@@ -1,7 +1,35 @@
 // FUNCION MENU
 function toggleMenu() {
-    document.getElementById("sidebar").classList.toggle("active");
+    const sidebar = document.getElementById("sidebar");
+    const overlay = document.getElementById("sidebarOverlay");
+    sidebar.classList.toggle("active");
+    if (overlay) overlay.classList.toggle("active");
 }
+
+// Cerrar sidebar al tocar fuera
+document.addEventListener("DOMContentLoaded", () => {
+    const overlay = document.getElementById("sidebarOverlay");
+    if (overlay) {
+        overlay.addEventListener("click", () => {
+            document.getElementById("sidebar").classList.remove("active");
+            overlay.classList.remove("active");
+        });
+    }
+
+    // PAUSAR VIDEOS AL REPRODUCIR OTRO
+    const iframes = document.querySelectorAll(".video-container iframe");
+    iframes.forEach(iframe => {
+        iframe.addEventListener("click", () => {
+            iframes.forEach(other => {
+                if (other !== iframe) {
+                    const src = other.src;
+                    other.src = "";
+                    other.src = src;
+                }
+            });
+        });
+    });
+});
 
 // FUNCIONES APUNTES (index.html)
 function guardarTXT() {
@@ -46,7 +74,7 @@ function pomodoro() {
     }, 1000);
 }
 
-// FUNCION MOSTRAR VIDEOS (cursos.html index.html)
+// FUNCION MOSTRAR VIDEOS
 function mostrarVideos(curso) {
     const videosDiv = document.getElementById("videos");
     if (!videosDiv) return;

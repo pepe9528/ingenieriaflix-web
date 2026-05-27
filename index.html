@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="/img/logo.png">
   <title>IngenieríaFlix</title>
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/responsive.css">
@@ -29,8 +30,9 @@
 
     <div id="userArea">
 
+      <!-- Avatar con iniciales -->
       <div class="user-avatar" style="display:none;">
-        <img id="avatarBtn" src="img/default-user.png" alt="Usuario">
+        <img id="avatarBtn" src="" alt="Usuario">
       </div>
 
       <a href="/login/login.html" id="loginBtn" class="login-btn">
@@ -40,24 +42,17 @@
       <div id="userMenu" class="user-menu">
 
         <div class="menu-header">
-          <img id="menuPhoto" src="img/default-user.png" alt="foto">
+          <img id="menuPhoto" src="" alt="foto">
           <div class="info">
             <p id="userName"></p>
             <p id="userEmail"></p>
           </div>
         </div>
 
+        <!-- Solo visible si inició con correo -->
         <div class="menu-section" id="editSection">
-          <p class="section-title">Editar perfil</p>
+          <p class="section-title">Editar nombre</p>
           <input id="inputName" type="text" placeholder="Nuevo nombre">
-
-          <label class="file-label" for="inputPhoto">
-            <i class="fa-solid fa-image"></i>
-            <span>Subir foto</span>
-          </label>
-          <input id="inputPhoto" type="file" accept="image/*">
-          <p id="fileName">Ningún archivo seleccionado</p>
-
           <button class="btn-menu btn-save" id="saveBtn">Guardar cambios</button>
           <p class="menu-msg" id="saveMsg"></p>
         </div>
@@ -79,12 +74,17 @@
   </header>
 
   <div class="sidebar" id="sidebar">
-    <div class="close-btn" onclick="toggleMenu()">✕</div>
-    <a href="index.html">Inicio</a>
-    <a href="catalogo.html">Cursos</a>
-    <a href="juegos.html">Juegos</a>
-    <a href="recursos.html">Recursos</a>
+  <div class="close-btn" onclick="toggleMenu()">✕</div>
+  <div class="sidebar-logo">
+    <img src="/img/logo.png" alt="Logo">
+    <span>Ingeniería<em>Flex</em></span>
   </div>
+  <a href="/index.html" class="active-link"><i class="fa-solid fa-house"></i> Inicio</a>
+  <a href="/catalogo.html"><i class="fa-solid fa-book"></i> Cursos</a>
+  <a href="/juegos.html"><i class="fa-solid fa-gamepad"></i> Juegos</a>
+  <a href="/recursos.html"><i class="fa-solid fa-folder"></i> Recursos</a>
+  <a href="/acerca.html"><i class="fa-solid fa-circle-info"></i> Acerca de</a>
+</div>
 
   <section class="hero">
     <div class="badge">APRENDIZAJE + TECNOLOGÍA</div>
@@ -100,19 +100,19 @@
     <a href="matematicas.html" class="card">
       <div class="icon"><i class="fa-solid fa-square-root-variable"></i></div>
       <h4>Matemáticas</h4>
-      <p>25 cursos</p>
+      <p>46 cursos</p>
     </a>
 
     <a href="programacion.html" class="card">
       <div class="icon"><i class="fa-solid fa-code"></i></div>
       <h4>Programación</h4>
-      <p>30 cursos</p>
+      <p>36 cursos</p>
     </a>
 
     <a href="electronica.html" class="card">
       <div class="icon"><i class="fa-solid fa-microchip"></i></div>
       <h4>Electrónica</h4>
-      <p>18 cursos</p>
+      <p>39 cursos</p>
     </a>
 
     <a href="estadistica.html" class="card">
@@ -160,6 +160,10 @@
         onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#666'">
         Términos de Uso
       </a>
+      <a href="/acerca.html" style="color:#666; font-size:0.85rem; transition:color 0.2s;"
+        onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#666'">
+        Acerca de
+      </a>
       <a href="mailto:pepechuysantiago714@gmail.com" style="color:#666; font-size:0.85rem; transition:color 0.2s;"
         onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#666'">
         Contacto
@@ -171,14 +175,8 @@
 
   <script src="js/app.js"></script>
   <script type="module" src="js/userMenu.js"></script>
+  <div id="sidebarOverlay"></div>
 
-  <script>
-    document.getElementById("inputPhoto")?.addEventListener("change", (e) => {
-      const file = e.target.files[0];
-      const fileName = document.getElementById("fileName");
-      if (fileName) fileName.textContent = file ? file.name : "Ningún archivo seleccionado";
-    });
-  </script>
-
+<div id="sidebarOverlay"></div>
 </body>
 </html>

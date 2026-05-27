@@ -58,43 +58,116 @@ body{
     align-items:center;
 }
 
-/* SIDEBAR */
+/* ── SIDEBAR MEJORADO ── */
 .sidebar{
     position:fixed;
     top:0;
     right:-320px;
-    width:320px;
+    width:300px;
     height:100%;
-    background:#090909;
-    padding:40px 20px;
-    transition:0.4s;
+    background:#0d0d0d;
+    border-left:1px solid #1a1a1a;
+    padding:25px 20px;
+    transition:0.35s cubic-bezier(0.4,0,0.2,1);
     z-index:1000;
     display:flex;
     flex-direction:column;
+    gap:4px;
 }
 
 .sidebar.active{
     right:0;
 }
 
+/* Logo en el sidebar */
+.sidebar-logo{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:30px;
+    padding-bottom:20px;
+    border-bottom:1px solid #1a1a1a;
+}
+
+.sidebar-logo img{
+    width:32px;
+    height:32px;
+    animation:giro 8s linear infinite;
+}
+
+.sidebar-logo span{
+    font-size:1.1rem;
+    font-weight:700;
+    color:#fff;
+}
+
+.sidebar-logo span em{
+    color:red;
+    font-style:normal;
+}
+
 .close-btn{
-    font-size:40px;
-    margin-bottom:40px;
+    font-size:1.3rem;
     cursor:pointer;
     align-self:flex-end;
+    color:#666;
+    width:36px;
+    height:36px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:8px;
+    transition:all 0.2s;
+    margin-bottom:10px;
+}
+
+.close-btn:hover{
+    background:rgba(255,255,255,0.06);
+    color:#fff;
 }
 
 .sidebar a{
-    display:block;
-    color:white;
+    display:flex;
+    align-items:center;
+    gap:12px;
+    color:rgba(255,255,255,0.55);
     text-decoration:none;
-    margin:20px 0;
-    font-size:24px;
-    transition:0.3s;
+    padding:13px 16px;
+    border-radius:12px;
+    font-size:1rem;
+    font-weight:500;
+    transition:all 0.2s;
+    margin:2px 0;
 }
 
 .sidebar a:hover{
+    background:rgba(255,255,255,0.05);
+    color:#fff;
+    padding-left:20px;
+}
+
+.sidebar a.active-link{
+    background:rgba(255,0,0,0.08);
     color:red;
+    border-left:3px solid red;
+}
+
+/* Overlay oscuro al abrir sidebar */
+#sidebarOverlay{
+    display:none;
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.55);
+    z-index:999;
+    backdrop-filter:blur(3px);
+    transition:opacity 0.3s;
+}
+
+#sidebarOverlay.active{
+    display:block;
 }
 
 /* BOTONES */
@@ -361,7 +434,6 @@ a:hover{
     transform:scale(1.08);
 }
 
-/* El menú se abre hacia ABAJO y hacia la DERECHA del avatar */
 .user-menu{
     display:none;
     position:fixed;
@@ -502,9 +574,6 @@ a:hover{
     .navbar{ padding:0 15px; }
     .hero h2{ font-size:35px; }
     .hero p{ font-size:18px; }
-    .user-menu{
-        width:260px;
-        left:10px;
-        top:75px;
-    }
+    .user-menu{ width:260px; left:10px; top:75px; }
+    .sidebar{ width:280px; }
 }

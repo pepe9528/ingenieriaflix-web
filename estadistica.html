@@ -3,6 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="/img/logo.png">
+  <link rel="icon" type="image/png" href="/img/logo.png">
   <title>Probabilidad y Estadística - IngenieríaFlex</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link rel="stylesheet" href="css/style.css">
@@ -20,19 +22,24 @@
     <div class="menu-btn" onclick="toggleMenu()">☰</div>
   </header>
 
-  <div class="sidebar" id="sidebar">
-    <div class="close-btn" onclick="toggleMenu()">✕</div>
-    <a href="index.html">Inicio</a>
-    <a href="catalogo.html">Cursos</a>
-    <a href="juegos.html">Juegos</a>
-    <a href="recursos.html">Recursos</a>
+   <div id="sidebarOverlay"></div>
+ <div class="sidebar" id="sidebar">
+  <div class="close-btn" onclick="toggleMenu()">✕</div>
+  <div class="sidebar-logo">
+    <img src="/img/logo.png" alt="Logo">
+    <span>Ingeniería<em>Flex</em></span>
   </div>
+  <a href="/index.html"><i class="fa-solid fa-house"></i> Inicio</a>
+  <a href="/catalogo.html"><i class="fa-solid fa-book"></i> Cursos</a>
+  <a href="/juegos.html"><i class="fa-solid fa-gamepad"></i> Juegos</a>
+  <a href="/recursos.html"><i class="fa-solid fa-folder"></i> Recursos</a>
+  <a href="/acerca.html"><i class="fa-solid fa-circle-info"></i> Acerca de</a>
+</div>
   <!-- Hero -->
   <section class="hero">
     <div class="badge">PROBABILIDAD + ESTADÍSTICA</div>
     <h2>Cursos de Probabilidad y Estadística</h2>
     <p>Aprende a analizar datos, calcular probabilidades y aplicar métodos estadísticos en proyectos reales.</p>
-    <button class="explore-btn">Explorar cursos</button>
   </section>
 
   <!-- Lista de cursos -->
@@ -68,5 +75,6 @@
     <button class="start-btn">Comenzar ahora</button>
   </section>
   <script src="js/app.js"></script>
+<div id="sidebarOverlay"></div>
 </body>
 </html>
