@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Noticias de Tecnología | IngenieríaFlex</title>
+  <meta name="description" content="Las últimas noticias de tecnología, ingeniería e innovación. Mantente actualizado con IngenieríaFlex.">
+  <link rel="icon" type="image/png" href="/img/logo.png">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    .noticias-container {
+      max-width: 1100px;
+      margin: 100px auto 60px;
+      padding: 0 20px;
+    }
+
+    .noticias-header {
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+
+    .noticias-header h1 {
+      font-size: 2.2rem;
+      color: #ff2a2a;
+      margin-bottom: 0.5rem;
+    }
+
+    .noticias-header p {
+      color: #666;
+      font-size: 0.95rem;
+    }
+
+    /* FILTROS */
+    .filtros {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-bottom: 2rem;
+    }
+
+    .filtro-btn {
+      background: #0d0d0d;
+      border: 1px solid #1a1a1a;
+      color: rgba(255,255,255,0.5);
+      padding: 8px 20px;
+      border-radius: 30px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .filtro-btn:hover, .filtro-btn.active {
+      background: red;
+      border-color: red;
+      color: #fff;
+    }
+
+    /* GRID DE NOTICIAS */
+    .noticias-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 20px;
+    }
+
+    .noticia-card {
+      background: #0d0d0d;
+      border: 1px solid #1a1a1a;
+      border-radius: 16px;
+      overflow: hidden;
+      transition: all 0.2s;
+      display: flex;
+      flex-direction: column;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .noticia-card:hover {
+      border-color: #333;
+      transform: translateY(-4px);
+      color: inherit;
+    }
+
+    .noticia-img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      background: #111;
+    }
+
+    .noticia-img-placeholder {
+      width: 100%;
+      height: 180px;
+      background: linear-gradient(135deg, #110000, #1a0000);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.5rem;
+      color: #330000;
+    }
+
+    .noticia-body {
+      padding: 1.1rem 1.25rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .noticia-fuente {
+      font-size: 0.72rem;
+      color: red;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 6px;
+      font-weight: 600;
+    }
+
+    .noticia-titulo {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #fff;
+      line-height: 1.5;
+      margin-bottom: 8px;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .noticia-desc {
+      font-size: 0.82rem;
+      color: #555;
+      line-height: 1.6;
+      flex: 1;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .noticia-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 1rem;
+      padding-top: 0.75rem;
+      border-top: 1px solid #1a1a1a;
+    }
+
+    .noticia-fecha {
+      font-size: 0.75rem;
+      color: #444;
+    }
+
+    .noticia-leer {
+      font-size: 0.78rem;
+      color: red;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    /* LOADING */
+    .loading {
+      text-align: center;
+      padding: 60px 20px;
+      color: #444;
+    }
+
+    .loading i {
+      font-size: 2rem;
+      color: red;
+      animation: spin 1s linear infinite;
+      display: block;
+      margin-bottom: 1rem;
+    }
+
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to   { transform: rotate(360deg); }
+    }
+
+    .error-msg {
+      text-align: center;
+      padding: 60px 20px;
+      color: #555;
+    }
+
+    .error-msg i {
+      font-size: 2rem;
+      color: #330000;
+      display: block;
+      margin-bottom: 1rem;
+    }
+
+    /* Footer */
+    .site-footer {
+      border-top: 1px solid #1a1a1a;
+      padding: 2rem 10%;
+      margin-top: 60px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      text-align: center;
+    }
+    .footer-links { display: flex; gap: 1.5rem; flex-wrap: wrap; justify-content: center; }
+    .footer-links a { color: #666; font-size: 0.85rem; transition: color 0.2s; }
+    .footer-links a:hover { color: #fff; }
+    .footer-copy { color: #333; font-size: 0.8rem; }
+
+    @media(max-width: 600px) {
+      .noticias-header h1 { font-size: 1.6rem; }
+      .noticias-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="navbar">
+    <div id="userArea">
+      <div class="user-avatar" style="display:none;">
+        <img id="avatarBtn" src="img/default-user.png" alt="Usuario">
+      </div>
+      <a href="/login/login.html" id="loginBtn" class="login-btn">Iniciar sesión</a>
+      <div id="userMenu" class="user-menu">
+        <div class="menu-header">
+          <img id="menuPhoto" src="img/default-user.png" alt="foto">
+          <div class="info">
+            <p id="userName"></p>
+            <p id="userEmail"></p>
+          </div>
+        </div>
+        <div class="menu-section" id="editSection">
+          <p class="section-title">Editar nombre</p>
+          <input id="inputName" type="text" placeholder="Nuevo nombre">
+          <button class="btn-menu btn-save" id="saveBtn">Guardar cambios</button>
+          <p class="menu-msg" id="saveMsg"></p>
+        </div>
+        <button class="btn-menu btn-logout" id="logoutBtn">
+          <i class="fa-solid fa-right-from-bracket"></i> Cerrar sesión
+        </button>
+      </div>
+    </div>
+    <div class="logo-area">
+      <img src="img/logo.png" alt="Logo" class="logo">
+      <h1>Ingeniería<span>Flex</span></h1>
+    </div>
+    <div class="menu-btn" onclick="toggleMenu()">☰</div>
+  </header>
+
+  <div class="sidebar" id="sidebar">
+    <div class="close-btn" onclick="toggleMenu()">✕</div>
+    <div class="sidebar-logo">
+      <img src="/img/logo.png" alt="Logo">
+      <span>Ingeniería<em>Flex</em></span>
+    </div>
+    <a href="/index.html"><i class="fa-solid fa-house"></i> Inicio</a>
+    <a href="/catalogo.html"><i class="fa-solid fa-book"></i> Cursos</a>
+    <a href="/juegos.html"><i class="fa-solid fa-gamepad"></i> Juegos</a>
+    <a href="/recursos.html"><i class="fa-solid fa-folder"></i> Recursos</a>
+    <a href="/noticias.html" class="active-link"><i class="fa-solid fa-newspaper"></i> Noticias</a>
+    <a href="/acerca.html"><i class="fa-solid fa-circle-info"></i> Acerca de</a>
+  </div>
+
+  <div class="noticias-container">
+
+    <div class="noticias-header">
+      <h1><i class="fas fa-newspaper"></i> Noticias de Tecnología</h1>
+      <p>Las últimas noticias de tecnología, ingeniería e innovación en tiempo real</p>
+    </div>
+
+    <div class="filtros">
+      <button class="filtro-btn active" onclick="cargarNoticias('technology')">💻 Tecnología</button>
+      <button class="filtro-btn" onclick="cargarNoticias('science')">🔬 Ciencia</button>
+      <button class="filtro-btn" onclick="cargarNoticias('ingenieria')">⚙️ Ingeniería</button>
+      <button class="filtro-btn" onclick="cargarNoticias('inteligencia artificial')">🤖 IA</button>
+      <button class="filtro-btn" onclick="cargarNoticias('programacion')">👨‍💻 Programación</button>
+    </div>
+
+    <div id="noticiasGrid" class="noticias-grid">
+      <div class="loading">
+        <i class="fas fa-circle-notch"></i>
+        Cargando noticias...
+      </div>
+    </div>
+
+  </div>
+
+  <footer class="site-footer">
+    <div class="logo-area" style="gap:10px;">
+      <img src="img/logo.png" alt="Logo" style="width:28px; animation:giro 8s linear infinite;">
+      <span style="font-size:1rem; font-weight:700;">Ingeniería<span style="color:red;">Flex</span></span>
+    </div>
+    <div class="footer-links">
+      <a href="/privacidad.html">Política de Privacidad</a>
+      <a href="/terminos.html">Términos de Uso</a>
+      <a href="mailto:pepechuysantiago714@gmail.com">Contacto</a>
+    </div>
+    <p class="footer-copy">© 2026 IngenieríaFlex. Todos los derechos reservados.</p>
+  </footer>
+
+  <div id="sidebarOverlay"></div>
+
+  <script src="js/app.js"></script>
+  <script type="module" src="js/userMenu.js"></script>
+
+  <script>
+    const API_KEY = "966f7eba813e474fbf6f34e5815638ae";
+
+    async function cargarNoticias(tema) {
+      // Actualizar botón activo
+      document.querySelectorAll(".filtro-btn").forEach(btn => btn.classList.remove("active"));
+      event.target.classList.add("active");
+
+      const grid = document.getElementById("noticiasGrid");
+      grid.innerHTML = `<div class="loading"><i class="fas fa-circle-notch"></i>Cargando noticias...</div>`;
+
+      try {
+        const url = `https://newsapi.org/v2/everything?q=${encodeURIComponent(tema)}&language=es&sortBy=publishedAt&pageSize=12&apiKey=${API_KEY}`;
+        const res = await fetch(url);
+        const data = await res.json();
+
+        if (data.status !== "ok" || data.articles.length === 0) {
+          grid.innerHTML = `<div class="error-msg"><i class="fas fa-satellite-dish"></i>No encontramos noticias sobre este tema en español.<br>Intenta con otra categoría.</div>`;
+          return;
+        }
+
+        grid.innerHTML = data.articles.map(art => `
+          <a href="${art.url}" target="_blank" class="noticia-card">
+            ${art.urlToImage
+              ? `<img src="${art.urlToImage}" alt="${art.title}" class="noticia-img" onerror="this.style.display='none'">`
+              : `<div class="noticia-img-placeholder"><i class="fas fa-newspaper"></i></div>`
+            }
+            <div class="noticia-body">
+              <p class="noticia-fuente">${art.source?.name || "Fuente desconocida"}</p>
+              <h3 class="noticia-titulo">${art.title || ""}</h3>
+              <p class="noticia-desc">${art.description || ""}</p>
+              <div class="noticia-footer">
+                <span class="noticia-fecha">${formatFecha(art.publishedAt)}</span>
+                <span class="noticia-leer"><i class="fas fa-arrow-right"></i> Leer más</span>
+              </div>
+            </div>
+          </a>
+        `).join("");
+
+      } catch (error) {
+        grid.innerHTML = `<div class="error-msg"><i class="fas fa-wifi"></i>Error al cargar noticias.<br>Verifica tu conexión e intenta de nuevo.</div>`;
+      }
+    }
+
+    function formatFecha(fecha) {
+      if (!fecha) return "";
+      const d = new Date(fecha);
+      return d.toLocaleDateString("es-MX", { day: "numeric", month: "short", year: "numeric" });
+    }
+
+    // Cargar noticias de tecnología al inicio
+    window.addEventListener("DOMContentLoaded", () => {
+      cargarNoticias("technology");
+    });
+  </script>
+
+</body>
+</html>
