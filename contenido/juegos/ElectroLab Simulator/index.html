@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>ElectroLab Simulator Pro</title>
+    <style>
+        /* --- DISEÑO DE INTERFAZ ESTILO LABORATORIO TECNOLÓGICO (CSS) --- */
+        :root {
+            --bg-dark: #090d16;
+            --panel-bg: #111827;
+            --accent-cyan: #00f3ff;
+            --accent-green: #10b981;
+            --accent-red: #ef4444;
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
+            --border-glow: rgba(0, 243, 255, 0.2);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            user-select: none;
+            -webkit-user-select: none;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            overflow: hidden;
+            width: 100vw;
+            height: 100vh;
+        }
+
+        /* --- BOTÓN OBLIGATORIO REGRESAR (SIEMPRE VISIBLE) --- */
+        #btn-global-back {
+            position: fixed;
+            bottom: 10px;
+            left: 10px;
+            top: auto;
+            z-index: 9999;
+            background: rgba(17, 24, 39, 0.85);
+            color: var(--accent-cyan);
+            border: 2px solid var(--accent-cyan);
+            padding: 10px 18px;
+            font-size: 0.95rem;
+            font-weight: bold;
+            border-radius: 6px;
+            cursor: pointer;
+            box-shadow: 0 0 10px var(--border-glow);
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        #btn-global-back:hover {
+            background: var(--accent-cyan);
+            color: #000;
+            box-shadow: 0 0 20px var(--accent-cyan);
+            transform: translateY(-1px);
+        }
+
+        #btn-global-back:active {
+            transform: translateY(1px);
+        }
+
+        /* --- SISTEMA DE PANTALLAS --- */
+        .screen {
+            display: none;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            padding: 20px;
+            padding-top: 80px;
+            flex-direction: column;
+            overflow-y: auto;
+        }
+
+        .screen.active {
+            display: flex;
+        }
+
+        /* --- MENU DE INICIO --- */
+        #menu-screen {
+            justify-content: center;
+            align-items: center;
+            background: radial-gradient(circle at center, #1e293b 0%, #090d16 100%);
+        }
+
+        .menu-title {
+            font-size: 2.8rem;
+            font-weight: 900;
+            letter-spacing: 2px;
+            text-align: center;
+            margin-bottom: 5px;
+            color: #fff;
+            text-shadow: 0 0 15px var(--accent-cyan);
+        }
+
+        .menu-subtitle {
+            font-size: 1.1rem;
+            color: var(--accent-green);
+            margin-bottom: 35px;
+            letter-spacing: 4px;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .menu-btn {
+            background: var(--panel-bg);
+            border: 1px solid rgba(255,255,255,0.1);
+            color: white;
+            padding: 16px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+        }
+
+        .menu-btn:hover {
+            border-color: var(--accent-cyan);
+            box-shadow: 0 0 15px var(--border-glow);
+            transform: scale(1.02);
+        }
+
+        /* --- INTERFAZ DEL SIMULADOR LAB --- */
+        #sim-screen {
+            padding: 0;
+            flex-direction: row;
+        }
+
+        /* Caja de herramientas lateral */
+        .sidebar {
+            width: 260px;
+            background: var(--panel-bg);
+            border-right: 1px solid rgba(255,255,255,0.08);
+            display: flex;
+            flex-direction: column;
+            padding-top: 75px;
+            z-index: 10;
+            height: 100%;
+        }
+
+        .sidebar-title {
+            padding: 10px 15px;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .components-list {
+            flex: 1;
+            overflow-y: auto;
+            padding: 10px;
+        }
+
+        .comp-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: rgba(255,255,255,0.03);
+            padding: 10px;
+            margin-bottom: 8px;
+            border-radius: 6px;
+            cursor: grab;
+            border: 1px solid transparent;
+            transition: all 0.2s ease;
+        }
+
+        .comp-item:hover {
+            background: rgba(255,255,255,0.07);
+            border-color: var(--accent-cyan);
+        }
+
+        .comp-icon {
+            font-size: 1.5rem;
+            width: 35px;
+            text-align: center;
+        }
+
+        .comp-info div {
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+
+        .comp-info small {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        /* Área de trabajo / Sandbox */
+        .workspace {
+            flex: 1;
+            position: relative;
+            height: 100%;
+            background-color: #0b0f19;
+            /* Rejilla de circuito */
+            background-size: 25px 25px;
+            background-image: radial-gradient(circle, rgba(255,255,255,0.04) 1px, transparent 1px);
+        }
+
+        /* Canvas para Cables y Flujo de Corriente */
+        #circuit-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        /* Capa de componentes colocados en el Canvas */
+        .placed-component {
+            position: absolute;
+            background: rgba(17, 24, 39, 0.9);
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 8px;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: move;
+            z-index: 5;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+        }
+
+        .placed-component.selected {
+            border-color: var(--accent-cyan);
+            box-shadow: 0 0 12px rgba(0, 243, 255, 0.4);
+        }
+
+        .placed-component .comp-visual {
+            font-size: 2rem;
+            margin: 5px 0;
+            transition: transform 0.2s;
+        }
+
+        /* Bornes/Nodos de conexión */
+        .node-pin {
+            width: 12px;
+            height: 12px;
+            background: #ef4444;
+            border-radius: 50%;
+            position: absolute;
+            bottom: -6px;
+            cursor: pointer;
+            border: 2px solid #fff;
+        }
+        .node-pin.pin-positive { left: 20%; background: var(--accent-red); }
+        .node-pin.pin-negative { right: 20%; background: #fff; border-color: #111; }
+
+        .node-pin:hover {
+            transform: scale(1.3);
+            box-shadow: 0 0 8px #fff;
+        }
+
+        /* Barra de herramientas superior del simulador */
+        .sim-toolbar {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--panel-bg);
+            border: 1px solid rgba(255,255,255,0.1);
+            padding: 8px 15px;
+            border-radius: 6px;
+            display: flex;
+            gap: 10px;
+            z-index: 20;
+        }
+
+        .tool-btn {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            color: white;
+            padding: 6px 12px;
+            font-size: 0.85rem;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .tool-btn:hover {
+            background: rgba(255,255,255,0.15);
+            border-color: var(--accent-cyan);
+        }
+
+        /* Multímetro flotante */
+        .floating-dmm {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            background: #1e293b;
+            border: 2px solid #f59e0b;
+            border-radius: 8px;
+            width: 180px;
+            padding: 10px;
+            z-index: 30;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.6);
+        }
+
+        .dmm-screen {
+            background: #040711;
+            border: 1px solid #334155;
+            padding: 8px;
+            border-radius: 4px;
+            text-align: right;
+            font-family: monospace;
+            font-size: 1.4rem;
+            color: #f59e0b;
+            text-shadow: 0 0 5px rgba(245, 158, 11, 0.5);
+            margin-bottom: 5px;
+        }
+
+        /* --- MODAL / CONTENEDORES DE APRENDIZAJE Y HERRAMIENTAS --- */
+        .content-container {
+            width: 100%;
+            max-width: 800px;
+            background: var(--panel-bg);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 12px;
+            padding: 25px;
+            margin: 0 auto;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .page-title {
+            font-size: 1.8rem;
+            color: var(--accent-cyan);
+            margin-bottom: 20px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding-bottom: 10px;
+        }
+
+        /* Calculadoras */
+        .calc-box {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .input-group label {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .input-group input, .input-group select {
+            background: #090d16;
+            border: 1px solid rgba(255,255,255,0.2);
+            padding: 10px;
+            border-radius: 6px;
+            color: white;
+            font-size: 1rem;
+        }
+
+        .calc-result {
+            grid-column: span 2;
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px dashed var(--accent-green);
+            padding: 12px;
+            border-radius: 6px;
+            text-align: center;
+            font-weight: bold;
+            color: var(--accent-green);
+        }
+
+        /* Tarjetas de Aprendizaje */
+        .tutorial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 15px;
+        }
+
+        .lesson-card {
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(255,255,255,0.05);
+            padding: 15px;
+            border-radius: 8px;
+        }
+
+        .lesson-card h4 {
+            color: var(--accent-green);
+            margin-bottom: 8px;
+        }
+
+        .lesson-card p {
+            font-size: 0.88rem;
+            color: var(--text-muted);
+            line-height: 1.4;
+        }
+
+        /* --- NOTIFICACIONES FLOTANTES --- */
+        #toast-container {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10000;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            pointer-events: none;
+        }
+
+        .toast {
+            background: #10b981;
+            color: #000;
+            padding: 12px 24px;
+            border-radius: 30px;
+            font-weight: bold;
+            font-size: 0.9rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            animation: fadeInOut 3s forwards;
+        }
+
+        @keyframes fadeInOut {
+            0% { opacity: 0; transform: translateY(20px); }
+            15% { opacity: 1; transform: translateY(0); }
+            85% { opacity: 1; transform: translateY(0); }
+            100% { opacity: 0; transform: translateY(-20px); }
+        }
+
+        /* Ajustes Responsivos para Teléfonos */
+        @media (max-width: 768px) {
+            #sim-screen { flex-direction: column-reverse; }
+            .sidebar { width: 100%; height: 180px; padding-top: 10px; }
+            .sim-toolbar { top: 70px; left: 15px; right: auto; width: calc(100% - 30px); justify-content: space-between; }
+            .calc-box { grid-template-columns: 1fr; }
+            .calc-result { grid-column: span 1; }
+        }
+        .navbar{
+    position:fixed;
+    top:20px;
+    left:auto; /* deja visible una parte */
+    z-index:2000;
+    transition:0.4s ease;
+}
+
+.back-btn{
+    text-decoration:none;
+    color:white;
+    background:#111;
+    padding:12px 20px;
+    border-radius:12px;
+    display:flex;
+    align-items:center;
+    gap:8px;
+    font-weight:bold;
+
+}
+    </style>
+</head>
+<body>
+      <header class="navbar">
+     <a href="../../../juegos.html" class="back-btn">
+       <i class="fa-solid fa-arrow-left"></i> INICIO
+     </a>
+   </header>
+    <button id="btn-global-back" onclick="navigation.back()">⬅ Regresar</button>
+
+    <div id="toast-container"></div>
+
+    <div id="menu-screen" class="screen active">
+        <h1 class="menu-title">ELECTROLAB SIMULATOR</h1>
+        <div class="menu-subtitle">NEXUS VIRTUAL LAB</div>
+        <div class="menu-grid">
+            <button class="menu-btn" onclick="navigation.goTo('sim-screen')">⚡ ENTRAR AL SIMULADOR</button>
+            <button class="menu-btn" onclick="navigation.goTo('learn-screen')">📚 MODO APRENDIZAJE</button>
+            <button class="menu-btn" onclick="navigation.goTo('tools-screen')">🧮 HERRAMIENTAS Y CÁLCULO</button>
+            <button class="menu-btn" onclick="navigation.goTo('config-screen')">⚙️ CONFIGURACIÓN Y LOGROS</button>
+        </div>
+    </div>
+
+    <div id="sim-screen" class="screen">
+        <div class="sidebar">
+            <div class="sidebar-title">Componentes</div>
+            <div class="components-list" id="inventory">
+                </div>
+        </div>
+
+        <div class="workspace" id="lab-workspace" ondragover="event.preventDefault()" ondrop="circuit.dropComponent(event)">
+            <canvas id="circuit-canvas"></canvas>
+
+            <div class="sim-toolbar">
+                <button class="tool-btn" onclick="circuit.clearCircuit()">🗑️ Limpiar</button>
+                <button class="tool-btn" onclick="circuit.saveToLocal()">💾 Guardar Lab</button>
+                <button class="tool-btn" onclick="circuit.loadFromLocal()">📂 Cargar Lab</button>
+            </div>
+
+            <div id="placed-components-layer"></div>
+
+            <div class="floating-dmm">
+                <div style="font-size: 0.7rem; color: #f59e0b; margin-bottom: 4px; font-weight: bold;">MULTÍMETRO DIGITAL</div>
+                <div class="dmm-screen" id="dmm-val">0.00 V</div>
+                <div style="font-size: 0.65rem; text-align: center; color: var(--text-muted);">AUTO-RANGO SENSOR</div>
+            </div>
+        </div>
+    </div>
+
+    <div id="learn-screen" class="screen">
+        <div class="content-container">
+            <h2 class="page-title">Academia de Electrónica</h2>
+            <div class="tutorial-grid">
+                <div class="lesson-card">
+                    <h4>La Ley de Ohm</h4>
+                    <p>Establece que la intensidad de la corriente que circula por un conductor es proporcional al voltaje aplicado e inversamente proporcional a la resistencia ($I = \frac{V}{R}$).</p>
+                </div>
+                <div class="lesson-card">
+                    <h4>El Diodo LED</h4>
+                    <p>Un componente semiconductor que emite luz cuando se polariza directamente. Siempre requiere una resistencia en serie para no quemarse.</p>
+                </div>
+                <div class="lesson-card">
+                    <h4>Capacitores</h4>
+                    <p>Dispositivos que almacenan energía en un campo eléctrico interno. Funcionan como filtros de señal y estabilizadores de tensión.</p>
+                </div>
+                <div class="lesson-card">
+                    <h4>Transistores</h4>
+                    <p>El bloque de construcción de la era digital. Permiten amplificar corrientes o actuar como interruptores electrónicos controlados.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="tools-screen" class="screen">
+        <div class="content-container">
+            <h2 class="page-title">Calculadoras de Ingeniería</h2>
+            
+            <h3>Calculadora de Ley de Ohm</h3>
+            <div class="calc-box">
+                <div class="input-group">
+                    <label>Voltaje (V)</label>
+                    <input type="number" id="ohm-v" value="9" oninput="tools.calcOhm()">
+                </div>
+                <div class="input-group">
+                    <label>Resistencia (Ω)</label>
+                    <input type="number" id="ohm-r" value="220" oninput="tools.calcOhm()">
+                </div>
+                <div class="calc-result" id="ohm-res">Corriente Resultante: 0.0409 A (40.9 mA)</div>
+            </div>
+
+            <h3>Calculadora de Potencia Eléctrica</h3>
+            <div class="calc-box">
+                <div class="input-group">
+                    <label>Voltaje (V)</label>
+                    <input type="number" id="pow-v" value="12" oninput="tools.calcPower()">
+                </div>
+                <div class="input-group">
+                    <label>Corriente (A)</label>
+                    <input type="number" id="pow-i" value="2" oninput="tools.calcPower()">
+                </div>
+                <div class="calc-result" id="pow-res" style="border-color: var(--accent-cyan); color: var(--accent-cyan); background: rgba(0,243,255,0.05);">Potencia Disipada: 24 W</div>
+            </div>
+        </div>
+    </div>
+
+    <div id="config-screen" class="screen">
+        <div class="content-container">
+            <h2 class="page-title">Configuración y Laboratorio</h2>
+            <div class="input-group" style="margin-bottom: 20px;">
+                <label>Efectos de Audio de Simulación</label>
+                <select id="cfg-audio">
+                    <option value="on">Habilitado (Web Audio API)</option>
+                    <option value="off">Mutear Laboratorio</option>
+                </select>
+            </div>
+            <h3>Logros Desbloqueados</h3>
+            <div class="item-row" style="background: rgba(255,255,255,0.03); padding: 12px; margin-top: 10px; border-radius: 6px; border-left: 4px solid var(--accent-green);">
+                🏅 <strong>Primer Circuito:</strong> Has cargado componentes al área de pruebas.
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        /* --- MOTOR GENERAL Y LÓGICA DE CONTROL (JAVASCRIPT) --- */
+
+        // --- SISTEMA DE NAVEGACIÓN HISTÓRICA ---
+        const navigation = {
+            history: ['menu-screen'],
+            goTo(screenId) {
+                const current = this.history[this.history.length - 1];
+                if (current !== screenId) {
+                    this.history.push(screenId);
+                }
+                this.render();
+            },
+            back() {
+                if (this.history.length > 1) {
+                    this.history.pop();
+                }
+                this.render();
+            },
+            render() {
+                const target = this.history[this.history.length - 1];
+                document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+                document.getElementById(target).classList.add('active');
+                
+                // Rediseñar el canvas si se ingresa al simulador
+                if (target === 'sim-screen') {
+                    setTimeout(() => circuit.resizeCanvas(), 50);
+                }
+            }
+        };
+
+        // --- BASE DE DATOS DE COMPONENTES DISPONIBLES ---
+        const COMPONENT_TYPES = {
+            resistor: { name: 'Resistencia', icon: ' resistors 🏷️', desc: 'Limita la corriente', pins: 2, unit: 'Ω' },
+            led: { name: 'Diodo LED', icon: '💡', desc: 'Emite luz con energía', pins: 2, unit: 'Color' },
+            capacitor: { name: 'Capacitor', icon: '🔋', desc: 'Almacena cargas', pins: 2, unit: 'µF' },
+            battery: { name: 'Batería DC', icon: '⚡', desc: 'Fuente de Voltaje', pins: 2, voltage: 9, unit: 'V' },
+            switch: { name: 'Interruptor', icon: '🎛️', desc: 'Corta el flujo permanente', pins: 2, unit: 'On/Off' },
+            motor: { name: 'Motor DC', icon: '⚙️', desc: 'Conversión rotativa', pins: 2, unit: 'RPM' }
+        };
+
+        // --- MOTOR DEL CIRCUITO (SIMULACIÓN FÍSICA Y GRÁFICA) ---
+        const circuit = {
+            placedComponents: [],
+            connections: [], // Lista de cables [{fromCompId, fromPin, toCompId, toPin}]
+            activePinSelection: null,
+            canvas: null,
+            ctx: null,
+
+            init() {
+                this.canvas = document.getElementById('circuit-canvas');
+                this.ctx = this.canvas.getContext('2d');
+                this.renderInventory();
+                
+                // Soporte para redimensionar dinámicamente
+                window.addEventListener('resize', () => this.resizeCanvas());
+                
+                // Loop de Animación de Corriente Eléctrica
+                setInterval(() => this.tickEngine(), 60);
+            },
+
+            resizeCanvas() {
+                const ws = document.getElementById('lab-workspace');
+                this.canvas.width = ws.clientWidth;
+                this.canvas.height = ws.clientHeight;
+                this.drawCables();
+            },
+
+            renderInventory() {
+                const container = document.getElementById('inventory');
+                container.innerHTML = '';
+                Object.keys(COMPONENT_TYPES).forEach(type => {
+                    const data = COMPONENT_TYPES[type];
+                    const div = document.createElement('div');
+                    div.className = 'comp-item';
+                    div.draggable = true;
+                    div.innerHTML = `
+                        <div class="comp-icon">${data.icon}</div>
+                        <div class="comp-info">
+                            <div>${data.name}</div>
+                            <small>${data.desc}</small>
+                        </div>
+                    `;
+                    // Soporte para PC (Drag)
+                    div.ondragstart = (e) => {
+                        e.dataTransfer.setData('text/plain', type);
+                    };
+                    // Soporte para Móviles (Click Añadir)
+                    div.onclick = () => this.addComponent(type, 100, 150);
+                    container.appendChild(div);
+                });
+            },
+
+            dropComponent(e) {
+                e.preventDefault();
+                const type = e.dataTransfer.getData('text/plain');
+                if (!COMPONENT_TYPES[type]) return;
+                
+                const rect = document.getElementById('lab-workspace').getBoundingClientRect();
+                const x = e.clientX - rect.left - 40;
+                const y = e.clientY - rect.top - 40;
+                this.addComponent(type, x, y);
+            },
+
+            addComponent(type, x, y) {
+                const id = 'comp_' + Date.now() + Math.floor(Math.random()*100);
+                const info = COMPONENT_TYPES[type];
+                
+                const newComp = {
+                    id: id,
+                    type: type,
+                    x: x,
+                    y: y,
+                    state: { on: false, voltage: 0 },
+                    closed: type === 'switch' ? false : true // El interruptor inicia abierto
+                };
+
+                this.placedComponents.push(newComp);
+                this.renderComponentDOM(newComp);
+                this.showToast(`Añadido: ${info.name}`);
+            },
+
+            renderComponentDOM(comp) {
+                const info = COMPONENT_TYPES[comp.type];
+                const div = document.createElement('div');
+                div.className = 'placed-component';
+                div.id = comp.id;
+                div.style.left = comp.x + 'px';
+                div.style.top = comp.y + 'px';
+
+                div.innerHTML = `
+                    <small style="color:var(--accent-cyan); font-size:0.7rem;">${info.name}</small>
+                    <div class="comp-visual" id="vis-${comp.id}">${info.icon}</div>
+                    <div class="node-pin pin-positive" onclick="circuit.handlePinClick('${comp.id}', 'pos')"></div>
+                    <div class="node-pin pin-negative" onclick="circuit.handlePinClick('${comp.id}', 'neg')"></div>
+                `;
+
+                // Control del movimiento por Arrastre (Mouse/Touch)
+                let isDragging = false;
+                const moveHandler = (e) => {
+                    if (!isDragging) return;
+                    const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+                    const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+                    const rect = document.getElementById('lab-workspace').getBoundingClientRect();
+                    comp.x = clientX - rect.left - 40;
+                    comp.y = clientY - rect.top - 40;
+                    div.style.left = comp.x + 'px';
+                    div.style.top = comp.y + 'px';
+                    this.drawCables();
+                };
+
+                div.addEventListener('mousedown', () => isDragging = true);
+                div.addEventListener('touchstart', () => isDragging = true, {passive: true});
+                window.addEventListener('mouseup', () => isDragging = false);
+                window.addEventListener('touchend', () => isDragging = false);
+                window.addEventListener('mousemove', moveHandler);
+                window.addEventListener('touchmove', moveHandler, {passive: true});
+
+                // Doble clic para interactuar con Interruptores
+                div.ondblclick = () => {
+                    if (comp.type === 'switch') {
+                        comp.closed = !comp.closed;
+                        document.getElementById(`vis-${comp.id}`).style.transform = comp.closed ? 'rotate(0deg)' : 'rotate(-45deg)';
+                        this.showToast(comp.closed ? "Interruptor Cerrado" : "Interruptor Abierto");
+                    }
+                };
+
+                document.getElementById('placed-components-layer').appendChild(div);
+            },
+
+            handlePinClick(compId, pinType) {
+                if (!this.activePinSelection) {
+                    this.activePinSelection = { compId, pinType };
+                    this.showToast("Selecciona el segundo nodo para tirar el cable");
+                } else {
+                    const first = this.activePinSelection;
+                    if (first.compId === compId) {
+                        this.activePinSelection = null; // Cancelado
+                        return;
+                    }
+
+                    // Registrar conexión
+                    this.connections.push({
+                        fromId: first.compId,
+                        fromPin: first.pinType,
+                        toId: compId,
+                        toPin: pinType
+                    });
+
+                    this.activePinSelection = null;
+                    this.showToast("Conexión realizada con éxito");
+                    this.drawCables();
+                }
+            },
+
+            drawCables() {
+                if (!this.ctx) return;
+                this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+
+                this.connections.forEach(c => {
+                    const compA = this.placedComponents.find(p => p.id === c.fromId);
+                    const compB = this.placedComponents.find(p => p.id === c.toId);
+
+                    if (compA && compB) {
+                        // Calcular coordenadas de los bornes
+                        const offsetA = c.fromPin === 'pos' ? 0.2 : 0.8;
+                        const offsetB = c.toPin === 'pos' ? 0.2 : 0.8;
+
+                        const x1 = compA.x + 60 * offsetA + 10;
+                        const y1 = compA.y + 65;
+                        const x2 = compB.x + 60 * offsetB + 10;
+                        const y2 = compB.y + 65;
+
+                        this.ctx.beginPath();
+                        this.ctx.moveTo(x1, y1);
+                        this.ctx.lineTo(x2, y2);
+                        this.ctx.strokeStyle = '#3b82f6';
+                        this.ctx.lineWidth = 3;
+                        this.ctx.stroke();
+                    }
+                });
+            },
+
+            tickEngine() {
+                // --- MOTOR DE FÍSICA CIRCUITAL SIMPLIFICADO ---
+                let powerActive = false;
+                let hasBattery = this.placedComponents.some(p => p.type === 'battery');
+
+                // Validar si existe continuidad de la fuente hacia los componentes
+                if (hasBattery && this.connections.length >= 1) {
+                    powerActive = true;
+                }
+
+                // Actualizar comportamiento visual de los componentes en tiempo real
+                this.placedComponents.forEach(comp => {
+                    const visual = document.getElementById(`vis-${comp.id}`);
+                    if (!visual) return;
+
+                    // Si hay energía activa y los interruptores intermedios están cerrados
+                    let isPowered = powerActive && comp.closed;
+
+                    if (comp.type === 'led') {
+                        visual.style.textShadow = isPowered ? '0 0 25px #ffd700, 0 0 10px #ff0055' : 'none';
+                        visual.innerHTML = isPowered ? '🌕' : '💡';
+                    }
+                    if (comp.type === 'motor') {
+                        visual.style.transform = isPowered ? `rotate(${Date.now() % 360}deg)` : 'none';
+                    }
+                });
+
+                // Actualizar lectura del voltímetro virtual dinámicamente
+                const dmm = document.getElementById('dmm-val');
+                if (hasBattery && powerActive) {
+                    dmm.innerText = (9.00 - (Math.random() * 0.15)).toFixed(2) + " V";
+                } else {
+                    dmm.innerText = "0.00 V";
+                }
+            },
+
+            clearCircuit() {
+                this.placedComponents = [];
+                this.connections = [];
+                document.getElementById('placed-components-layer').innerHTML = '';
+                this.drawCables();
+                this.showToast("Laboratorio reseteado completamente");
+            },
+
+            saveToLocal() {
+                const pack = { comps: this.placedComponents, lines: this.connections };
+                localStorage.setItem('electrolab_save', JSON.stringify(pack));
+                this.showToast("Circuito respaldado en LocalStorage");
+            },
+
+            loadFromLocal() {
+                const data = localStorage.getItem('electrolab_save');
+                if (!data) {
+                    this.showToast("No hay proyectos guardados");
+                    return;
+                }
+                this.clearCircuit();
+                const parsed = JSON.parse(data);
+                this.placedComponents = parsed.comps || [];
+                this.connections = parsed.lines || [];
+                
+                this.placedComponents.forEach(c => this.renderComponentDOM(c));
+                this.drawCables();
+                this.showToast("Proyecto restaurado exitosamente");
+            },
+
+            showToast(msg) {
+                const container = document.getElementById('toast-container');
+                const t = document.createElement('div');
+                t.className = 'toast';
+                t.innerText = msg;
+                container.appendChild(t);
+                setTimeout(() => t.remove(), 3000);
+            }
+        };
+
+        // --- SISTEMA DE HERRAMIENTAS Y MATEMÁTICA ---
+        const tools = {
+            calcOhm() {
+                const v = parseFloat(document.getElementById('ohm-v').value) || 0;
+                const r = parseFloat(document.getElementById('ohm-r').value) || 0;
+                const resultBox = document.getElementById('ohm-res');
+                if (r === 0) {
+                    resultBox.innerText = "¡Alerta! Resistencia 0 implica Cortocircuito Crítico.";
+                    return;
+                }
+                const i = v / r;
+                resultBox.innerText = `Corriente Resultante: ${i.toFixed(4)} A (${(i*1000).toFixed(1)} mA)`;
+            },
+            calcPower() {
+                const v = parseFloat(document.getElementById('pow-v').value) || 0;
+                const i = parseFloat(document.getElementById('pow-i').value) || 0;
+                const w = v * i;
+                document.getElementById('pow-res').innerText = `Potencia Disipada: ${w.toFixed(2)} W`;
+            }
+        };
+
+        // Ejecución inicial automática de la App al cargar el DOM de la ventana
+        window.onload = () => {
+            circuit.init();
+        };
+    </script>
+</body>
+</html>

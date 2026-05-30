@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Math Soccer Champions</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="stadium-day">
+       <header class="navbar">
+                <a href="../../../juegos.html" class="back-btn">
+                 <i class="fa-solid fa-arrow-left"></i> Regresar
+                </a>
+        </header>
+
+    <div id="stadium-fx"></div>
+
+    <div id="menu-screen" class="screen active">
+        <div class="header-branding">
+            <div class="icon">
+                <i class="fa-solid fa-shield-halved" style="color: #00f3ff; text-shadow: 0 0 15px #00f3ff;"></i>
+            </div>
+            <h1 class="game-title">MATH SOCCER</h1>
+            <h2 class="game-subtitle">CHAMPIONS</h2>
+        </div>
+
+        <div class="profile-card">
+            <div class="club-emblem">⚽</div>
+            <div class="profile-info">
+                <div id="menu-club-name" class="club-name">Math FC</div>
+                <div class="rpg-stats">Nivel <span id="user-level">1</span> (XP: <span id="user-xp">0</span>)</div>
+                <div class="currency">🪙 <span id="user-coins">50</span></div>
+            </div>
+        </div>
+
+        <div class="menu-grid">
+            <div class="menu-column">
+                <h3>COMPETICIONES</h3>
+                <button class="btn btn-match" onclick="soccerGame.selectMode('quick')">PARTIDO RÁPIDO</button>
+                <button class="btn btn-tournament" onclick="soccerGame.selectMode('champions')">MATH CHAMPIONS</button>
+                <button class="btn btn-penalty" onclick="soccerGame.selectMode('penalties')">PENALES INFINITOS</button>
+            </div>
+            <div class="menu-column">
+                <h3>CLUB & GESTIÓN</h3>
+                <button class="btn btn-sub" onclick="ui.openModal('club-modal')">EQUIPOS & SKIN</button>
+                <button class="btn btn-sub" onclick="ui.openModal('stats-modal')">ESTADÍSTICAS</button>
+                <button class="btn btn-sub" onclick="ui.openModal('rewards-modal')">LOGROS Y DIARIO</button>
+                <button class="btn btn-danger" onclick="soundEngine.toggleMute()">MUTEAR SONIDOS</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="game-screen" class="screen">
+        <div class="scoreboard">
+            <div class="team-score text-left"><span id="hud-my-team">MATH FC</span> <span class="score-num" id="score-home">0</span></div>
+            <div class="match-time" id="hud-match-time">00:00</div>
+            <div class="team-score text-right"><span class="score-num" id="score-away">0</span> <span id="hud-rival-team">CPU BOT</span></div>
+        </div>
+
+        <div class="stadium-stats-bars">
+            <div class="stamina-container">⚡ RESISTENCIA: <div class="bar"><div id="stamina-fill" style="width: 100%;"></div></div></div>
+            <div class="clime-badge" id="hud-clime">☀️ DÍA</div>
+        </div>
+
+        <div class="pitch-container">
+            <canvas id="pitchCanvas"></canvas>
+            <div id="commentary-box">¡Bienvenidos al Math Stadium! El partido está por comenzar...</div>
+        </div>
+
+        <div class="math-action-panel">
+            <div class="action-instruction" id="math-hint">¡Resuelve rápido para realizar un PASE CRÍTICO!</div>
+            <div class="math-question" id="math-question">5 * 5 + 3 = ?</div>
+            
+            <div class="options-grid" id="math-options">
+                </div>
+        </div>
+
+        <div class="cards-deck">
+            <button class="card-btn" onclick="soccerGame.useCard('slow')">⏱️ TIEMPO LENTO</button>
+            <button class="card-btn" onclick="soccerGame.useCard('shoot')">🔥 TIRO PERFECTO</button>
+            <button class="card-btn" onclick="soccerGame.useCard('steal')">🛡️ ROBO BALÓN</button>
+        </div>
+    </div>
+
+    <div id="club-modal" class="modal-overlay">
+        <div class="modal-content">
+            <h2>CUSTOMIZAR EQUIPACIÓN</h2>
+            <p>Monedas del Club: 🪙 <span class="coins-display">0</span></p>
+            <div class="list-container">
+                <div class="item-row" onclick="shop.buyKit('kit-classic', 0)">👕 Uniforme Local Cian (Equipado)</div>
+                <div class="item-row" onclick="shop.buyKit('kit-gold', 40)">👕 Uniforme Oro Legendario (🪙40)</div>
+                <div class="item-row" onclick="shop.buyKit('team-galaxy', 80)">🌌 Escudería Galáctica Math (🪙80)</div>
+            </div>
+            <button class="btn btn-danger" onclick="ui.closeModals()">REGRESAR AL MENÚ</button>
+        </div>
+    </div>
+
+    <div id="stats-modal" class="modal-overlay">
+        <div class="modal-content">
+            <h2>HISTORIAL Y RENDIMIENTO</h2>
+            <p>Goles Totales Anotados: <span id="stat-goles">0</span></p>
+            <p>Partidos Ganados: <span id="stat-wins">0</span></p>
+            <h3>RANKING LIGA LOCAL</h3>
+            <ol id="leaderboard-ui"></ol>
+            <button class="btn btn-danger" onclick="ui.closeModals()">REGRESAR</button>
+        </div>
+    </div>
+
+    <div id="rewards-modal" class="modal-overlay">
+        <div class="modal-content">
+            <h2>LOGROS DEL CLUB</h2>
+            <button class="btn btn-match" id="btn-daily" onclick="rewards.claim()">Reclamar Patrocinio Diario (+30 🪙)</button>
+            <div id="achievements-box" class="list-container" style="margin-top: 15px;"></div>
+            <button class="btn btn-danger" onclick="ui.closeModals()">CERRAR</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

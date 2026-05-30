@@ -1,0 +1,379 @@
+:root {
+    --bg-color: #0a0a16;
+    --neon-blue: #00f3ff;
+    --neon-pink: #ff0055;
+    --neon-green: #39ff14;
+    --text-color: #ffffff;
+    --panel-bg: rgba(16, 16, 36, 0.85);
+    --font-gamer: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+.neon-theme {
+    --neon-main: var(--neon-blue);
+    --glow-effect: 0 0 15px var(--neon-blue);
+}
+
+.magenta-theme {
+    --neon-main: var(--neon-pink);
+    --glow-effect: 0 0 15px var(--neon-pink);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: var(--font-gamer);
+    overflow: hidden;
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+}
+
+/* Fondo Dinámico */
+#stars-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+    background: radial-gradient(circle at center, #141432 0%, #050510 100%);
+}
+
+#particle-canvas-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* Estructura de Pantallas */
+.screen {
+    display: none;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.screen.active {
+    display: flex;
+}
+
+/* Efectos de Texto */
+.glitch-title {
+    font-size: 3rem;
+    font-weight: 900;
+    text-align: center;
+    color: #fff;
+    text-shadow: var(--glow-effect);
+    letter-spacing: 4px;
+    animation: pulse 2s infinite alternate;
+}
+
+.subtitle {
+    color: var(--neon-pink);
+    text-align: center;
+    letter-spacing: 8px;
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+}
+
+/* Tarjetas e Interfaces */
+.player-summary-card {
+    background: var(--panel-bg);
+    border: 2px solid var(--neon-main);
+    box-shadow: var(--glow-effect);
+    border-radius: 12px;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    width: 100%;
+    max-width: 450px;
+    margin-bottom: 20px;
+}
+
+.avatar-display {
+    font-size: 2.5rem;
+    background: rgba(255,255,255,0.1);
+    padding: 10px;
+    border-radius: 50%;
+}
+
+.menu-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    width: 100%;
+    max-width: 450px;
+}
+
+@media (min-width: 768px) {
+    .menu-grid { grid-template-columns: 1fr 1fr; max-width: 800px; }
+    .glitch-title { font-size: 5rem; }
+}
+
+/* Botones */
+.btn {
+    background: rgba(255, 255, 255, 0.05);
+    color: white;
+    border: 1px solid rgba(255,255,255,0.2);
+    padding: 12px 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    margin: 5px 0;
+    width: 100%;
+    text-shadow: 0 0 5px rgba(0,0,0,0.5);
+}
+
+.btn:active, .btn:hover {
+    transform: scale(1.02);
+    box-shadow: var(--glow-effect);
+}
+
+.btn-primary { border-color: var(--neon-blue); color: var(--neon-blue); }
+.btn-survival { border-color: var(--neon-green); color: var(--neon-green); }
+.btn-time { border-color: #ffaa00; color: #ffaa00; }
+.btn-ai { border-color: #aa00ff; color: #aa00ff; }
+.btn-split { border-color: #ff00aa; color: #ff00aa; }
+.btn-danger { border-color: var(--neon-pink); color: var(--neon-pink); }
+
+/* HUD del Juego */
+.hud {
+    width: 100%;
+    max-width: 600px;
+    background: var(--panel-bg);
+    border-radius: 8px;
+    padding: 10px;
+    border: 1px solid var(--neon-main);
+}
+
+.hud-top, .hud-bottom {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9rem;
+    font-weight: bold;
+}
+
+.progress-bar-container {
+    background: #222;
+    height: 8px;
+    border-radius: 4px;
+    margin: 8px 0;
+    overflow: hidden;
+}
+
+.progress-bar {
+    background: linear-gradient(90deg, var(--neon-blue), var(--neon-green));
+    height: 100%;
+    width: 100%;
+    transition: width 0.1s linear;
+}
+
+/* Caja de Enemigos y Jefes */
+.enemy-box {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background: rgba(255, 0, 85, 0.1);
+    border: 1px dashed var(--neon-pink);
+    padding: 10px;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 600px;
+    margin: 10px 0;
+}
+
+.enemy-hp-bar {
+    background: #333;
+    height: 6px;
+    border-radius: 3px;
+    width: 120px;
+    overflow: hidden;
+}
+
+#enemy-hp {
+    background: var(--neon-pink);
+    height: 100%;
+    transition: width 0.3s ease;
+}
+
+/* Área de Preguntas y Respuestas */
+.question-container {
+    background: var(--panel-bg);
+    border: 2px solid var(--neon-main);
+    border-radius: 12px;
+    padding: 30px;
+    width: 100%;
+    max-width: 600px;
+    text-align: center;
+    font-size: 1.8rem;
+    font-weight: bold;
+    box-shadow: var(--glow-effect);
+    margin: 15px 0;
+}
+
+.options-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+    width: 100%;
+    max-width: 600px;
+}
+
+@media (min-width: 480px) {
+    .options-grid { grid-template-columns: 1fr 1fr; }
+}
+
+.option-btn {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255,255,255,0.15);
+    color: white;
+    padding: 15px;
+    font-size: 1.1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.option-btn:active {
+    transform: scale(0.97);
+}
+
+/* Poderes */
+.powers-container {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.btn-power {
+    background: #222;
+    border: 1px solid #444;
+    color: #fff;
+    padding: 8px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    cursor: pointer;
+}
+
+/* Modales Modernos */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.85);
+    z-index: 100;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.modal-content {
+    background: #0f0f26;
+    border: 2px solid var(--neon-main);
+    box-shadow: var(--glow-effect);
+    border-radius: 16px;
+    padding: 25px;
+    width: 100%;
+    max-width: 500px;
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+.shop-item, .achievement-item {
+    background: rgba(255,255,255,0.05);
+    padding: 12px;
+    margin: 8px 0;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.shop-item:hover { background: rgba(255,255,255,0.1); }
+
+/* Pantalla Dividida (2 Jugadores) */
+.split-container {
+    flex-direction: row;
+    padding: 0;
+}
+
+.player-pane {
+    flex: 1;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    padding: 20px;
+    border-right: 2px dashed #333;
+}
+
+.pane-question {
+    font-size: 1.5rem;
+    background: rgba(0,0,0,0.4);
+    padding: 20px;
+    border-radius: 8px;
+    width: 100%;
+    text-align: center;
+}
+
+.pane-options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+}
+
+@media (max-width: 768px) {
+    .split-container { flex-direction: column; }
+    .player-pane { width: 100%; height: 50%; border-right: none; border-bottom: 2px dashed #333; }
+}
+
+/* Animaciones */
+@keyframes pulse {
+    0% { transform: scale(1); }
+    100% { transform: scale(1.03); }
+}
+
+.hidden-element { display: none !important; }
+
+.navbar{
+    position:fixed;
+    top:20px;
+    left:-85px; /* deja visible una parte */
+    z-index:1000;
+    transition:0.4s ease;
+}
+/* al pasar el mouse sale completo */
+.navbar:hover{
+    left:20px;
+}
+
+.back-btn{
+    text-decoration:none;
+    color:white;
+    background:#111;
+    padding:12px 20px;
+    border-radius:12px;
+    display:flex;
+    align-items:center;
+    gap:8px;
+    font-weight:bold;
+
+}

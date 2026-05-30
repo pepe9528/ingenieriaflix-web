@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="icon" type="image/png" href="/img/logo.png">
+    <title>MathVerse Infinity</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+        <header class="navbar">
+                <a href="../../../juegos.html" class="back-btn">
+                 <i class="fa-solid fa-arrow-left"></i> Regresar
+                </a>
+        </header>
+ <header class="neon-theme">
+    <div id="stars-container"></div>
+    <div id="particle-canvas-container"></div>
+
+    <div id="menu-screen" class="screen active">
+        <div class="game-header">
+            <h1 class="glitch-title" data-text="MATHVERSE">MATHVERSE</h1>
+            <h2 class="subtitle">INFINITY</h2>
+        </div>
+
+        <div class="player-summary-card">
+            <div class="avatar-display" id="menu-avatar">⚛️</div>
+            <div class="summary-details">
+                <div class="username" id="menu-username">MathKnight_01</div>
+                <div class="rpg-status">Nivel <span id="menu-level">1</span> (XP: <span id="menu-xp">0</span>)</div>
+                <div class="currency-display">💎 <span id="menu-gems">100</span></div>
+            </div>
+        </div>
+
+        <div class="menu-grid">
+            <div class="menu-modes">
+                <h3>MODOS DE JUEGO</h3>
+                <button class="btn btn-primary" onclick="game.selectMode('classic')">MODO CLÁSICO</button>
+                <button class="btn btn-survival" onclick="game.selectMode('survival')">SUPERVIVENCIA</button>
+                <button class="btn btn-time" onclick="game.selectMode('timetrial')">CONTRARRELOJ</button>
+                <button class="btn btn-ai" onclick="game.selectMode('vs-ai')">DUELO IA</button>
+                <button class="btn btn-split" onclick="game.selectMode('split')">PANTALLA DIVIDIDA (2P)</button>
+            </div>
+
+            <div class="menu-navigation">
+                <h3>NEXO</h3>
+                <button class="btn btn-secondary" onclick="ui.openModal('shop-modal')">TIENDA & SKINS</button>
+                <button class="btn btn-secondary" onclick="ui.openModal('stats-modal')">ESTADÍSTICAS</button>
+                <button class="btn btn-secondary" onclick="ui.openModal('rewards-modal')">DIARIO & LOGROS</button>
+                <button class="btn btn-danger" onclick="soundManager.toggleMute()">MUTEAR AUDIO</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="game-screen" class="screen">
+        <div class="hud">
+            <div class="hud-top">
+                <div class="hud-stat">❤️ <span id="hud-lives">3</span></div>
+                <div class="hud-stat">⚡ <span id="hud-energy">100</span>%</div>
+                <div class="hud-stat">⭐ <span id="hud-score">0</span></div>
+                <div class="hud-stat">🔥 Combo x<span id="hud-combo">1</span></div>
+            </div>
+            <div class="progress-bar-container">
+                <div id="timer-bar" class="progress-bar"></div>
+            </div>
+            <div class="hud-bottom">
+                <div>Dimensión: <span id="hud-dimension">Aritmética</span></div>
+                <div>Nivel: <span id="hud-level-num">1</span></div>
+            </div>
+        </div>
+
+        <div id="enemy-container" class="enemy-box">
+            <div id="enemy-avatar">👾</div>
+            <div class="enemy-details">
+                <div id="enemy-name">Aniquilador de Fracciones</div>
+                <div class="enemy-hp-bar"><div id="enemy-hp" style="width: 100%;"></div></div>
+            </div>
+        </div>
+
+        <div id="event-banner" class="hidden-element"></div>
+
+        <div class="question-container">
+            <div id="question-text">2 + 2 = ?</div>
+        </div>
+
+        <div class="options-grid" id="options-container">
+            </div>
+
+        <div class="powers-container">
+            <button class="btn-power" id="power-freeze" onclick="game.usePower('freeze')">❄️ Congelar</button>
+            <button class="btn-power" id="power-double" onclick="game.usePower('double')">x2 Puntos</button>
+            <button class="btn-power" id="power-bomb" onclick="game.usePower('bomb')">💣 Elimar 2</button>
+        </div>
+    </div>
+
+    <div id="split-screen" class="screen split-container">
+        <div class="player-pane" id="p1-pane">
+            <div class="pane-hud">P1 | Puntos: <span id="p1-score">0</span> | Vidas: <span id="p1-lives">3</span></div>
+            <div class="pane-question" id="p1-question">Esperando...</div>
+            <div class="pane-options" id="p1-options"></div>
+        </div>
+        <div class="player-pane" id="p2-pane">
+            <div class="pane-hud">P2 | Puntos: <span id="p2-score">0</span> | Vidas: <span id="p2-lives">3</span></div>
+            <div class="pane-question" id="p2-question">Esperando...</div>
+            <div class="pane-options" id="p2-options"></div>
+        </div>
+    </div>
+
+    <div id="shop-modal" class="modal-overlay">
+        <div class="modal-content">
+            <h2>TIENDA DIMENSIONAL</h2>
+            <p>Monedas: 💎 <span class="user-gems-display">0</span></p>
+            <div class="shop-tabs">
+                <div class="shop-item" onclick="shop.buySkin('neon-cyan', 0)">🎨 Tema Neón Cyan (Gratis)</div>
+                <div class="shop-item" onclick="shop.buySkin('neon-mag', 50)">🎨 Tema Cyber Magenta (💎50)</div>
+                <div class="shop-item" onclick="shop.buySkin('avatar-wizard', 30)">🧙‍♂️ Avatar: Mago Numérico (💎30)</div>
+                <div class="shop-item" onclick="shop.buySkin('avatar-cyborg', 75)">🤖 Avatar: MathCyborg (💎75)</div>
+            </div>
+            <button class="btn btn-danger" onclick="ui.closeModals()">CERRAR</button>
+        </div>
+    </div>
+
+    <div id="stats-modal" class="modal-overlay">
+        <div class="modal-content">
+            <h2>ESTADÍSTICAS Y RANKING</h2>
+            <div class="stats-scroll">
+                <p>Partidas Jugadas: <span id="stat-games">0</span></p>
+                <p>Respuestas Correctas Totales: <span id="stat-correct">0</span></p>
+                <h3>TOP RANKING LOCAL</h3>
+                <ol id="ranking-list">
+                    <li>Cargando nexus...</li>
+                </ol>
+            </div>
+            <button class="btn btn-danger" onclick="ui.closeModals()">CERRAR</button>
+        </div>
+    </div>
+
+    <div id="rewards-modal" class="modal-overlay">
+        <div class="modal-content">
+            <h2>LOGROS & DIARIO</h2>
+            <button class="btn btn-primary" id="daily-claim-btn" onclick="rewards.claimDaily()">Reclamar Premio Diario (+25 💎)</button>
+            <h3>LOGROS</h3>
+            <div id="achievements-list" class="stats-scroll">
+                </div>
+            <button class="btn btn-danger" onclick="ui.closeModals()">CERRAR</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

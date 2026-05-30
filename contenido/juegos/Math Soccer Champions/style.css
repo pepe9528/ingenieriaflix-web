@@ -1,0 +1,270 @@
+:root {
+    --pitch-green: #1f6032;
+    --neon-gold: #ffd700;
+    --neon-blue: #00f3ff;
+    --dark-panel: rgba(11, 19, 43, 0.9);
+    --fifa-red: #ff0055;
+    --text-white: #ffffff;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    user-select: none;
+    -webkit-user-select: none;
+    font-family: 'Arial Black', -apple-system, sans-serif;
+}
+
+body {
+    background-color: #050b14;
+    color: var(--text-white);
+    overflow: hidden;
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+}
+
+/* Climas Dinámicos Visuales */
+.stadium-day { background: radial-gradient(circle at top, #1a4c80 0%, #051429 100%); }
+.stadium-night { background: radial-gradient(circle at top, #09101f 0%, #010408 100%); }
+
+/* Contenedores de Pantallas */
+.screen {
+    display: none;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    padding: 15px;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    overflow-y: auto;
+}
+
+.screen.active { display: flex; }
+
+/* Estilo de Menú AAA */
+.header-branding {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.header-branding .icon {
+    font-size: 3rem;
+    margin-bottom: 10px;
+    animation: pulseGlow 2s infinite alternate;
+}
+
+.game-title {
+    font-size: 2.8rem;
+    font-weight: 900;
+    color: var(--text-white);
+    letter-spacing: -1px;
+    text-shadow: 3px 3px 0px var(--fifa-red);
+}
+
+.game-subtitle {
+    font-size: 1.4rem;
+    color: var(--neon-blue);
+    letter-spacing: 6px;
+}
+
+.profile-card {
+    background: var(--dark-panel);
+    border-left: 5px solid var(--neon-blue);
+    padding: 15px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    width: 100%;
+    max-width: 480px;
+}
+
+.club-emblem { font-size: 2.2rem; }
+
+.menu-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 15px;
+    width: 100%;
+    max-width: 480px;
+    margin-bottom: 20px;
+}
+
+@media (min-width: 768px) {
+    .menu-grid { grid-template-columns: 1fr 1fr; max-width: 850px; }
+}
+
+/* Botones Deportivos */
+.btn {
+    background: rgba(255,255,255,0.08);
+    border: 2px solid rgba(255,255,255,0.2);
+    color: white;
+    padding: 14px;
+    font-size: 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-align: left;
+    width: 100%;
+}
+
+.btn:active, .btn:hover {
+    background: var(--text-white);
+    color: #000;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px var(--neon-blue);
+}
+
+.btn-match { border-color: var(--neon-blue); }
+.btn-tournament { border-color: var(--neon-gold); }
+.btn-penalty { border-color: var(--fifa-red); }
+.btn-danger { border-color: #ff3333; color: #ff3333; }
+
+/* HUD del Partido */
+.scoreboard {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #000;
+    border-bottom: 3px solid var(--neon-blue);
+    width: 100%;
+    max-width: 700px;
+    padding: 10px 20px;
+    border-radius: 4px;
+}
+
+.team-score { font-size: 1rem; flex: 1; }
+.score-num { background: #222; padding: 4px 10px; border-radius: 3px; color: var(--neon-gold); margin: 0 5px; }
+.match-time { font-size: 1.2rem; color: var(--neon-blue); font-weight: bold; }
+
+.stadium-stats-bars {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 700px;
+    font-size: 0.8rem;
+    margin: 5px 0;
+}
+
+.stamina-container { display: flex; align-items: center; gap: 8px; }
+.stamina-container .bar { background: #333; width: 100px; height: 10px; border-radius: 5px; overflow: hidden; }
+#stamina-fill { background: var(--neon-blue); height: 100%; transition: width 0.3s; }
+
+/* Simulador Gráfico (Campo 2D) */
+.pitch-container {
+    width: 100%;
+    max-width: 700px;
+    height: 180px;
+    background: var(--pitch-green);
+    border: 3px solid rgba(255,255,255,0.3);
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+#pitchCanvas { width: 100%; height: 100%; display: block; }
+
+#commentary-box {
+    position: absolute;
+    bottom: 0; width: 100%;
+    background: rgba(0,0,0,0.75);
+    padding: 6px;
+    text-align: center;
+    font-size: 0.85rem;
+    color: var(--neon-gold);
+}
+
+/* Panel de Control de Matemáticas */
+.math-action-panel {
+    background: var(--dark-panel);
+    border: 2px solid var(--neon-blue);
+    border-radius: 8px;
+    width: 100%;
+    max-width: 700px;
+    padding: 15px;
+    text-align: center;
+}
+
+.action-instruction { font-size: 0.8rem; color: #aaa; margin-bottom: 5px; }
+.math-question { font-size: 1.8rem; font-weight: bold; margin-bottom: 15px; text-shadow: 0 0 10px rgba(255,255,255,0.3); }
+
+.options-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.option-btn {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.15);
+    color: white;
+    padding: 14px;
+    font-size: 1.2rem;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.1s;
+}
+
+.option-btn:active { background: var(--neon-blue); color: #000; }
+
+/* Deck de Cartas de Habilidades */
+.cards-deck { display: flex; gap: 8px; margin-top: 5px; }
+.card-btn { background: #111; border: 1px solid var(--neon-gold); color: var(--neon-gold); padding: 6px 12px; border-radius: 3px; font-size: 0.75rem; cursor: pointer; }
+
+/* Modales */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.85);
+    z-index: 10;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+}
+
+.modal-content {
+    background: #0b132b;
+    border: 2px solid var(--neon-gold);
+    padding: 20px;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 450px;
+}
+
+.list-container { max-height: 200px; overflow-y: auto; margin: 15px 0; }
+.item-row { background: rgba(255,255,255,0.05); padding: 10px; margin: 5px 0; border-radius: 4px; cursor: pointer; font-size: 0.9rem; }
+.item-row:hover { background: rgba(255,255,255,0.15); }
+
+/* Animaciones */
+@keyframes pulseGlow {
+    0% { transform: scale(1); filter: drop-shadow(0 0 2px var(--neon-blue)); }
+    100% { transform: scale(1.05); filter: drop-shadow(0 0 15px var(--neon-blue)); }
+}
+.navbar{
+    position:fixed;
+    top:20px;
+    left:-85px; /* deja visible una parte */
+    z-index:1000;
+    transition:0.4s ease;
+}
+/* al pasar el mouse sale completo */
+.navbar:hover{
+    left:20px;
+}
+
+.back-btn{
+    text-decoration:none;
+    color:white;
+    background:#111;
+    padding:12px 20px;
+    border-radius:12px;
+    display:flex;
+    align-items:center;
+    gap:8px;
+    font-weight:bold;
+
+}

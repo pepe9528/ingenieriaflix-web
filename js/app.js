@@ -6,8 +6,9 @@ function toggleMenu() {
     if (overlay) overlay.classList.toggle("active");
 }
 
-// Cerrar sidebar al tocar fuera
 document.addEventListener("DOMContentLoaded", () => {
+
+    // Cerrar sidebar al tocar fuera
     const overlay = document.getElementById("sidebarOverlay");
     if (overlay) {
         overlay.addEventListener("click", () => {
@@ -30,9 +31,42 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    // BUSCADOR
+    // ── MODO OSCURO / CLARO ──
+    iniciarTema();
     iniciarBuscador();
 });
+
+// ── TEMA ──
+function iniciarTema() {
+    const navbar = document.querySelector(".navbar");
+    if (!navbar) return;
+
+    // Crear botón de tema
+    const themeBtn = document.createElement("button");
+    themeBtn.className = "theme-btn";
+    themeBtn.id = "themeBtn";
+    themeBtn.title = "Cambiar tema";
+    themeBtn.innerHTML = '<i class="fas fa-moon"></i>';
+
+    // Insertar antes del menu-btn
+    const menuBtn = navbar.querySelector(".menu-btn");
+    if (menuBtn) navbar.insertBefore(themeBtn, menuBtn);
+
+    // Aplicar tema guardado
+    const temaGuardado = localStorage.getItem("tema");
+    if (temaGuardado === "light") {
+        document.body.classList.add("light-mode");
+        themeBtn.innerHTML = '<i class="fas fa-sun"></i>';
+    }
+
+    // Toggle al hacer clic
+    themeBtn.addEventListener("click", () => {
+        document.body.classList.toggle("light-mode");
+        const esClaro = document.body.classList.contains("light-mode");
+        themeBtn.innerHTML = esClaro ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+        localStorage.setItem("tema", esClaro ? "light" : "dark");
+    });
+}
 
 // ── BUSCADOR ──
 const cursos = [
@@ -62,7 +96,6 @@ const cursos = [
 ];
 
 function iniciarBuscador() {
-    // Crear elementos del buscador
     const searchHTML = `
         <div id="searchOverlay" class="search-overlay">
             <div class="search-box">
@@ -77,13 +110,10 @@ function iniciarBuscador() {
             </div>
         </div>
     `;
-
     document.body.insertAdjacentHTML("beforeend", searchHTML);
 
-    // Agregar estilos del buscador
     const style = document.createElement("style");
     style.textContent = `
-        /* LUPA EN NAVBAR */
         .search-btn {
             background: none;
             border: none;
@@ -101,15 +131,14 @@ function iniciarBuscador() {
             color: #fff;
             background: rgba(255,255,255,0.08);
         }
+        body.light-mode .search-btn { color: rgba(0,0,0,0.5); }
+        body.light-mode .search-btn:hover { color: #111; background: rgba(0,0,0,0.06); }
 
-        /* OVERLAY DE BÚSQUEDA */
         .search-overlay {
             display: none;
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
             background: rgba(0,0,0,0.85);
             z-index: 9999;
             backdrop-filter: blur(8px);
@@ -122,16 +151,13 @@ function iniciarBuscador() {
             padding-top: 80px;
         }
         @keyframes fadeInSearch {
-            from { opacity: 0; }
-            to   { opacity: 1; }
+            from { opacity: 0; } to { opacity: 1; }
         }
-
         .search-box {
             width: 100%;
             max-width: 620px;
             padding: 0 20px;
         }
-
         .search-input-wrap {
             display: flex;
             align-items: center;
@@ -142,16 +168,8 @@ function iniciarBuscador() {
             gap: 12px;
             transition: border-color 0.2s;
         }
-        .search-input-wrap:focus-within {
-            border-color: red;
-        }
-
-        .search-icon-input {
-            color: #555;
-            font-size: 1rem;
-            flex-shrink: 0;
-        }
-
+        .search-input-wrap:focus-within { border-color: red; }
+        .search-icon-input { color: #555; font-size: 1rem; flex-shrink: 0; }
         #searchInput {
             flex: 1;
             background: none;
@@ -162,7 +180,6 @@ function iniciarBuscador() {
             font-family: Arial, sans-serif;
         }
         #searchInput::placeholder { color: #444; }
-
         .search-close-btn {
             background: none;
             border: none;
@@ -175,8 +192,6 @@ function iniciarBuscador() {
             flex-shrink: 0;
         }
         .search-close-btn:hover { color: #fff; }
-
-        /* RESULTADOS */
         .search-results {
             background: #111;
             border: 1px solid #222;
@@ -186,7 +201,6 @@ function iniciarBuscador() {
             max-height: 420px;
             overflow-y: auto;
         }
-
         .search-result-item {
             display: flex;
             align-items: center;
@@ -198,14 +212,9 @@ function iniciarBuscador() {
             transition: background 0.15s;
         }
         .search-result-item:last-child { border-bottom: none; }
-        .search-result-item:hover {
-            background: #1a1a1a;
-            color: inherit;
-        }
-
+        .search-result-item:hover { background: #1a1a1a; color: inherit; }
         .result-icon {
-            width: 40px;
-            height: 40px;
+            width: 40px; height: 40px;
             background: rgba(255,0,0,0.1);
             border-radius: 10px;
             display: flex;
@@ -215,17 +224,8 @@ function iniciarBuscador() {
             font-size: 1rem;
             flex-shrink: 0;
         }
-
-        .result-info h4 {
-            font-size: 0.95rem;
-            font-weight: 600;
-            color: #fff;
-            margin-bottom: 2px;
-        }
-        .result-info p {
-            font-size: 0.78rem;
-            color: #555;
-        }
+        .result-info h4 { font-size: 0.95rem; font-weight: 600; color: #fff; margin-bottom: 2px; }
+        .result-info p { font-size: 0.78rem; color: #555; }
         .result-tag {
             margin-left: auto;
             font-size: 0.7rem;
@@ -236,24 +236,12 @@ function iniciarBuscador() {
             border: 1px solid #222;
             flex-shrink: 0;
         }
-
-        .search-empty {
-            padding: 30px;
-            text-align: center;
-            color: #444;
-            font-size: 0.9rem;
-        }
-
-        .search-hint {
-            padding: 16px 18px;
-            color: #333;
-            font-size: 0.8rem;
-            text-align: center;
-        }
+        .search-empty { padding: 30px; text-align: center; color: #444; font-size: 0.9rem; }
+        .search-hint { padding: 16px 18px; color: #333; font-size: 0.8rem; text-align: center; }
     `;
     document.head.appendChild(style);
 
-    // Agregar botón lupa a la navbar
+    // Botón lupa en navbar
     const navbar = document.querySelector(".navbar");
     if (navbar) {
         const lupaBtn = document.createElement("button");
@@ -261,33 +249,27 @@ function iniciarBuscador() {
         lupaBtn.id = "openSearch";
         lupaBtn.innerHTML = '<i class="fas fa-search"></i>';
         lupaBtn.title = "Buscar cursos";
-
-        // Insertar antes del menu-btn
-        const menuBtn = navbar.querySelector(".menu-btn");
-        if (menuBtn) {
-            navbar.insertBefore(lupaBtn, menuBtn);
-        } else {
-            navbar.appendChild(lupaBtn);
+        const themeBtn = document.getElementById("themeBtn");
+        if (themeBtn) navbar.insertBefore(lupaBtn, themeBtn);
+        else {
+            const menuBtn = navbar.querySelector(".menu-btn");
+            if (menuBtn) navbar.insertBefore(lupaBtn, menuBtn);
         }
     }
 
-    // Eventos
     document.getElementById("openSearch")?.addEventListener("click", abrirBuscador);
     document.getElementById("closeSearch")?.addEventListener("click", cerrarBuscador);
     document.getElementById("searchInput")?.addEventListener("input", buscar);
     document.getElementById("searchOverlay")?.addEventListener("click", (e) => {
         if (e.target.id === "searchOverlay") cerrarBuscador();
     });
-
-    // Cerrar con ESC
     document.addEventListener("keydown", (e) => {
         if (e.key === "Escape") cerrarBuscador();
     });
 }
 
 function abrirBuscador() {
-    const overlay = document.getElementById("searchOverlay");
-    overlay.classList.add("active");
+    document.getElementById("searchOverlay").classList.add("active");
     setTimeout(() => document.getElementById("searchInput")?.focus(), 100);
     document.getElementById("searchResults").innerHTML = `<p class="search-hint">Escribe para buscar cursos...</p>`;
 }
@@ -330,7 +312,7 @@ function buscar() {
     `).join("");
 }
 
-// FUNCIONES APUNTES (index.html)
+// FUNCIONES APUNTES
 function guardarTXT() {
     const nota = document.getElementById("nota").value;
     const blob = new Blob([nota], {type:"text/plain;charset=utf-8"});
@@ -348,27 +330,21 @@ function guardarPDF() {
     doc.save("apunte.pdf");
 }
 
-// FUNCION POMODORO (enfoque.html)
+// FUNCION POMODORO
 let pomodoroInterval;
 function pomodoro() {
     clearInterval(pomodoroInterval);
     let minutes = 25;
     let seconds = 0;
     const timer = document.getElementById("timer");
-
     pomodoroInterval = setInterval(() => {
         if (seconds === 0) {
             if (minutes === 0) {
                 clearInterval(pomodoroInterval);
                 timer.innerText = "¡Listo!";
                 return;
-            } else {
-                minutes--;
-                seconds = 59;
-            }
-        } else {
-            seconds--;
-        }
+            } else { minutes--; seconds = 59; }
+        } else { seconds--; }
         timer.innerText = `${minutes.toString().padStart(2,"0")}:${seconds.toString().padStart(2,"0")}`;
     }, 1000);
 }
@@ -377,14 +353,9 @@ function pomodoro() {
 function mostrarVideos(curso) {
     const videosDiv = document.getElementById("videos");
     if (!videosDiv) return;
-
     let contenido = "";
-    if (curso === "python") {
-        contenido = "<p>Videos de Python se mostrarán aquí...</p>";
-    } else if (curso === "arduino") {
-        contenido = "<p>Videos de Arduino se mostrarán aquí...</p>";
-    } else if (curso === "asm") {
-        contenido = "<p>Videos de ASM se mostrarán aquí...</p>";
-    }
+    if (curso === "python") contenido = "<p>Videos de Python se mostrarán aquí...</p>";
+    else if (curso === "arduino") contenido = "<p>Videos de Arduino se mostrarán aquí...</p>";
+    else if (curso === "asm") contenido = "<p>Videos de ASM se mostrarán aquí...</p>";
     videosDiv.innerHTML = contenido;
 }
