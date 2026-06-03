@@ -3,21 +3,165 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Accede a guías, fórmulas y apuntes en PDF sobre matemáticas, programación e ingeniería. Recursos educativos en IngenieríaFlex.">
   <link rel="icon" type="image/png" href="/img/logo.png">
 
-  <title>Biblioteca PDF - IngenieríaFlex</title>
+  <title>Biblioteca PDF | IngenieríaFlex</title>
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/responsive.css">
+
+  <style>
+    /* ---- ESTILOS AGREGADOS PARA EL MODAL Y EL VISOR INTERACTIVO ---- */
+    
+    .pdf-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.9);
+      display: none; /* Oculto por defecto */
+      justify-content: center;
+      align-items: center;
+      z-index: 3000;
+      padding: 10px;
+    }
+
+    .pdf-modal-content {
+      background: #0d0d0d;
+      border: 1px solid #1a1a1a;
+      padding: 25px;
+      border-radius: 16px;
+      width: 100%;
+      max-width: 850px;
+      position: relative;
+      color: #fff;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+
+    .close-modal {
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      font-size: 2rem;
+      color: #666;
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+
+    .close-modal:hover {
+      color: #ff2a2a;
+    }
+
+    #modalTitulo {
+      font-size: 1.4rem;
+      margin-bottom: 15px;
+      color: #fff;
+      padding-right: 30px;
+    }
+
+    .pdf-frame-container {
+      width: 100%;
+      background: #111;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid #222;
+    }
+
+    .pdf-acciones {
+      margin-top: 20px;
+      text-align: center;
+      padding-top: 15px;
+      border-top: 1px solid #1a1a1a;
+    }
+
+    /* Mensajes de Estado */
+    .alerta-premium {
+      color: #ffaa00;
+      font-size: 0.9rem;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .alerta-exito {
+      color: #00cc66;
+      font-size: 0.9rem;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    /* Botones de Acción */
+    .btn-pagar {
+      background: #ff2a2a;
+      color: white;
+      padding: 12px 28px;
+      border-radius: 30px;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.1s;
+    }
+
+    .btn-pagar:hover {
+      background: #cc0000;
+    }
+
+    .btn-pagar:active, .btn-descargar:active {
+      transform: scale(0.98);
+    }
+
+    .btn-descargar {
+      background: #00cc66;
+      color: white;
+      padding: 12px 28px;
+      border-radius: 30px;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: background 0.2s;
+    }
+
+    .btn-descargar:hover {
+      background: #00994d;
+    }
+
+    /* Estilo interactivo para las tarjetas ejecutables */
+    .catalog-item {
+      cursor: pointer;
+    }
+  </style>
+  <meta property="og:title" content="Biblioteca PDF | IngenieríaFlex">
+  <meta property="og:description" content="Guías, fórmulas y apuntes en PDF de matemáticas, programación e ingeniería.">
+  <meta property="og:image" content="/img/logo.png">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://ingenieriaflix-web.vercel.app">
+  <style>
+    .site-footer { border-top: 1px solid #1a1a1a; padding: 2rem 10%; margin-top: 60px; display: flex; flex-direction: column; align-items: center; gap: 1rem; text-align: center; }
+    .footer-links { display: flex; gap: 1.5rem; flex-wrap: wrap; justify-content: center; }
+    .footer-links a { color: #666; font-size: 0.85rem; text-decoration: none; transition: color 0.2s; }
+    .footer-links a:hover { color: #fff; }
+    .footer-copy { color: #333; font-size: 0.8rem; }
+  </style>
 </head>
 <body>
 
-
-  <!-- Header -->
   <header class="navbar">
-
     <a href="index.html" class="back-btn">
       <i class="fa-solid fa-arrow-left"></i>
       Regresar
@@ -27,208 +171,283 @@
       <img src="img/logo.png" class="logo" alt="Logo IngenieríaFlex">
       <h1>Ingeniería<span>Flex</span></h1>
     </div>
+    <div id="userArea">
+      <div class="user-avatar" style="display:none;">
+        <img id="avatarBtn" src="" alt="Usuario">
+      </div>
+      <a href="/login/login.html" id="loginBtn" class="login-btn">Iniciar sesión</a>
+      <div id="userMenu" class="user-menu">
+        <div class="menu-header">
+          <img id="menuPhoto" src="" alt="foto">
+          <div class="info">
+            <p id="userName"></p>
+            <p id="userEmail"></p>
+          </div>
+        </div>
+        <div class="menu-section" id="editSection">
+          <p class="section-title">Editar nombre</p>
+          <input id="inputName" type="text" placeholder="Nuevo nombre">
+          <button class="btn-menu btn-save" id="saveBtn">Guardar cambios</button>
+          <p class="menu-msg" id="saveMsg"></p>
+        </div>
+        <button class="btn-menu btn-logout" id="logoutBtn">
+          <i class="fa-solid fa-right-from-bracket"></i> Cerrar sesión
+        </button>
+      </div>
+    </div>
 
     <div class="menu-btn" onclick="toggleMenu()">
       ☰
     </div>
-
   </header>
 
-
-  <!-- Sidebar -->
-<div class="sidebar" id="sidebar">
-  <div class="close-btn" onclick="toggleMenu()">✕</div>
-  <div class="sidebar-logo">
-    <img src="/img/logo.png" alt="Logo">
-    <span>Ingeniería<em>Flex</em></span>
+  <div class="sidebar" id="sidebar">
+    <div class="close-btn" onclick="toggleMenu()">✕</div>
+    <div class="sidebar-logo">
+      <img src="/img/logo.png" alt="Logo">
+      <span>Ingeniería<em>Flex</em></span>
+    </div>
+    <a href="/index.html"><i class="fa-solid fa-house"></i> Inicio</a>
+    <a href="/catalogo.html"><i class="fa-solid fa-book"></i> Cursos</a>
+    <a href="/juegos.html"><i class="fa-solid fa-gamepad"></i> Juegos</a>
+    <a href="/recursos.html"><i class="fa-solid fa-folder"></i> Recursos</a>
+    <a href="/acerca.html"><i class="fa-solid fa-circle-info"></i> Acerca de</a>
   </div>
-  <a href="/index.html"><i class="fa-solid fa-house"></i> Inicio</a>
-  <a href="/catalogo.html"><i class="fa-solid fa-book"></i> Cursos</a>
-  <a href="/juegos.html"><i class="fa-solid fa-gamepad"></i> Juegos</a>
-  <a href="/recursos.html"><i class="fa-solid fa-folder"></i> Recursos</a>
-  <a href="/acerca.html"><i class="fa-solid fa-circle-info"></i> Acerca de</a>
-</div>
 
-
-
-  <!-- Hero -->
   <section class="hero">
-
     <div class="badge">
       BIBLIOTECA PDF
     </div>
-
     <h2>
       Aprende con nuestros materiales premium
     </h2>
-
     <p>
       Matemáticas, programación, ingeniería y mucho más.
     </p>
-
   </section>
 
-
-
-  <!-- PDFs -->
   <section class="categories">
-
     <div class="catalog-list">
 
-
-      <!-- PDF 1 -->
-      <a href="#" class="catalog-item">
-
+      <div class="catalog-item" onclick="abrirVisorPDF('algebra')" id="item-algebra">
         <div class="left">
-
           <div class="icon">
             <i class="fa-solid fa-file-pdf"></i>
           </div>
-
           <div class="info">
-
             <h4>Álgebra desde Cero</h4>
-
-            <p>
-              Aprende variables, ecuaciones y ejercicios paso a paso.
-            </p>
-
+            <p>Aprende variables, ecuaciones y ejercicios paso a paso.</p>
           </div>
-
         </div>
+        <i class="fa-solid fa-lock estatus-candado"></i>
+      </div>
 
-        <i class="fa-solid fa-lock"></i>
-
-      </a>
-
-
-
-      <!-- PDF 2 -->
-      <a href="#" class="catalog-item">
-
+      <div class="catalog-item" onclick="abrirVisorPDF('ecuaciones')" id="item-ecuaciones">
         <div class="left">
-
           <div class="icon">
             <i class="fa-solid fa-file-pdf"></i>
           </div>
-
           <div class="info">
-
             <h4>Ecuaciones de Primer Grado</h4>
-
-            <p>
-              Métodos prácticos y problemas resueltos.
-            </p>
-
+            <p>Métodos prácticos y problemas resueltos.</p>
           </div>
-
         </div>
+        <i class="fa-solid fa-lock estatus-candado"></i>
+      </div>
 
-        <i class="fa-solid fa-lock"></i>
-
-      </a>
-
-
-
-      <!-- PDF 3 -->
-      <a href="#" class="catalog-item">
-
+      <div class="catalog-item" onclick="abrirVisorPDF('javascript')" id="item-javascript">
         <div class="left">
-
           <div class="icon">
             <i class="fa-brands fa-js"></i>
           </div>
-
           <div class="info">
-
             <h4>JavaScript desde Cero</h4>
-
-            <p>
-              Fundamentos y mini proyectos prácticos.
-            </p>
-
+            <p>Fundamentos y mini proyectos prácticos.</p>
           </div>
-
         </div>
+        <i class="fa-solid fa-lock estatus-candado"></i>
+      </div>
 
-        <i class="fa-solid fa-lock"></i>
-
-      </a>
-
-
-
-      <!-- PDF 4 -->
-      <a href="#" class="catalog-item">
-
+      <div class="catalog-item" onclick="abrirVisorPDF('htmlcss')" id="item-htmlcss">
         <div class="left">
-
           <div class="icon">
             <i class="fa-solid fa-code"></i>
           </div>
-
           <div class="info">
-
             <h4>HTML + CSS Profesional</h4>
-
-            <p>
-              Diseña sitios modernos desde cero.
-            </p>
-
+            <p>Diseña sitios modernos desde cero.</p>
           </div>
-
         </div>
+        <i class="fa-solid fa-lock estatus-candado"></i>
+      </div>
 
-        <i class="fa-solid fa-lock"></i>
-
-      </a>
-
-
-
-      <!-- Próximamente -->
-      <a href="#" class="catalog-item">
-
+      <div class="catalog-item" style="cursor: default;">
         <div class="left">
-
           <div class="icon">
             <i class="fa-solid fa-star"></i>
           </div>
-
           <div class="info">
-
             <h4>Más contenido próximamente</h4>
-
-            <p>
-              Nuevos materiales cada semana.
-            </p>
-
+            <p>Nuevos materiales cada semana.</p>
           </div>
-
         </div>
-
         <i class="fa-solid fa-clock"></i>
-
-      </a>
-
+      </div>
 
     </div>
-
   </section>
 
+    <footer class="site-footer">
+    <div class="logo-area" style="gap:10px;">
+      <img src="/img/logo.png" alt="Logo" style="width:28px; animation:giro 8s linear infinite;">
+      <span style="font-size:1rem; font-weight:700;">Ingeniería<span style="color:red;">Flex</span></span>
+    </div>
+    <div class="footer-links">
+      <a href="/privacidad.html">Política de Privacidad</a>
+      <a href="/terminos.html">Términos de Uso</a>
+      <a href="/acerca.html">Acerca de</a>
+      <a href="mailto:pepechuysantiago714@gmail.com">Contacto</a>
+    </div>
+    <p class="footer-copy">© 2026 IngenieríaFlex. Todos los derechos reservados.</p>
+  </footer>
 
+  <div id="pdfModal" class="pdf-modal">
+    <div class="pdf-modal-content">
+      <span class="close-modal" onclick="cerrarVisorPDF()">&times;</span>
+      <h3 id="modalTitulo">Título del Documento</h3>
+      
+      <div class="pdf-frame-container">
+        <iframe id="pdfVisor" src="" width="100%" height="480px" style="border: none;"></iframe>
+      </div>
 
-  <!-- Script menú -->
-  <script>
-    function toggleMenu(){
-      document
-      .getElementById("sidebar")
-      .classList
-      .toggle("active");
-    }
-  </script>
+      <div class="pdf-acciones">
+        <div id="wrapperBloqueado">
+          <p class="alerta-premium">
+            <i class="fa-solid fa-eye"></i> Estás viendo una vista previa limitada a las 3 primeras páginas.
+          </p>
+          <button id="btnPasarela" class="btn-pagar" onclick="procesarPagoSimulado()">
+            <i class="fa-solid fa-credit-card"></i> Desbloquear Todo y Activar Descarga
+          </button>
+        </div>
+
+        <div id="wrapperPagado" style="display: none;">
+          <p class="alerta-exito">
+            <i class="fa-solid fa-circle-check"></i> ¡Acceso completo verificado en este dispositivo!
+          </p>
+          <a href="#" id="btnDescargarReal" class="btn-descargar" download>
+            <i class="fa-solid fa-download"></i> Descargar PDF Completo
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <div id="sidebarOverlay"></div>
 
-  <script src="js/app.js"></script>
-<div id="sidebarOverlay"></div>
+  <script>
+    // 1. Control del Menú lateral (Sidebar)
+    function toggleMenu(){
+      document.getElementById("sidebar").classList.toggle("active");
+    }
+
+    // 2. Base de datos con las rutas a tus archivos recortados (preview) y completos
+    const baseDatosPDF = {
+      'algebra': {
+        titulo: 'Álgebra desde Cero',
+        preview: '/contenido/algebra-preview.pdf',
+        completo: '/contenido/algebra-completo.pdf'
+      },
+      'ecuaciones': {
+        titulo: 'Ecuaciones de Primer Grado',
+        preview: '/contenido/ecuaciones-preview.pdf',
+        completo: '/contenido/ecuaciones-completo.pdf'
+      },
+      'javascript': {
+        titulo: 'JavaScript desde Cero',
+        preview: '/contenido/javascript-preview.pdf',
+        completo: '/contenido/javascript-completo.pdf'
+      },
+      'htmlcss': {
+        titulo: 'HTML + CSS Profesional',
+        preview: '/contenido/htmlcss-preview.pdf',
+        completo: '/contenido/htmlcss-completo.pdf'
+      }
+    };
+
+    let recursoActivoActual = '';
+
+    // 3. Evalúa si el usuario ya compró para pintar los candados abiertos desde que entra a la web
+    function actualizarInterfazCandados() {
+      Object.keys(baseDatosPDF).forEach(id => {
+        const yaCompro = localStorage.getItem(`comprado_${id}`) === 'true';
+        const tarjeta = document.getElementById(`item-${id}`);
+        if (tarjeta) {
+          const iconoCandado = tarjeta.querySelector('.estatus-candado');
+          if (yaCompro && iconoCandado) {
+            iconoCandado.className = "fa-solid fa-lock-open";
+            iconoCandado.style.color = "#00cc66"; // Verde para indicar que está libre
+          }
+        }
+      });
+    }
+
+    // 4. Lógica de apertura del visor
+    function abrirVisorPDF(idRecurso) {
+      const pdf = baseDatosPDF[idRecurso];
+      if (!pdf) return;
+
+      recursoActivoActual = idRecurso;
+      document.getElementById("modalTitulo").innerText = pdf.titulo;
+      
+      const visor = document.getElementById("pdfVisor");
+      const wrapperBloqueado = document.getElementById("wrapperBloqueado");
+      const wrapperPagado = document.getElementById("wrapperPagado");
+      const btnDescargar = document.getElementById("btnDescargarReal");
+
+      // Comprobar la memoria local del navegador
+      const pagoVerificado = localStorage.getItem(`comprado_${idRecurso}`) === 'true';
+
+      if (pagoVerificado) {
+        // Modo Premium: Carga el PDF completo y activa botón de descarga
+        visor.src = pdf.completo;
+        wrapperBloqueado.style.display = "none";
+        wrapperPagado.style.display = "block";
+        btnDescargar.href = pdf.completo;
+      } else {
+        // Modo Muestra: Carga el PDF de 3 páginas y bloquea descargas
+        visor.src = pdf.preview;
+        wrapperBloqueado.style.display = "block";
+        wrapperPagado.style.display = "none";
+        btnDescargar.href = "#";
+      }
+
+      document.getElementById("pdfModal").style.display = "flex";
+    }
+
+    function cerrarVisorPDF() {
+      document.getElementById("pdfModal").style.display = "none";
+      document.getElementById("pdfVisor").src = ""; // Resetea el elemento para que no consuma datos
+    }
+
+    // 5. Simulación de respuesta exitosa de pasarela de pago (Stripe/PayPal)
+    function procesarPagoSimulado() {
+      if (!recursoActivoActual) return;
+
+      // Guarda la clave de éxito permanente en el almacenamiento local del navegador
+      localStorage.setItem(`comprado_${recursoActivoActual}`, 'true');
+      
+      // Actualiza los candados externos del catálogo
+      actualizarInterfazCandados();
+
+      // Recarga el visor en caliente con el archivo completo recién adquirido
+      abrirVisorPDF(recursoActivoActual);
+    }
+
+    // Comprobación inicial al cargar la ventana
+    window.addEventListener('DOMContentLoaded', () => {
+      actualizarInterfazCandados();
+    });
+  </script>
+  <script type="module" src="/js/userMenu.js"></script>
 </body>
 </html>

@@ -50,6 +50,9 @@
       font-size: 0.85rem;
       cursor: pointer;
       transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 8px; /* Espaciado entre icono y texto */
     }
 
     .filtro-btn:hover, .filtro-btn.active {
@@ -216,6 +219,11 @@
       .noticias-grid { grid-template-columns: 1fr; }
     }
   </style>
+  <meta property="og:title" content="Noticias de Tecnología e Ingeniería | IngenieríaFlex">
+  <meta property="og:description" content="Las últimas noticias de tecnología, IA, ingeniería y programación en español.">
+  <meta property="og:image" content="/img/logo.png">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://ingenieriaflix-web.vercel.app">
 </head>
 <body>
 
@@ -273,11 +281,21 @@
     </div>
 
     <div class="filtros">
-      <button class="filtro-btn active" onclick="cargarNoticias('technology')">💻 Tecnología</button>
-      <button class="filtro-btn" onclick="cargarNoticias('science')">🔬 Ciencia</button>
-      <button class="filtro-btn" onclick="cargarNoticias('ingenieria')">⚙️ Ingeniería</button>
-      <button class="filtro-btn" onclick="cargarNoticias('inteligencia artificial')">🤖 IA</button>
-      <button class="filtro-btn" onclick="cargarNoticias('programacion')">👨‍💻 Programación</button>
+      <button class="filtro-btn active" onclick="cargarNoticias('technology')">
+        <i class="fa-solid fa-laptop-code"></i> Tecnología
+      </button>
+      <button class="filtro-btn" onclick="cargarNoticias('science')">
+        <i class="fa-solid fa-flask"></i> Ciencia
+      </button>
+      <button class="filtro-btn" onclick="cargarNoticias('ingenieria')">
+        <i class="fa-solid fa-gears"></i> Ingeniería
+      </button>
+      <button class="filtro-btn" onclick="cargarNoticias('inteligencia artificial')">
+        <i class="fa-solid fa-robot"></i> IA
+      </button>
+      <button class="filtro-btn" onclick="cargarNoticias('programacion')">
+        <i class="fa-solid fa-code"></i> Programación
+      </button>
     </div>
 
     <div id="noticiasGrid" class="noticias-grid">
@@ -308,22 +326,24 @@
   <script type="module" src="js/userMenu.js"></script>
 
   <script>
-    const API_KEY = "966f7eba813e474fbf6f34e5815638ae";
-
     async function cargarNoticias(tema) {
-      // Actualizar botón activo
-      document.querySelectorAll(".filtro-btn").forEach(btn => btn.classList.remove("active"));
-      event.target.classList.add("active");
+      if (window.event && window.event.target) {
+        document.querySelectorAll(".filtro-btn").forEach(btn => btn.classList.remove("active"));
+        
+        // Manejo seguro por si se hace clic directo en el icono de Font Awesome interno
+        const botonObjetivo = window.event.target.closest(".filtro-btn");
+        if (botonObjetivo) botonObjetivo.classList.add("active");
+      }
 
       const grid = document.getElementById("noticiasGrid");
       grid.innerHTML = `<div class="loading"><i class="fas fa-circle-notch"></i>Cargando noticias...</div>`;
 
       try {
-        const url = `https://newsapi.org/v2/everything?q=${encodeURIComponent(tema)}&language=es&sortBy=publishedAt&pageSize=12&apiKey=${API_KEY}`;
+        const url = `/api/noticias?tema=${encodeURIComponent(tema)}`;
         const res = await fetch(url);
         const data = await res.json();
 
-        if (data.status !== "ok" || data.articles.length === 0) {
+        if (data.status !== "ok" || !data.articles || data.articles.length === 0) {
           grid.innerHTML = `<div class="error-msg"><i class="fas fa-satellite-dish"></i>No encontramos noticias sobre este tema en español.<br>Intenta con otra categoría.</div>`;
           return;
         }
@@ -357,7 +377,7 @@
       return d.toLocaleDateString("es-MX", { day: "numeric", month: "short", year: "numeric" });
     }
 
-    // Cargar noticias de tecnología al inicio
+    // Inicializar llamando la primera categoría por defecto al cargar la página
     window.addEventListener("DOMContentLoaded", () => {
       cargarNoticias("technology");
     });

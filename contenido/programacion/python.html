@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" type="image/png" href="/img/logo.png">
-  <link rel="icon" type="image/png" href="/img/logo.png">
+  
   <title>Curso de Python Gratis | IngenieríaFlex</title>
   <meta name="description" content="Aprende Python desde cero. Variables, funciones, listas, POO, ciencia de datos y proyectos reales. Videos en español gratis para ingenieros y principiantes.">
   <meta name="keywords" content="curso python gratis, aprender python desde cero, python español, programacion python, ciencia de datos python, inteligencia artificial python">
@@ -37,6 +37,33 @@
       <img src="../../img/logo.png" class="logo" alt="Logo IngenieríaFlex">
       <h1>Ingeniería<span>Flex</span></h1>
     </div>
+    <div id="userArea">
+      <div class="user-avatar" style="display:none;">
+        <img id="avatarBtn" src="" alt="Usuario">
+      </div>
+      <a href="/login/login.html" id="loginBtn" class="login-btn">
+        Iniciar sesión
+      </a>
+      <div id="userMenu" class="user-menu">
+        <div class="menu-header">
+          <img id="menuPhoto" src="" alt="foto">
+          <div class="info">
+            <p id="userName"></p>
+            <p id="userEmail"></p>
+          </div>
+        </div>
+        <div class="menu-section" id="editSection">
+          <p class="section-title">Editar nombre</p>
+          <input id="inputName" type="text" placeholder="Nuevo nombre">
+          <button class="btn-menu btn-save" id="saveBtn">Guardar cambios</button>
+          <p class="menu-msg" id="saveMsg"></p>
+        </div>
+        <button class="btn-menu btn-logout" id="logoutBtn">
+          <i class="fa-solid fa-right-from-bracket"></i> Cerrar sesión
+        </button>
+      </div>
+    </div>
+
     <div class="menu-btn" onclick="toggleMenu()">☰</div>
   </header>
   <div class="sidebar" id="sidebar">
@@ -171,7 +198,9 @@
 
   <script src="../../js/app.js"></script>
 
+
+
 <div id="sidebarOverlay"></div>
-<div id="sidebarOverlay"></div>
+  <script type="module" src="/js/userMenu.js"></script>
 </body>
 </html>

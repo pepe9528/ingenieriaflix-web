@@ -3,46 +3,100 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Aprende circuitos eléctricos, componentes, electrónica digital y de potencia. Videos en español gratis para ingenieros.">
   <link rel="icon" type="image/png" href="/img/logo.png">
-  <title>Electrónica - IngenieríaFlex</title>
+  <title>Cursos de Electrónica Gratis | IngenieríaFlex</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/responsive.css">
+  <style>
+    /* Aseguramos que el diseño del footer mantenga el estándar visual */
+    footer {
+      background: #050505;
+      padding: 40px 20px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      margin-top: 80px;
+      border-top: 1px solid #111;
+    }
+    body.light-mode footer {
+      background: #fff;
+      border-top: 1px solid #eee;
+    }
+  </style>
+  <meta property="og:title" content="Cursos de Electrónica Gratis | IngenieríaFlex">
+  <meta property="og:description" content="Circuitos, componentes, electrónica digital y de potencia. Videos gratis en español.">
+  <meta property="og:image" content="/img/logo.png">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://ingenieriaflix-web.vercel.app">
+  <style>
+    .site-footer { border-top: 1px solid #1a1a1a; padding: 2rem 10%; margin-top: 60px; display: flex; flex-direction: column; align-items: center; gap: 1rem; text-align: center; }
+    .footer-links { display: flex; gap: 1.5rem; flex-wrap: wrap; justify-content: center; }
+    .footer-links a { color: #666; font-size: 0.85rem; text-decoration: none; transition: color 0.2s; }
+    .footer-links a:hover { color: #fff; }
+    .footer-copy { color: #333; font-size: 0.8rem; }
+  </style>
 </head>
 <body>
-<header class="navbar">
+
+  <header class="navbar">
     <a href="index.html" class="back-btn">
       <i class="fa-solid fa-arrow-left"></i> Regresar
     </a>
 
     <div class="logo-area">
-      <img src="img/logo.png" class="logo" alt="Logo IngenieríaFlix">
+      <img src="img/logo.png" class="logo" alt="Logo IngenieríaFlex">
       <h1>Ingeniería<span>Flex</span></h1>
     </div>
-     <div class="menu-btn" onclick="toggleMenu()">☰</div>
+    <div id="userArea">
+      <div class="user-avatar" style="display:none;">
+        <img id="avatarBtn" src="" alt="Usuario">
+      </div>
+      <a href="/login/login.html" id="loginBtn" class="login-btn">Iniciar sesión</a>
+      <div id="userMenu" class="user-menu">
+        <div class="menu-header">
+          <img id="menuPhoto" src="" alt="foto">
+          <div class="info">
+            <p id="userName"></p>
+            <p id="userEmail"></p>
+          </div>
+        </div>
+        <div class="menu-section" id="editSection">
+          <p class="section-title">Editar nombre</p>
+          <input id="inputName" type="text" placeholder="Nuevo nombre">
+          <button class="btn-menu btn-save" id="saveBtn">Guardar cambios</button>
+          <p class="menu-msg" id="saveMsg"></p>
+        </div>
+        <button class="btn-menu btn-logout" id="logoutBtn">
+          <i class="fa-solid fa-right-from-bracket"></i> Cerrar sesión
+        </button>
+      </div>
+    </div>
+    <div class="menu-btn" onclick="toggleMenu()">☰</div>
   </header>
 
-   <div id="sidebarOverlay"></div>
- <div class="sidebar" id="sidebar">
-  <div class="close-btn" onclick="toggleMenu()">✕</div>
-  <div class="sidebar-logo">
-    <img src="/img/logo.png" alt="Logo">
-    <span>Ingeniería<em>Flex</em></span>
-  </div>
-  <a href="/index.html"><i class="fa-solid fa-house"></i> Inicio</a>
-  <a href="/catalogo.html"><i class="fa-solid fa-book"></i> Cursos</a>
-  <a href="/juegos.html"><i class="fa-solid fa-gamepad"></i> Juegos</a>
-  <a href="/recursos.html"><i class="fa-solid fa-folder"></i> Recursos</a>
-  <a href="/acerca.html"><i class="fa-solid fa-circle-info"></i> Acerca de</a>
- 
-  <!-- Hero -->
-  <section class="hero">
+  <div id="sidebarOverlay" onclick="toggleMenu()"></div>
+
+  <div class="sidebar" id="sidebar">
+    <div class="close-btn" onclick="toggleMenu()">✕</div>
+    <div class="sidebar-logo">
+      <img src="/img/logo.png" alt="Logo">
+      <span>Ingeniería<em>Flex</em></span>
+    </div>
+    <a href="/index.html"><i class="fa-solid fa-house"></i> Inicio</a>
+    <a href="/catalogo.html"><i class="fa-solid fa-book"></i> Cursos</a>
+    <a href="/juegos.html"><i class="fa-solid fa-gamepad"></i> Juegos</a>
+    <a href="/recursos.html"><i class="fa-solid fa-folder"></i> Recursos</a>
+    <a href="/acerca.html"><i class="fa-solid fa-circle-info"></i> Acerca de</a>
+  </div> <section class="hero">
     <div class="badge">ELECTRÓNICA + INGENIERÍA</div>
     <h2>Cursos de Electrónica</h2>
     <p>Domina circuitos, componentes y sistemas electrónicos desde lo básico hasta lo avanzado.</p>
   </section>
 
-  <!-- Lista de cursos -->
   <section class="categories">
     <h3>Lista de cursos</h3>
     <div class="cards">
@@ -61,7 +115,7 @@
         <h4>Electrónica Digital</h4>
         <p>10 cursos</p>
       </a>
-      <a href="contenido/electronica/potensia.html" class="card">
+      <a href="contenido/electronica/potencia.html" class="card">
         <div class="icon"><i class="fa-solid fa-plug"></i></div>
         <h4>Electrónica de Potencia</h4>
         <p>10 cursos</p>
@@ -69,13 +123,28 @@
     </div>
   </section>
 
-  <!-- CTA final -->
   <section class="cta">
     <h3>¿Listo para aprender Electrónica?</h3>
     <a href="contenido/electronica/CIRCUITOS.HTML"><button class="explore-btn">Comenzar cursos</button></a>
   </section>
-    <script src="js/app.js"></script>
 
-<div id="sidebarOverlay"></div>
+ 
+    <footer class="site-footer">
+    <div class="logo-area" style="gap:10px;">
+      <img src="/img/logo.png" alt="Logo" style="width:28px; animation:giro 8s linear infinite;">
+      <span style="font-size:1rem; font-weight:700;">Ingeniería<span style="color:red;">Flex</span></span>
+    </div>
+    <div class="footer-links">
+      <a href="/privacidad.html">Política de Privacidad</a>
+      <a href="/terminos.html">Términos de Uso</a>
+      <a href="/acerca.html">Acerca de</a>
+      <a href="mailto:pepechuysantiago714@gmail.com">Contacto</a>
+    </div>
+    <p class="footer-copy">© 2026 IngenieríaFlex. Todos los derechos reservados.</p>
+  </footer>
+
+
+  <script src="js/app.js"></script>
+  <script type="module" src="js/userMenu.js"></script>
 </body>
 </html>

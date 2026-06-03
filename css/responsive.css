@@ -110,3 +110,10 @@ CELULARES
     }
 
 }
+@media (min-width: 601px) and (max-width: 1024px) {
+  .noticias-grid, .catalog-list {
+    grid-template-columns: repeat(2, 1fr); /* Muestra 2 columnas en lugar de 3 o 1 */
+    gap: 15px;
+  }
+  .hero h2 { font-size: 1.8rem; }
+}
