@@ -350,7 +350,7 @@
       document.getElementById("sidebar").classList.toggle("active");
     }
 
-    // 2. Base de datos con las rutas a tus archivos recortados (preview) y completos
+    // 2. Base de datos con las rutas a tus archivos
     const baseDatosPDF = {
       'algebra': {
         titulo: 'Álgebra desde Cero',
@@ -376,7 +376,19 @@
 
     let recursoActivoActual = '';
 
-    // 3. Evalúa si el usuario ya compró para pintar los candados abiertos desde que entra a la web
+    // === FUNCIÓN NUEVA: REVISAR SI EL USUARIO INICIÓ SESIÓN ===
+    function usuarioTieneSesionActiva() {
+      // Revisa si tu menú ya ocultó el botón de "Iniciar sesión" (lo que significa que ya entró)
+      const loginBtn = document.getElementById("loginBtn");
+      if (loginBtn && loginBtn.style.display === "none") {
+        return true;
+      }
+      
+      // También revisa si guardaste al usuario en la memoria local (común en Firebase/Auth personalizados)
+      return localStorage.getItem("usuarioLogueado") !== null;
+    }
+
+    // 3. Evalúa si el usuario ya compró para pintar los candados abiertos
     function actualizarInterfazCandados() {
       Object.keys(baseDatosPDF).forEach(id => {
         const yaCompro = localStorage.getItem(`comprado_${id}`) === 'true';
@@ -385,14 +397,21 @@
           const iconoCandado = tarjeta.querySelector('.estatus-candado');
           if (yaCompro && iconoCandado) {
             iconoCandado.className = "fa-solid fa-lock-open";
-            iconoCandado.style.color = "#00cc66"; // Verde para indicar que está libre
+            iconoCandado.style.color = "#00cc66"; 
           }
         }
       });
     }
 
-    // 4. Lógica de apertura del visor
+    // 4. Lógica de apertura del visor (¡AHORA PROTEGIDA!)
     function abrirVisorPDF(idRecurso) {
+      // SI NO TIENE SESIÓN: Bloqueamos el visor y lo mandamos a registrarse
+      if (!usuarioTieneSesionActiva()) {
+        alert("¡Hola! Para ver las muestras gratuitas de nuestros PDFs premium, por favor inicia sesión o crea una cuenta. ¡Es gratis!");
+        window.location.href = "/login/login.html";
+        return;
+      }
+
       const pdf = baseDatosPDF[idRecurso];
       if (!pdf) return;
 
@@ -404,17 +423,15 @@
       const wrapperPagado = document.getElementById("wrapperPagado");
       const btnDescargar = document.getElementById("btnDescargarReal");
 
-      // Comprobar la memoria local del navegador
+      // Comprobar si ya pagó el archivo completo
       const pagoVerificado = localStorage.getItem(`comprado_${idRecurso}`) === 'true';
 
       if (pagoVerificado) {
-        // Modo Premium: Carga el PDF completo y activa botón de descarga
         visor.src = pdf.completo;
         wrapperBloqueado.style.display = "none";
         wrapperPagado.style.display = "block";
         btnDescargar.href = pdf.completo;
       } else {
-        // Modo Muestra: Carga el PDF de 3 páginas y bloquea descargas
         visor.src = pdf.preview;
         wrapperBloqueado.style.display = "block";
         wrapperPagado.style.display = "none";
@@ -426,20 +443,15 @@
 
     function cerrarVisorPDF() {
       document.getElementById("pdfModal").style.display = "none";
-      document.getElementById("pdfVisor").src = ""; // Resetea el elemento para que no consuma datos
+      document.getElementById("pdfVisor").src = ""; 
     }
 
-    // 5. Simulación de respuesta exitosa de pasarela de pago (Stripe/PayPal)
+    // 5. Simulación de respuesta exitosa de pasarela de pago
     function procesarPagoSimulado() {
       if (!recursoActivoActual) return;
-
-      // Guarda la clave de éxito permanente en el almacenamiento local del navegador
-      localStorage.setItem(`comprado_${recursoActivoActual}`, 'true');
       
-      // Actualiza los candados externos del catálogo
+      localStorage.setItem(`comprado_${recursoActivoActual}`, 'true');
       actualizarInterfazCandados();
-
-      // Recarga el visor en caliente con el archivo completo recién adquirido
       abrirVisorPDF(recursoActivoActual);
     }
 

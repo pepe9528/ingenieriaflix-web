@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link class="favicon" rel="icon" type="image/png" href="/img/logo.png">
+
+  <title>Plataforma de Ejercicios - IngenieríaFlex</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+
+  <style>
+    /* Estilos adicionales para las pestañas de filtrado cool */
+    .tabs-container {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin: 30px 0 50px 0;
+      flex-wrap: wrap;
+    }
+    .tab-btn {
+      background: #111;
+      color: #fff;
+      border: 1px solid #330000;
+      padding: 12px 25px;
+      border-radius: 30px;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 16px;
+      transition: all 0.3s ease;
+    }
+    .tab-btn:hover, .tab-btn.active {
+      background: red;
+      border-color: red;
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(255, 0, 0, 0.3);
+    }
+    .subtopic-title {
+      font-size: 28px;
+      color: #fff;
+      border-left: 4px solid red;
+      padding-left: 15px;
+      margin: 40px 0 20px 0;
+      text-align: left;
+    }
+    body.light-mode .tab-btn {
+      background: #fff;
+      color: #111;
+      border-color: #ddd;
+    }
+    body.light-mode .tab-btn:hover, body.light-mode .tab-btn.active {
+      background: red;
+      color: #fff;
+      border-color: red;
+    }
+    body.light-mode .subtopic-title {
+      color: #111;
+    }
+    .theme-section {
+      display: none;
+      animation: fadeIn 0.4s ease;
+    }
+    .theme-section.active {
+      display: block;
+    }
+    .quiz-card {
+      cursor: default !important;
+    }
+  </style>
+</head>
+<body>
+
+  <header class="navbar">
+    <a href="index.html" class="back-btn" style="display: flex; align-items: center; gap: 8px; color: inherit; text-decoration: none;">
+      <i class="fa-solid fa-arrow-left"></i>
+      Regresar
+    </a>
+    <div class="logo-area">
+      <img src="img/logo.png" class="logo" alt="Logo IngenieríaFlex">
+      <h1>Ingeniería<span>Flex</span></h1>
+    </div>
+    <div class="menu-btn" onclick="toggleMenu()">☰</div>
+  </header>
+
+  <div class="sidebar" id="sidebar">
+    <div class="close-btn" onclick="toggleMenu()">✕</div>
+    <div class="sidebar-logo">
+      <img src="/img/logo.png" alt="Logo">
+      <span>Ingeniería<em>Flex</em></span>
+    </div>
+    <a href="/index.html"><i class="fa-solid fa-house"></i> Inicio</a>
+    <a href="/catalogo.html"><i class="fa-solid fa-book"></i> Cursos</a>
+    <a href="/juegos.html"><i class="fa-solid fa-gamepad"></i> Juegos</a>
+    <a href="/recursos.html"><i class="fa-solid fa-folder"></i> Recursos</a>
+    <a href="/acerca.html"><i class="fa-solid fa-circle-info"></i> Acerca de</a>
+  </div>
+
+  <div id="sidebarOverlay" onclick="toggleMenu()"></div>
+
+  <section class="hero">
+    <div class="badge">ENTRENAMIENTO TÉCNICO</div>
+    <h2>Mega Centro de Ejercicios Interactivos</h2>
+    <p>Domina cada área de tu carrera seleccionando la categoría de tu interés.</p>
+    
+    <div class="tabs-container">
+      <button class="tab-btn active" onclick="switchTab('matematicas')"><i class="fa-solid fa-calculator"></i> Matemáticas</button>
+      <button class="tab-btn" onclick="switchTab('programacion')"><i class="fa-solid fa-code"></i> Programación</button>
+      <button class="tab-btn" onclick="switchTab('electronica')"><i class="fa-solid fa-microchip"></i> Electrónica</button>
+      <button class="tab-btn" onclick="switchTab('estadistica')"><i class="fa-solid fa-chart-line"></i> Estadística</button>
+    </div>
+  </section>
+
+  <section class="categories" style="padding-top: 10px;">
+
+    <div id="matematicas" class="theme-section active">
+      
+      <h3 class="subtopic-title">Álgebra</h3>
+      <div class="cards">
+        <div class="card quiz-card" data-correct="C">
+          <div class="icon"><i>1</i></div>
+          <h4>Simplificación</h4>
+          <p style="margin-bottom:20px;">Simplifica la expresión: 3(x - 2) - 2(x - 4)</p>
+          <div style="width:100%; display:flex; flex-direction:column; gap:8px;">
+            <button class="explore-btn" onclick="checkAnswer(this, 'A')">A) x - 14</button>
+            <button class="explore-btn" onclick="checkAnswer(this, 'B')">B) 5x + 2</button>
+            <button class="explore-btn" onclick="checkAnswer(this, 'C')">C) x + 2</button>
+            <button class="explore-btn" onclick="checkAnswer(this, 'D')">D) x - 2</button>
+          </div>
+          <p class="feedback-msg" style="margin-top:12px; font-weight:bold;"></p>
+          <button class="start-btn" style="padding:6px 15px; font-size:13px; margin:5px 0; display:none;" onclick="toggleSolution(this)">Ver Desarrollo</button>
+          <div class="solucion-desplegable" style="display:none; font-size:14px; border-top:1px dashed red; margin-top:10px; padding-top:10px; text-align:left;">
+            3x - 6 - 2x + 8 = (3x - 2x) + (-6 + 8) = x + 2.
+          </div>
+        </div>
+        </div>
+
+      <h3 class="subtopic-title">Geometría</h3>
+      <div class="cards">
+        <div class="card quiz-card" data-correct="B">
+          <div class="icon"><i>1</i></div>
+          <h4>Áreas</h4>
+          <p style="margin-bottom:20px;">¿Cuál es el área de un triángulo de base 8 cm y altura 5 cm?</p>
+          <div style="width:100%; display:flex; flex-direction:column; gap:8px;">
+            <button class="explore-btn" onclick="checkAnswer(this, 'A')">A) 40 cm²</button>
+            <button class="explore-btn" onclick="checkAnswer(this, 'B')">B) 20 cm²</button>
+            <button class="explore-btn" onclick="checkAnswer(this, 'C')">C) 13 cm²</button>
+            <button class="explore-btn" onclick="checkAnswer(this, 'D')">D) 10 cm²</button>
+          </div>
+          <p class="feedback-msg" style="margin-top:12px; font-weight:bold;"></p>
+          <button class="start-btn" style="padding:6px 15px; font-size:13px; margin:5px 0; display:none;" onclick="toggleSolution(this)">Ver Desarrollo</button>
+          <div class="solucion-desplegable" style="display:none; font-size:14px; border-top:1px dashed red; margin-top:10px; padding-top:10px; text-align:left;">
+            Área = (Base &times; Altura) / 2 = (8 &times; 5) / 2 = 20 cm².
+          </div>
+        </div>
+      </div>
+
+      <h3 class="subtopic-title">Cálculo</h3>
+      <div class="cards">
+        <div class="card quiz-card" data-correct="A">
+          <div class="icon"><i>1</i></div>
+          <h4>Límites</h4>
+          <p style="margin-bottom:20px;">Evalúa el límite cuando x tiende a 3 de: (x² - 9) / (x - 3)</p>
+          <div style="width:100%; display:flex; flex-direction:column; gap:8px;">
+            <button class="explore-btn" onclick="checkAnswer(this, 'A')">A) 6</button>
+            <button class="explore-btn" onclick="checkAnswer(this, 'B')">B) 0</button>
+            <button class="explore-btn" onclick="checkAnswer(this, 'C')">C) Indefinido</button>
+            <button class="explore-btn" onclick="checkAnswer(this, 'D')">D) 3</button>
+          </div>
+          <p class="feedback-msg" style="margin-top:12px; font-weight:bold;"></p>
+          <button class="start-btn" style="padding:6px 15px; font-size:13px; margin:5px 0; display:none;" onclick="toggleSolution(this)">Ver Desarrollo</button>
+          <div class="solucion-desplegable" style="display:none; font-size:14px; border-top:1px dashed red; margin-top:10px; padding-top:10px; text-align:left;">
+            Factorizando: (x-3)(x+3)/(x-3) = x+3. Evaluando x=3 resulta 3+3 = 6.
+          </div>
+        </div>
+      </div>
+
+      <h3 class="subtopic-title">Ecuaciones de Primer Grado</h3>
+      <div class="cards">
+        <div class="card quiz-card" data-correct="D">
+          <div class="icon"><i>1</i></div>
+          <h4>Despejes</h4>
+          <p style="margin-bottom:20px;">Resuelve para x: 5x - 7 = 2x + 8</p>
+          <div style="width:100%; display:flex; flex-direction:column; gap:8px;">
+            <button class="explore-btn" onclick="checkAnswer(this, 'A')">A) x = 3</button>
+            <button class="explore-btn" onclick="checkAnswer(this, 'B')">B) x = 1</button>
+            <button class="explore-btn" onclick="checkAnswer(this, 'C')">C) x = 15</button>
+            <button class="explore-btn" onclick="checkAnswer(this, 'D')">D) x = 5</button>
+          </div>
+          <p class="feedback-msg" style="margin-top:12px; font-weight:bold;"></p>
+          <button class="start-btn" style="padding:6px 15px; font-size:13px; margin:5px 0; display:none;" onclick="toggleSolution(this)">Ver Desarrollo</button>
+          <div class="solucion-desplegable" style="display:none; font-size:14px; border-top:1px dashed red; margin-top:10px; padding-top:10px; text-align:left;">
+            5x - 2x = 8 + 7 &rArr; 3x = 15 &rArr; x = 5.
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div id="programacion" class="theme-section">
+      
+      <h3 class="subtopic-title">Java</h3>
+      <div class="cards">
+        <div class="card quiz-card" data-correct="A">
+          <div class="icon"><i>1</i></div>
+          <h4>POO</h4>
+          <p style="margin-bottom:20px;">¿Qué palabra reservada se usa en Java para heredar una clase?</p>
+          <div style="width:100%; display:flex; flex-direction:column; gap:8px;">
+            <button class="explore-btn" onclick="checkAnswer(this, 'A')">A) extends</button>
+            <button class="explore-btn" onclick="checkAnswer(this, 'B')">B) implements</button>
+            <button class="explore-btn" onclick="checkAnswer(this, 'C')">C) inherit</button>
+            <button class="explore-btn" onclick="checkAnswer(this, 'D')">D) belongs</button>
+          </div>
+          <p class="feedback-msg" style="margin-top:12px; font-weight:bold;"></p>
+        </div>
+      </div>
+
+      <h3 class="subtopic-title">JavaScript</h3>
+      <div class="cards">
+        <div class="card quiz-card" data-correct="C">
+          <div class="icon"><i>1</i></div>
+          <h4>Tipado</h4>
+          <p style="margin-bottom:20px;">¿Cuál es el resultado de ejecutar typeof NaN en JavaScript?</p>
+          <div style="width:100%; display:flex; flex-direction:column; gap:8px;">
+            <button class="explore-btn" onclick="checkAnswer(this, 'A')">A) "undefined"</button>
+            <button class="explore-btn" onclick="checkAnswer(this, 'B')">B) "nan"</button>
+            <button class="explore-btn" onclick="checkAnswer(this, 'C')">C) "number"</button>
+            <button class="explore-btn" onclick="checkAnswer(this, 'D')">D) "object"</button>
+          </div>
+          <p class="feedback-msg" style="margin-top:12px; font-weight:bold;"></p>
+        </div>
+      </div>
+
+      <h3 class="subtopic-title">HTML & CSS</h3>
+      <div class="cards">
+        <div class="card quiz-card" data-correct="B">
+          <div class="icon"><i>1</i></div>
+          <h4>Flexbox</h4>
+          <p style="margin-bottom:20px;">En CSS Flexbox, ¿qué propiedad alinea los elementos sobre el eje principal?</p>
+          <div style="width:100%; display:flex; flex-direction:column; gap:8px;">
+            <button class="explore-btn" onclick="checkAnswer(this, 'A')">A) align-items</button>
+            <button class="explore-btn" onclick="checkAnswer(this, 'B')">B) justify-content</button>
+            <button class="explore-btn" onclick="checkAnswer(this, 'C')">C) align-content</button>
+            <button class="explore-btn" onclick="checkAnswer(this, 'D')">D) flex-direction</button>
+          </div>
+          <p class="feedback-msg" style="margin-top:12px; font-weight:bold;"></p>
+        </div>
+      </div>
+
+      <h3 class="subtopic-title">Python</h3>
+      <div class="cards">
+        <div class="card quiz-card" data-correct="D">
+          <div class="icon"><i>1</i></div>
+          <h4>Sintaxis</h4>
+          <p style="margin-bottom:20px;">¿Cómo se define una función en Python?</p>
+          <div style="width:100%; display:flex; flex-direction:column; gap:8px;">
+            <button class="explore-btn" onclick="checkAnswer(this, 'A')">A) function miFuncion():</button>
+            <button class="explore-btn" onclick="checkAnswer(this, 'B')">B) void miFuncion()</button>
+            <button class="explore-btn" onclick="checkAnswer(this, 'C')">C) func miFuncion():</button>
+            <button class="explore-btn" onclick="checkAnswer(this, 'D')">D) def miFuncion():</button>
+          </div>
+          <p class="feedback-msg" style="margin-top:12px; font-weight:bold;"></p>
+        </div>
+      </div>
+
+    </div>
+
+    <div id="electronica" class="theme-section">
+      
+      <h3 class="subtopic-title">Circuitos</h3>
+      <div class="cards">
+        <div class="card quiz-card" data-correct="B">
+          <div class="icon"><i>1</i></div>
+          <h4>Leyes Eléctricas</h4>
+          <p style="margin-bottom:20px;">¿Qué ley establece que la suma de corrientes que entran a un nodo es igual a la que salen?</p>
+          <div style="width:100%; display:flex; flex-direction:column; gap:8px;">
+            <button class="explore-btn" onclick="checkAnswer(this, 'A')">A) Ley de Ohm</button>
+            <button class="explore-btn" onclick="checkAnswer(this, 'B')">B) 1ra Ley de Kirchhoff (Nodos)</button>
+            <button class="explore-btn" onclick="checkAnswer(this, 'C')">C) Ley de Watt</button>
+            <button class="explore-btn" onclick="checkAnswer(this, 'D')">D) Ley de Gauss</button>
+          </div>
+          <p class="feedback-msg" style="margin-top:12px; font-weight:bold;"></p>
+        </div>
+      </div>
+
+      <h3 class="subtopic-title">Componentes</h3>
+      <div class="cards">
+        <div class="card quiz-card" data-correct="C">
+          <div class="icon"><i>1</i></div>
+          <h4>Semiconductores</h4>
+          <p style="margin-bottom:20px;">¿Qué componente está diseñado para permitir el flujo eléctrico en una sola dirección?</p>
+          <div style="width:100%; display:flex; flex-direction:column; gap:8px;">
+            <button class="explore-btn" onclick="checkAnswer(this, 'A')">A) Capacitor</button>
+            <button class="explore-btn" onclick="checkAnswer(this, 'B')">B) Inductor</button>
+            <button class="explore-btn" onclick="checkAnswer(this, 'C')">C) Diodo Rectificador</button>
+            <button class="explore-btn" onclick="checkAnswer(this, 'D')">D) Resistor</button>
+          </div>
+          <p class="feedback-msg" style="margin-top:12px; font-weight:bold;"></p>
+        </div>
+      </div>
+
+    </div>
+
+    <div id="estadistica" class="theme-section">
+      
+      <h3 class="subtopic-title">Análisis de Datos</h3>
+      <div class="cards">
+        <div class="card quiz-card" data-correct="A">
+          <div class="icon"><i>1</i></div>
+          <h4>Tendencia Central</h4>
+          <p style="margin-bottom:20px;">¿Cuál es el valor que aparece con mayor frecuencia en un conjunto de datos?</p>
+          <div style="width:100%; display:flex; flex-direction:column; gap:8px;">
+            <button class="explore-btn" onclick="checkAnswer(this, 'A')">A) Moda</button>
+            <button class="explore-btn" onclick="checkAnswer(this, 'B')">B) Media</button>
+            <button class="explore-btn" onclick="checkAnswer(this, 'C')">C) Mediana</button>
+            <button class="explore-btn" onclick="checkAnswer(this, 'D')">D) Desviación estándar</button>
+          </div>
+          <p class="feedback-msg" style="margin-top:12px; font-weight:bold;"></p>
+        </div>
+      </div>
+
+    </div>
+
+  </section>
+ 
+  <footer>
+    <p>&copy; 2026 IngenieríaFlix. Todos los derechos reservados.</p>
+  </footer>
+
+  <script>
+    // Control de las pestañas dinámicas (Tabs)
+    function switchTab(themeId) {
+      // Remover clase active de todos los botones de pestaña
+      document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+      // Ocultar todas las secciones
+      document.querySelectorAll('.theme-section').forEach(section => section.classList.remove('active'));
+      
+      // Activar la pestaña cliqueada y su respectiva sección
+      event.currentTarget.classList.add('active');
+      document.getElementById(themeId).classList.add('active');
+    }
+
+    // Control del Sidebar de tu plantilla original
+    function toggleMenu(){
+      const sidebar = document.getElementById("sidebar");
+      const overlay = document.getElementById("sidebarOverlay");
+      sidebar.classList.toggle("active");
+      overlay.classList.toggle("active");
+    }
+
+    // Evaluación en tiempo real y despliegue opcional de procedimiento paso a paso
+    function checkAnswer(button, selectedOption) {
+      const card = button.closest('.quiz-card');
+      const correctOption = card.getAttribute('data-correct');
+      const feedback = card.querySelector('.feedback-msg');
+      const buttons = card.querySelectorAll('.explore-btn');
+      const solutionBtn = card.querySelector('.start-btn');
+      
+      // Deshabilitar clics posteriores en esta tarjeta
+      buttons.forEach(btn => btn.style.pointerEvents = 'none');
+
+      if (selectedOption === correctOption) {
+        button.style.background = '#22c55e'; 
+        button.style.borderColor = '#22c55e';
+        button.style.color = '#fff';
+        feedback.textContent = "¡Correcto! Excelente.";
+        feedback.style.color = '#22c55e';
+      } else {
+        button.style.background = '#ef4444'; 
+        button.style.borderColor = '#ef4444';
+        button.style.color = '#fff';
+        feedback.textContent = `Incorrecto. Opción correcta: ${correctOption}.`;
+        feedback.style.color = '#ef4444';
+        
+        buttons.forEach(btn => {
+          if (btn.textContent.trim().startsWith(correctOption)) {
+            btn.style.border = '2px solid #22c55e';
+          }
+        });
+      }
+
+      // Si la tarjeta incluye procedimiento detallado, se muestra el botón para abrirlo
+      if(solutionBtn) {
+        solutionBtn.style.display = 'inline-block';
+      }
+    }
+
+    // Toggle de la solución oculta paso a paso
+    function toggleSolution(button) {
+      const card = button.closest('.card');
+      const container = card.querySelector('.solucion-desplegable');
+      
+      if (container.style.display === 'none' || container.style.display === '') {
+        container.style.display = 'block';
+        button.textContent = 'Ocultar Desarrollo';
+        button.style.background = '#333'; 
+      } else {
+        container.style.display = 'none';
+        button.textContent = 'Ver Desarrollo';
+        button.style.background = 'red'; 
+      }
+    }
+  </script>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
