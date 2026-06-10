@@ -89,7 +89,6 @@
       gap: 10px;
     }
 
-    /* Mensajes */
     .alerta-premium, .alerta-exito, .alerta-info {
       font-size: 0.88rem;
       display: flex;
@@ -101,7 +100,6 @@
     .alerta-exito   { color: #00cc66; }
     .alerta-info    { color: #888; }
 
-    /* Spinner de verificación */
     .verificando {
       display: flex;
       align-items: center;
@@ -119,7 +117,6 @@
     }
     @keyframes spin { to { transform: rotate(360deg); } }
 
-    /* Botones */
     .btn-pagar, .btn-descargar {
       padding: 12px 28px;
       border-radius: 30px;
@@ -139,15 +136,10 @@
     .btn-descargar:hover { background: #00994d; }
     .btn-pagar:active, .btn-descargar:active { transform: scale(0.97); }
 
-    /* Tarjetas */
     .catalog-item { cursor: pointer; transition: opacity 0.15s; }
     .catalog-item:active { opacity: 0.7; }
-
-    /* Badge de comprado en tarjeta */
-    .estatus-candado { transition: color 0.3s; }
     .estatus-desbloqueado { color: #00cc66 !important; }
 
-    /* Footer */
     .site-footer {
       border-top: 1px solid #1a1a1a;
       padding: 2rem 10%;
@@ -300,20 +292,15 @@
     <div class="pdf-modal-content">
       <span class="close-modal" onclick="cerrarVisorPDF()">&times;</span>
       <h3 id="modalTitulo">Título del Documento</h3>
-
       <div class="pdf-frame-container">
         <iframe id="pdfVisor" src="" width="100%" height="480px" style="border:none;"></iframe>
       </div>
-
-      <div class="pdf-acciones" id="pdfAcciones">
-        <!-- Se rellena dinámicamente -->
-      </div>
+      <div class="pdf-acciones" id="pdfAcciones"></div>
     </div>
   </div>
 
   <div id="sidebarOverlay"></div>
 
-  <!-- Firebase SDK -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
     import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
@@ -361,61 +348,79 @@
       }
     };
 
-    let usuarioActual = null;
+    // Espera a que Firebase resuelva la sesión antes de continuar
+    function esperarUsuario() {
+      return new Promise((resolve) => {
+        const unsub = onAuthStateChanged(auth, (user) => {
+          unsub();
+          resolve(user);
+        });
+        // Máximo 5 segundos de espera
+        setTimeout(() => resolve(null), 5000);
+      });
+    }
 
-    // Escuchar cambios de sesión
-    onAuthStateChanged(auth, async (user) => {
-      usuarioActual = user;
-      if (user) {
-        await actualizarCandados(user);
-        verificarRetornoDePago(user);
-      }
-    });
-
-    // Actualiza los íconos de candado consultando Firestore
+    // Actualiza candados consultando Firestore
     async function actualizarCandados(user) {
       for (const id of Object.keys(baseDatosPDF)) {
         try {
           const snap = await getDoc(doc(db, 'compras', `${user.uid}_${id}`));
           if (snap.exists() && snap.data().activo === true) {
             const icono = document.getElementById(`icono-${id}`);
-            if (icono) {
-              icono.className = 'fa-solid fa-lock-open estatus-desbloqueado';
-            }
+            if (icono) icono.className = 'fa-solid fa-lock-open estatus-desbloqueado';
           }
-        } catch (e) { /* sigue */ }
+        } catch (e) { /* continúa */ }
       }
     }
 
-    // Verifica si el cliente regresa de Stripe
+    // Verifica retorno desde Stripe y espera que el webhook escriba en Firestore
     async function verificarRetornoDePago(user) {
       const params = new URLSearchParams(window.location.search);
       const itemPagado = params.get('item');
       if (!itemPagado || !baseDatosPDF[itemPagado]) return;
 
-      // Limpia la URL
       window.history.replaceState({}, document.title, window.location.pathname);
 
-      // Espera hasta 8s a que el webhook escriba en Firestore
+      // Espera hasta 8 intentos (8 segundos) a que el webhook escriba
       let intentos = 0;
       const intervalo = setInterval(async () => {
         intentos++;
-        const snap = await getDoc(doc(db, 'compras', `${user.uid}_${itemPagado}`));
-        if (snap.exists() && snap.data().activo === true) {
-          clearInterval(intervalo);
-          await actualizarCandados(user);
-          abrirVisorPDF(itemPagado);
-        } else if (intentos >= 8) {
-          clearInterval(intervalo);
-          // Abre el modal de todas formas (mostrará preview)
-          abrirVisorPDF(itemPagado);
+        try {
+          const snap = await getDoc(doc(db, 'compras', `${user.uid}_${itemPagado}`));
+          if (snap.exists() && snap.data().activo === true) {
+            clearInterval(intervalo);
+            await actualizarCandados(user);
+            abrirVisorPDF(itemPagado);
+          } else if (intentos >= 8) {
+            clearInterval(intervalo);
+            abrirVisorPDF(itemPagado);
+          }
+        } catch(e) {
+          if (intentos >= 8) clearInterval(intervalo);
         }
       }, 1000);
     }
 
     // Abre el visor PDF
     window.abrirVisorPDF = async function(idRecurso) {
-      if (!usuarioActual) {
+      const modal = document.getElementById('pdfModal');
+      const visor = document.getElementById('pdfVisor');
+      const acciones = document.getElementById('pdfAcciones');
+
+      // Muestra modal con spinner mientras carga
+      modal.style.display = 'flex';
+      visor.src = '';
+      acciones.innerHTML = `
+        <div class="verificando">
+          <div class="spinner"></div>
+          <span>Verificando sesión...</span>
+        </div>`;
+
+      // Espera a que Firebase resuelva la sesión
+      const user = await esperarUsuario();
+
+      if (!user) {
+        modal.style.display = 'none';
         alert('Inicia sesión para ver los materiales.');
         window.location.href = '/login/login.html';
         return;
@@ -424,25 +429,17 @@
       const pdf = baseDatosPDF[idRecurso];
       if (!pdf) return;
 
-      const modal = document.getElementById('pdfModal');
-      const visor = document.getElementById('pdfVisor');
-      const acciones = document.getElementById('pdfAcciones');
-
       document.getElementById('modalTitulo').innerText = pdf.titulo;
-      visor.src = '';
-      modal.style.display = 'flex';
-
-      // Mostrar spinner mientras verifica
       acciones.innerHTML = `
         <div class="verificando">
           <div class="spinner"></div>
           <span>Verificando acceso...</span>
         </div>`;
 
-      // Consultar Firestore (fuente de verdad)
+      // Consulta Firestore
       let pagado = false;
       try {
-        const snap = await getDoc(doc(db, 'compras', `${usuarioActual.uid}_${idRecurso}`));
+        const snap = await getDoc(doc(db, 'compras', `${user.uid}_${idRecurso}`));
         pagado = snap.exists() && snap.data().activo === true;
       } catch (e) {
         console.error('Error al verificar compra:', e);
@@ -460,24 +457,38 @@
       } else {
         visor.src = pdf.preview;
         const urlConUsuario = pdf.stripeUrl !== '#'
-          ? `${pdf.stripeUrl}?client_reference_id=${usuarioActual.uid}&metadata[itemId]=${idRecurso}`
+          ? `${pdf.stripeUrl}?client_reference_id=${user.uid}&metadata[itemId]=${idRecurso}`
           : '#';
+        const deshabilitado = urlConUsuario === '#';
         acciones.innerHTML = `
           <p class="alerta-premium">
             <i class="fa-solid fa-eye"></i> Vista previa — primeras 3 páginas
           </p>
-          <a class="btn-pagar" href="${urlConUsuario}" target="_blank" rel="noopener noreferrer"
-             ${urlConUsuario === '#' ? 'onclick="return false;" style="opacity:0.5;cursor:not-allowed;"' : ''}>
+          <a class="btn-pagar"
+             href="${urlConUsuario}"
+             ${deshabilitado ? 'onclick="return false;" style="opacity:0.5;cursor:not-allowed;"' : 'target="_blank" rel="noopener noreferrer"'}>
             <i class="fa-solid fa-credit-card"></i> Desbloquear y Descargar
           </a>
-          ${urlConUsuario === '#' ? '<p class="alerta-info"><i class="fa-solid fa-clock"></i> Próximamente disponible</p>' : ''}`;
+          ${deshabilitado ? '<p class="alerta-info"><i class="fa-solid fa-clock"></i> Próximamente disponible</p>' : ''}`;
       }
+
+      // Actualiza candados en segundo plano
+      actualizarCandados(user);
     };
 
     window.cerrarVisorPDF = function() {
       document.getElementById('pdfModal').style.display = 'none';
       document.getElementById('pdfVisor').src = '';
     };
+
+    // Al cargar la página
+    window.addEventListener('DOMContentLoaded', async () => {
+      const user = await esperarUsuario();
+      if (user) {
+        await actualizarCandados(user);
+        await verificarRetornoDePago(user);
+      }
+    });
   </script>
 
   <script>
