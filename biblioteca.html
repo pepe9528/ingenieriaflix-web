@@ -319,7 +319,6 @@
     const auth = getAuth(app);
     const db = getFirestore(app);
 
-    // Base de datos de PDFs
     const baseDatosPDF = {
       algebra: {
         titulo: 'Álgebra desde Cero',
@@ -347,7 +346,6 @@
       }
     };
 
-    // Espera a que Firebase resuelva la sesión de forma asíncrona
     function esperarUsuario() {
       return new Promise((resolve) => {
         if (auth.currentUser) {
@@ -358,12 +356,10 @@
           unsub();
           resolve(user);
         });
-        // Margen seguro para conexiones lentas
         setTimeout(() => resolve(auth.currentUser || null), 4000);
       });
     }
 
-    // Actualiza los candados consultando Firestore
     async function actualizarCandados(user) {
       if (!user) return;
       for (const id of Object.keys(baseDatosPDF)) {
@@ -377,7 +373,6 @@
       }
     }
 
-    // Verifica retorno desde Stripe sin limpiar la URL antes de consultar Firestore
     async function verificarRetornoDePago(user) {
       const params = new URLSearchParams(window.location.search);
       const itemPagado = params.get('item');
@@ -385,7 +380,6 @@
       
       if (pagoExitoso !== 'true' || !itemPagado || !baseDatosPDF[itemPagado]) return;
 
-      // Desplegamos el visor en estado de carga inmediatamente
       abrirVisorPDF(itemPagado);
 
       let intentos = 0;
@@ -395,7 +389,7 @@
           const snap = await getDoc(doc(db, 'compras', `${user.uid}_${itemPagado}`));
           if (snap.exists() && snap.data().activo === true) {
             clearInterval(intervalo);
-            window.history.replaceState({}, document.title, window.location.pathname); // Limpieza de URL segura
+            window.history.replaceState({}, document.title, window.location.pathname);
             await actualizarCandados(user);
             abrirVisorPDF(itemPagado); 
           } else if (intentos >= 10) {
@@ -412,13 +406,11 @@
       }, 1000);
     }
 
-    // Abre el visor PDF sincronizando Firebase con la interfaz tradicional
     window.abrirVisorPDF = async function(idRecurso) {
       const modal = document.getElementById('pdfModal');
       const visor = document.getElementById('pdfVisor');
       const acciones = document.getElementById('pdfAcciones');
 
-      // Comprobación cruzada (Revisa el botón de Login y el localStorage tradicional)
       const loginBtn = document.getElementById("loginBtn");
       const tieneSesionNavbar = loginBtn && loginBtn.style.display === "none";
 
@@ -437,9 +429,17 @@
         </div>`;
 
       const user = await esperarUsuario();
-      // Si la carga asíncrona tarda pero el navbar dice que está logueado, usamos un fallback seguro del localStorage
-      const uidFinal = user ? user.uid : (localStorage.getItem("usuarioUid") || "anonimo");
+      
+      if (!user && tieneSesionNavbar) {
+        acciones.innerHTML = `
+          <div class="verificando">
+            <div class="spinner"></div>
+            <span>Sincronizando con Firebase... Da clic de nuevo en 2 segundos.</span>
+          </div>`;
+        return;
+      }
 
+      const uidFinal = user ? user.uid : (localStorage.getItem("usuarioUid") || "anonimo");
       const pdf = baseDatosPDF[idRecurso];
       if (!pdf) return;
 
@@ -464,7 +464,6 @@
           </a>`;
       } else {
         visor.src = pdf.preview;
-        // Inyectamos de forma segura el client_reference_id y itemId para el webhook serverless
         const urlConUsuario = pdf.stripeUrl !== '#'
           ? `${pdf.stripeUrl}?client_reference_id=${uidFinal}&metadata[itemId]=${idRecurso}`
           : '#';
