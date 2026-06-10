@@ -55,6 +55,7 @@ export default async function handler(req, res) {
     if (userId && itemId) {
       // Escribimos de forma definitiva el acceso premium del alumno
       await db.collection('compras').doc(`${userId}_${itemId}`).set({
+
         usuarioId: userId,  // Sincronizado con el estándar del frontend
         recursoId: itemId,  // Sincronizado con el estándar del frontend
         activo: true,
