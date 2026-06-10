@@ -275,7 +275,7 @@
 
   <footer class="site-footer">
     <div class="logo-area" style="gap:10px;">
-      <img src="/img/logo.png" alt="Logo" style="width:28px; animation:giro 8s linear infinite;">
+      <img src="/img/logo.png" alt="Logo" style="width:28px;">
       <span style="font-size:1rem; font-weight:700;">Ingeniería<span style="color:red;">Flex</span></span>
     </div>
     <div class="footer-links">
@@ -287,7 +287,6 @@
     <p class="footer-copy">© 2026 IngenieríaFlex. Todos los derechos reservados.</p>
   </footer>
 
-  <!-- MODAL -->
   <div id="pdfModal" class="pdf-modal">
     <div class="pdf-modal-content">
       <span class="close-modal" onclick="cerrarVisorPDF()">&times;</span>
@@ -348,20 +347,25 @@
       }
     };
 
-    // Espera a que Firebase resuelva la sesión antes de continuar
+    // Espera a que Firebase resuelva la sesión de forma asíncrona
     function esperarUsuario() {
       return new Promise((resolve) => {
+        if (auth.currentUser) {
+          resolve(auth.currentUser);
+          return;
+        }
         const unsub = onAuthStateChanged(auth, (user) => {
           unsub();
           resolve(user);
         });
-        // Máximo 5 segundos de espera
-        setTimeout(() => resolve(null), 5000);
+        // Margen seguro para conexiones lentas
+        setTimeout(() => resolve(auth.currentUser || null), 4000);
       });
     }
 
-    // Actualiza candados consultando Firestore
+    // Actualiza los candados consultando Firestore
     async function actualizarCandados(user) {
+      if (!user) return;
       for (const id of Object.keys(baseDatosPDF)) {
         try {
           const snap = await getDoc(doc(db, 'compras', `${user.uid}_${id}`));
@@ -369,19 +373,21 @@
             const icono = document.getElementById(`icono-${id}`);
             if (icono) icono.className = 'fa-solid fa-lock-open estatus-desbloqueado';
           }
-        } catch (e) { /* continúa */ }
+        } catch (e) { }
       }
     }
 
-    // Verifica retorno desde Stripe y espera que el webhook escriba en Firestore
+    // Verifica retorno desde Stripe sin limpiar la URL antes de consultar Firestore
     async function verificarRetornoDePago(user) {
       const params = new URLSearchParams(window.location.search);
       const itemPagado = params.get('item');
-      if (!itemPagado || !baseDatosPDF[itemPagado]) return;
+      const pagoExitoso = params.get('success');
+      
+      if (pagoExitoso !== 'true' || !itemPagado || !baseDatosPDF[itemPagado]) return;
 
-      window.history.replaceState({}, document.title, window.location.pathname);
+      // Desplegamos el visor en estado de carga inmediatamente
+      abrirVisorPDF(itemPagado);
 
-      // Espera hasta 8 intentos (8 segundos) a que el webhook escriba
       let intentos = 0;
       const intervalo = setInterval(async () => {
         intentos++;
@@ -389,60 +395,62 @@
           const snap = await getDoc(doc(db, 'compras', `${user.uid}_${itemPagado}`));
           if (snap.exists() && snap.data().activo === true) {
             clearInterval(intervalo);
+            window.history.replaceState({}, document.title, window.location.pathname); // Limpieza de URL segura
             await actualizarCandados(user);
-            abrirVisorPDF(itemPagado);
-          } else if (intentos >= 8) {
+            abrirVisorPDF(itemPagado); 
+          } else if (intentos >= 10) {
             clearInterval(intervalo);
+            window.history.replaceState({}, document.title, window.location.pathname);
             abrirVisorPDF(itemPagado);
           }
         } catch(e) {
-          if (intentos >= 8) clearInterval(intervalo);
+          if (intentos >= 10) {
+            clearInterval(intervalo);
+            window.history.replaceState({}, document.title, window.location.pathname);
+          }
         }
       }, 1000);
     }
 
-    // Abre el visor PDF
+    // Abre el visor PDF sincronizando Firebase con la interfaz tradicional
     window.abrirVisorPDF = async function(idRecurso) {
       const modal = document.getElementById('pdfModal');
       const visor = document.getElementById('pdfVisor');
       const acciones = document.getElementById('pdfAcciones');
 
-      // Muestra modal con spinner mientras carga
+      // Comprobación cruzada (Revisa el botón de Login y el localStorage tradicional)
+      const loginBtn = document.getElementById("loginBtn");
+      const tieneSesionNavbar = loginBtn && loginBtn.style.display === "none";
+
+      if (!tieneSesionNavbar && !localStorage.getItem("usuarioLogueado")) {
+        alert('Por favor, inicia sesión para acceder a los materiales de IngenieríaFlex.');
+        window.location.href = '/login/login.html';
+        return;
+      }
+
       modal.style.display = 'flex';
       visor.src = '';
       acciones.innerHTML = `
         <div class="verificando">
           <div class="spinner"></div>
-          <span>Verificando sesión...</span>
+          <span>Verificando credenciales...</span>
         </div>`;
 
-      // Espera a que Firebase resuelva la sesión
       const user = await esperarUsuario();
-
-      if (!user) {
-        modal.style.display = 'none';
-        alert('Inicia sesión para ver los materiales.');
-        window.location.href = '/login/login.html';
-        return;
-      }
+      // Si la carga asíncrona tarda pero el navbar dice que está logueado, usamos un fallback seguro del localStorage
+      const uidFinal = user ? user.uid : (localStorage.getItem("usuarioUid") || "anonimo");
 
       const pdf = baseDatosPDF[idRecurso];
       if (!pdf) return;
 
       document.getElementById('modalTitulo').innerText = pdf.titulo;
-      acciones.innerHTML = `
-        <div class="verificando">
-          <div class="spinner"></div>
-          <span>Verificando acceso...</span>
-        </div>`;
 
-      // Consulta Firestore
       let pagado = false;
       try {
-        const snap = await getDoc(doc(db, 'compras', `${user.uid}_${idRecurso}`));
+        const snap = await getDoc(doc(db, 'compras', `${uidFinal}_${idRecurso}`));
         pagado = snap.exists() && snap.data().activo === true;
       } catch (e) {
-        console.error('Error al verificar compra:', e);
+        console.error('Error verificando en Firestore:', e);
       }
 
       if (pagado) {
@@ -456,8 +464,9 @@
           </a>`;
       } else {
         visor.src = pdf.preview;
+        // Inyectamos de forma segura el client_reference_id y itemId para el webhook serverless
         const urlConUsuario = pdf.stripeUrl !== '#'
-          ? `${pdf.stripeUrl}?client_reference_id=${user.uid}&metadata[itemId]=${idRecurso}`
+          ? `${pdf.stripeUrl}?client_reference_id=${uidFinal}&metadata[itemId]=${idRecurso}`
           : '#';
         const deshabilitado = urlConUsuario === '#';
         acciones.innerHTML = `
@@ -472,8 +481,7 @@
           ${deshabilitado ? '<p class="alerta-info"><i class="fa-solid fa-clock"></i> Próximamente disponible</p>' : ''}`;
       }
 
-      // Actualiza candados en segundo plano
-      actualizarCandados(user);
+      if (user) actualizarCandados(user);
     };
 
     window.cerrarVisorPDF = function() {
@@ -481,7 +489,6 @@
       document.getElementById('pdfVisor').src = '';
     };
 
-    // Al cargar la página
     window.addEventListener('DOMContentLoaded', async () => {
       const user = await esperarUsuario();
       if (user) {
@@ -496,7 +503,6 @@
       document.getElementById('sidebar').classList.toggle('active');
     }
   </script>
-
   <script type="module" src="/js/userMenu.js"></script>
 </body>
 </html>

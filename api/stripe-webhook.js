@@ -1,6 +1,6 @@
 import Stripe from 'stripe';
 import { initializeApp, cert, getApps } from 'firebase-admin/app';
-import { getFirestore } from 'firebase-admin/firestore';
+import { getFirestore, FieldValue } from 'firebase-admin/firestore';
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
@@ -16,6 +16,7 @@ if (!getApps().length) {
 
 const db = getFirestore();
 
+// Es crucial deshabilitar el bodyParser en Vercel para procesar firmas de webhooks
 export const config = { api: { bodyParser: false } };
 
 async function getRawBody(req) {
@@ -41,26 +42,30 @@ export default async function handler(req, res) {
       process.env.STRIPE_WEBHOOK_SECRET
     );
   } catch (err) {
-    console.error('Firma inválida:', err.message);
+    console.error('❌ Firma de webhook inválida:', err.message);
     return res.status(400).send(`Webhook Error: ${err.message}`);
   }
 
+  // Escuchamos el evento de pago completado en Stripe Checkout
   if (event.type === 'checkout.session.completed') {
     const session = event.data.object;
     const userId = session.client_reference_id;
     const itemId = session.metadata?.itemId;
 
     if (userId && itemId) {
+      // Escribimos de forma definitiva el acceso premium del alumno
       await db.collection('compras').doc(`${userId}_${itemId}`).set({
-        userId,
-        itemId,
+        usuarioId: userId,  // Sincronizado con el estándar del frontend
+        recursoId: itemId,  // Sincronizado con el estándar del frontend
+        activo: true,
         sessionId: session.id,
-        fechaCompra: new Date().toISOString(),
-        activo: true
+        idTransaccion: session.payment_intent || session.id,
+        fechaCompra: FieldValue.serverTimestamp() // Marca de tiempo oficial del servidor
       });
-      console.log(`Compra guardada: ${userId} → ${itemId}`);
+      console.log(`✅ ¡Compra procesada e indexada con éxito!: ${userId} → ${itemId}`);
     }
   }
 
+  // Respuesta obligatoria para que Stripe no intente reenviar el evento
   res.status(200).json({ received: true });
 }
