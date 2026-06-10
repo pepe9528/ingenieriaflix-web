@@ -325,9 +325,9 @@
           <p class="alerta-premium">
             <i class="fa-solid fa-eye"></i> Estás viendo una vista previa limitada a las 3 primeras páginas.
           </p>
-          <button id="btnPasarela" class="btn-pagar" onclick="procesarPagoSimulado()">
+          <a id="btnPasarela" class="btn-pagar" href="#" target="_blank" rel="noopener noreferrer">
             <i class="fa-solid fa-credit-card"></i> Desbloquear Todo y Activar Descarga
-          </button>
+          </a>
         </div>
 
         <div id="wrapperPagado" style="display: none;">
@@ -350,41 +350,42 @@
       document.getElementById("sidebar").classList.toggle("active");
     }
 
-    // 2. Base de datos con las rutas a tus archivos
+    // 2. Base de datos con las rutas y enlaces de cobro reales de Stripe
     const baseDatosPDF = {
       'algebra': {
         titulo: 'Álgebra desde Cero',
         preview: '/contenido/algebra-preview.pdf',
-        completo: '/contenido/algebra-completo.pdf'
+        completo: '/contenido/algebra-completo.pdf',
+        stripeUrl: 'https://buy.stripe.com/test_4gM14gbp5fnB9C9ckw2ZO00' // Tu link de Stripe conectado
       },
       'ecuaciones': {
         titulo: 'Ecuaciones de Primer Grado',
         preview: '/contenido/ecuaciones-preview.pdf',
-        completo: '/contenido/ecuaciones-completo.pdf'
+        completo: '/contenido/ecuaciones-completo.pdf',
+        stripeUrl: '#' // Añade el link aquí cuando crees este producto
       },
       'javascript': {
         titulo: 'JavaScript desde Cero',
         preview: '/contenido/javascript-preview.pdf',
-        completo: '/contenido/javascript-completo.pdf'
+        completo: '/contenido/javascript-completo.pdf',
+        stripeUrl: '#' // Añade el link aquí cuando crees este producto
       },
       'htmlcss': {
         titulo: 'HTML + CSS Profesional',
         preview: '/contenido/htmlcss-preview.pdf',
-        completo: '/contenido/htmlcss-completo.pdf'
+        completo: '/contenido/htmlcss-completo.pdf',
+        stripeUrl: '#' // Añade el link aquí cuando crees este producto
       }
     };
 
     let recursoActivoActual = '';
 
-    // === FUNCIÓN NUEVA: REVISAR SI EL USUARIO INICIÓ SESIÓN ===
+    // === FUNCIÓN: REVISAR SI EL USUARIO INICIÓ SESIÓN ===
     function usuarioTieneSesionActiva() {
-      // Revisa si tu menú ya ocultó el botón de "Iniciar sesión" (lo que significa que ya entró)
       const loginBtn = document.getElementById("loginBtn");
       if (loginBtn && loginBtn.style.display === "none") {
         return true;
       }
-      
-      // También revisa si guardaste al usuario en la memoria local (común en Firebase/Auth personalizados)
       return localStorage.getItem("usuarioLogueado") !== null;
     }
 
@@ -403,9 +404,8 @@
       });
     }
 
-    // 4. Lógica de apertura del visor (¡AHORA PROTEGIDA!)
+    // 4. Lógica de apertura del visor
     function abrirVisorPDF(idRecurso) {
-      // SI NO TIENE SESIÓN: Bloqueamos el visor y lo mandamos a registrarse
       if (!usuarioTieneSesionActiva()) {
         alert("¡Hola! Para ver las muestras gratuitas de nuestros PDFs premium, por favor inicia sesión o crea una cuenta. ¡Es gratis!");
         window.location.href = "/login/login.html";
@@ -422,6 +422,7 @@
       const wrapperBloqueado = document.getElementById("wrapperBloqueado");
       const wrapperPagado = document.getElementById("wrapperPagado");
       const btnDescargar = document.getElementById("btnDescargarReal");
+      const btnPasarela = document.getElementById("btnPasarela");
 
       // Comprobar si ya pagó el archivo completo
       const pagoVerificado = localStorage.getItem(`comprado_${idRecurso}`) === 'true';
@@ -436,6 +437,8 @@
         wrapperBloqueado.style.display = "block";
         wrapperPagado.style.display = "none";
         btnDescargar.href = "#";
+        // Asignamos dinámicamente tu link de Stripe al botón de pago
+        btnPasarela.href = pdf.stripeUrl;
       }
 
       document.getElementById("pdfModal").style.display = "flex";
@@ -446,18 +449,29 @@
       document.getElementById("pdfVisor").src = ""; 
     }
 
-    // 5. Simulación de respuesta exitosa de pasarela de pago
-    function procesarPagoSimulado() {
-      if (!recursoActivoActual) return;
-      
-      localStorage.setItem(`comprado_${recursoActivoActual}`, 'true');
-      actualizarInterfazCandados();
-      abrirVisorPDF(recursoActivoActual);
+    // === NUEVA FUNCIÓN AUTOMÁTICA: COMPROBAR RETORNO DE STRIPE ===
+    // En la configuración de tu Payment Link de Stripe, pon que al terminar redirija a:
+    // http://127.0.0.1:5500/biblioteca.html?success=true&item=algebra
+    function verificarRetornoDePago() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const pagoExitoso = urlParams.get('success');
+      const itemPagado = urlParams.get('item');
+
+      if (pagoExitoso === 'true' && itemPagado && baseDatosPDF[itemPagado]) {
+        // Guardamos de forma segura el acceso permanente
+        localStorage.setItem(`comprado_${itemPagado}`, 'true');
+        actualizarInterfazCandados();
+        
+        // Limpiamos la URL para estética y abrimos el visor con el contenido premium
+        window.history.replaceState({}, document.title, window.location.pathname);
+        abrirVisorPDF(itemPagado);
+      }
     }
 
     // Comprobación inicial al cargar la ventana
     window.addEventListener('DOMContentLoaded', () => {
       actualizarInterfazCandados();
+      verificarRetornoDePago(); // Escucha si el cliente viene regresando de pagar
     });
   </script>
   <script type="module" src="/js/userMenu.js"></script>
