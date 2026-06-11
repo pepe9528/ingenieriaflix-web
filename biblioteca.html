@@ -144,14 +144,16 @@
     .exito-scene {
       width: 100%;
       display: flex;
-      flex-direction: column;
+      flex-direction: row;
       align-items: center;
       justify-content: center;
-      padding: 1.5rem 1rem;
+      gap: 1.2rem;
+      padding: 1rem 1.2rem;
       position: relative;
       overflow: hidden;
       background: #0a0a0f;
       border-radius: 14px;
+      flex-wrap: wrap;
     }
     .exito-particles { position: absolute; inset: 0; pointer-events: none; }
     .exito-particle {
@@ -167,18 +169,18 @@
       90%  { opacity: 0.6; }
       100% { transform: translateY(-120%) scale(1.5); opacity: 0; }
     }
-    .exito-shield { position: relative; margin-bottom: 1rem; animation: ep-lev 3s ease-in-out infinite; }
+    .exito-shield { position: relative; flex-shrink: 0; animation: ep-lev 3s ease-in-out infinite; }
     @keyframes ep-lev {
       0%,100% { transform: translateY(0); }
-      50%     { transform: translateY(-7px); }
+      50%     { transform: translateY(-5px); }
     }
     .exito-ring {
-      position: absolute; inset: -14px; border-radius: 50%;
+      position: absolute; inset: -10px; border-radius: 50%;
       border: 2px solid rgba(0,220,130,0.35);
       animation: ep-pulse 2s ease-in-out infinite;
     }
     .exito-ring2 {
-      position: absolute; inset: -26px; border-radius: 50%;
+      position: absolute; inset: -20px; border-radius: 50%;
       border: 1px solid rgba(0,220,130,0.15);
       animation: ep-pulse 2s ease-in-out infinite 0.5s;
     }
@@ -187,26 +189,29 @@
       50%     { transform: scale(1.08); opacity:0.4; }
     }
     .exito-circulo {
-      width: 76px; height: 76px; border-radius: 50%;
+      width: 58px; height: 58px; border-radius: 50%;
       background: linear-gradient(135deg, #00dc82, #00b368);
       display: flex; align-items: center; justify-content: center;
-      box-shadow: 0 0 36px rgba(0,220,130,0.4), 0 6px 24px rgba(0,0,0,0.5);
+      box-shadow: 0 0 28px rgba(0,220,130,0.4), 0 4px 16px rgba(0,0,0,0.5);
       position: relative; z-index: 1;
     }
     .exito-check { stroke-dasharray: 60; stroke-dashoffset: 60; animation: ep-check 0.6s ease forwards 0.2s; }
     @keyframes ep-check { to { stroke-dashoffset: 0; } }
+    .exito-info { display: flex; flex-direction: column; gap: 2px; flex: 1; min-width: 160px; }
     .exito-titulo {
-      font-size: 1.4rem; font-weight: 600; color: #fff;
-      margin: 0.75rem 0 0.25rem; text-align: center;
-      text-shadow: 0 4px 12px rgba(0,0,0,0.5);
-      animation: ep-up 0.4s ease forwards; opacity: 0; transform: translateY(10px);
+      font-size: 1.1rem; font-weight: 600; color: #fff; margin: 0;
+      animation: ep-up 0.4s ease forwards; opacity: 0; transform: translateY(8px);
     }
     .exito-sub {
-      font-size: 0.85rem; color: rgba(255,255,255,0.45);
-      text-align: center; margin-bottom: 1.2rem;
-      animation: ep-up 0.4s ease forwards 0.1s; opacity: 0; transform: translateY(10px);
+      font-size: 0.78rem; color: rgba(255,255,255,0.45); margin: 0;
+      animation: ep-up 0.4s ease forwards 0.1s; opacity: 0; transform: translateY(8px);
+    }
+    .exito-dot-status {
+      font-size: 0.75rem; color: #00dc82; display: flex; align-items: center; gap: 4px; margin-top: 2px;
+      animation: ep-up 0.4s ease forwards 0.2s; opacity: 0; transform: translateY(8px);
     }
     @keyframes ep-up { to { opacity:1; transform:translateY(0); } }
+    .exito-card { display: none; }
     .exito-card {
       background: rgba(255,255,255,0.05);
       border: 1px solid rgba(255,255,255,0.1);
@@ -255,7 +260,7 @@
 <body>
 
   <header class="navbar">
-    <a href="index.html" class="back-btn">
+    <a href="index.html" class="back-btn" onclick="document.getElementById('pdfVisor').src=''; return true;">
       <i class="fa-solid fa-arrow-left"></i> Regresar
     </a>
     <div class="logo-area">
@@ -560,28 +565,23 @@
               <div class="exito-ring2"></div>
               <div class="exito-ring"></div>
               <div class="exito-circulo">
-                <svg width="38" height="38" viewBox="0 0 44 44" fill="none">
+                <svg width="30" height="30" viewBox="0 0 44 44" fill="none">
                   <path class="exito-check" d="M10 22 L18 31 L34 13"
                     stroke="#fff" stroke-width="3.5"
                     stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
               </div>
             </div>
-            <p class="exito-titulo">¡Acceso desbloqueado!</p>
-            <p class="exito-sub">Tu material ya está disponible</p>
-            <div class="exito-card">
-              <div class="exito-pdf-icon">PDF</div>
-              <div>
-                <p class="exito-pdf-nombre">${pdf.titulo}</p>
-                <p class="exito-pdf-status">
-                  <span class="exito-dot"></span> Listo para leer y descargar
-                </p>
-              </div>
+            <div class="exito-info">
+              <p class="exito-titulo">¡Acceso desbloqueado!</p>
+              <p class="exito-sub">${pdf.titulo}</p>
+              <p class="exito-dot-status">
+                <span class="exito-dot"></span> Listo para leer y descargar
+              </p>
             </div>
-            <a href="${pdf.completo}" class="btn-descargar" download>
-              <i class="fa-solid fa-download"></i> Descargar PDF Completo
+            <a href="${pdf.completo}" class="btn-descargar" download style="flex-shrink:0; animation: ep-up 0.4s ease forwards 0.3s; opacity:0;">
+              <i class="fa-solid fa-download"></i> Descargar
             </a>
-            <p class="exito-nota">Acceso permanente · Solo para tu cuenta</p>
           </div>`;
         setTimeout(() => {
           const colors = ['#00dc82','#00b368','#ffffff','#a78bfa','#38bdf8'];
@@ -618,6 +618,10 @@
       document.getElementById('pdfModal').style.display = 'none';
       document.getElementById('pdfVisor').src = '';
     };
+
+    window.addEventListener('beforeunload', () => {
+      document.getElementById('pdfVisor').src = '';
+    });
 
     window.addEventListener('DOMContentLoaded', async () => {
       const user = await esperarUsuario();
