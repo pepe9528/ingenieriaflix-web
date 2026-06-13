@@ -393,7 +393,7 @@
       <span class="close-modal" onclick="cerrarVisorPDF()">&times;</span>
       <h3 id="modalTitulo">Título del Documento</h3>
       <div class="pdf-frame-container">
-        <iframe id="pdfVisor" src="" width="100%" height="480px" style="border:none;"></iframe>
+        <embed id="pdfVisor" src="" type="application/pdf" width="100%" height="480px" style="border:none; border-radius:8px;">
       </div>
       <div class="pdf-acciones" id="pdfAcciones"></div>
     </div>
@@ -424,9 +424,9 @@
     const baseDatosPDF = {
       algebra: {
         titulo: 'Álgebra desde Cero',
-        preview: 'https://docs.google.com/viewer?url=https://ingenieriaflix-web.vercel.app/contenido/algebra-preview.pdf&embedded=true',
+        preview: '/contenido/algebra-preview.pdf',
         completo: '/contenido/algebra-completo.pdf',
-        stripeUrl: 'https://buy.stripe.com/8x23co5angAC0IdbEY93y02'
+        stripeUrl: 'https://buy.stripe.com/9B614g5andoq4YtgZi93y00'
       },
       ecuaciones: {
         titulo: 'Ecuaciones de Primer Grado',
