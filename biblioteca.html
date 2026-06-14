@@ -211,35 +211,8 @@
       animation: ep-up 0.4s ease forwards 0.2s; opacity: 0; transform: translateY(8px);
     }
     @keyframes ep-up { to { opacity:1; transform:translateY(0); } }
-    .exito-card { display: none; }
-    .exito-card {
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 12px; padding: 0.85rem 1.2rem;
-      display: flex; align-items: center; gap: 0.85rem;
-      margin-bottom: 1.2rem; min-width: 260px;
-      animation: ep-up 0.4s ease forwards 0.2s; opacity: 0; transform: translateY(10px);
-      position: relative; overflow: hidden;
-    }
-    .exito-card::before {
-      content: '';
-      position: absolute; top:0; left:0; right:0; height:1px;
-      background: linear-gradient(90deg, transparent, rgba(0,220,130,0.5), transparent);
-    }
-    .exito-pdf-icon {
-      width: 36px; height: 44px; border-radius: 6px;
-      background: #1a1a2e; border: 1px solid rgba(255,255,255,0.1);
-      display: flex; align-items: center; justify-content: center;
-      flex-shrink: 0; font-size: 9px; font-weight: 700; color: #ff4444; letter-spacing: 0.05em;
-    }
-    .exito-pdf-nombre { font-size: 0.88rem; font-weight: 600; color: #fff; margin-bottom: 2px; }
-    .exito-pdf-status { font-size: 0.75rem; color: #00dc82; display: flex; align-items: center; gap: 4px; }
     .exito-dot { width:6px; height:6px; border-radius:50%; background:#00dc82; animation: ep-blink 1.5s ease-in-out infinite; }
     @keyframes ep-blink { 0%,100%{opacity:1;} 50%{opacity:0.3;} }
-    .exito-nota {
-      font-size: 0.72rem; color: rgba(255,255,255,0.25); text-align: center; margin-top: 0.75rem;
-      animation: ep-up 0.4s ease forwards 0.4s; opacity:0; transform:translateY(10px);
-    }
 
     .site-footer {
       border-top: 1px solid #1a1a1a;
@@ -446,16 +419,15 @@
     import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
     import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
-    // ⚠️ Reemplaza con tu configuración real de Firebase
-   const firebaseConfig = {
-  apiKey: "AIzaSyBE-5eYcFj0f3T8JERm6tcGcofKruCICjs",
-  authDomain: "ingenieriaflix-634c5.firebaseapp.com",
-  projectId: "ingenieriaflix-634c5",
-  storageBucket: "ingenieriaflix-634c5.firebasestorage.app",
-  messagingSenderId: "96797128927",
-  appId: "1:96797128927:web:93d6e27a53e5652eb5116a",
-  measurementId: "G-B68TQ6PYXQ"
-};
+    const firebaseConfig = {
+      apiKey: "AIzaSyBE-5eYcFj0f3T8JERm6tcGcofKruCICjs",
+      authDomain: "ingenieriaflix-634c5.firebaseapp.com",
+      projectId: "ingenieriaflix-634c5",
+      storageBucket: "ingenieriaflix-634c5.firebasestorage.app",
+      messagingSenderId: "96797128927",
+      appId: "1:96797128927:web:93d6e27a53e5652eb5116a",
+      measurementId: "G-B68TQ6PYXQ"
+    };
 
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
@@ -466,19 +438,19 @@
         titulo: 'Álgebra desde Cero',
         preview: '/contenido/algebra-preview.pdf',
         completo: '/contenido/algebra-completo.pdf',
-        stripeUrl: 'https://buy.stripe.com/8x23co5angAC0IdbEY93y02'
+        stripeUrl: 'https://buy.stripe.com/9B614g5andoq4YtgZi93y00'
       },
       ecuaciones: {
         titulo: 'Ecuaciones de Primer Grado',
         preview: '/contenido/ecuaciones-preview.pdf',
         completo: '/contenido/ecuaciones-completo.pdf',
-        stripeUrl: 'https://buy.stripe.com/bJeaEQdGT3NQ4Yt10k93y03'
+        stripeUrl: '#'
       },
       javascript: {
         titulo: 'JavaScript desde Cero',
         preview: '/contenido/javascript-preview.pdf',
         completo: '/contenido/javascript-completo.pdf',
-        stripeUrl: 'https://buy.stripe.com/5kQ3coauH0BEbmR4cw93y04'
+        stripeUrl: '#'
       },
       htmlcss: {
         titulo: 'HTML + CSS Profesional',
@@ -520,7 +492,7 @@
       const params = new URLSearchParams(window.location.search);
       const itemPagado = params.get('item');
       const pagoExitoso = params.get('success');
-      
+
       if (pagoExitoso !== 'true' || !itemPagado || !baseDatosPDF[itemPagado]) return;
 
       abrirVisorPDF(itemPagado);
@@ -534,7 +506,7 @@
             clearInterval(intervalo);
             window.history.replaceState({}, document.title, window.location.pathname);
             await actualizarCandados(user);
-            abrirVisorPDF(itemPagado); 
+            abrirVisorPDF(itemPagado);
           } else if (intentos >= 10) {
             clearInterval(intervalo);
             window.history.replaceState({}, document.title, window.location.pathname);
@@ -551,7 +523,7 @@
 
     window.abrirVisorPDF = async function(idRecurso) {
       const modal = document.getElementById('pdfModal');
-      const visor = document.getElementById('pdfVisor');
+      // ✅ FIX: eliminadas las líneas "pdfVisor" que no existen y crasheaban todo
       const acciones = document.getElementById('pdfAcciones');
 
       const loginBtn = document.getElementById("loginBtn");
@@ -564,7 +536,7 @@
       }
 
       modal.style.display = 'flex';
-      visor.src = '';
+      // ✅ FIX: ya no hacemos visor.src = '' porque visor no existe
       acciones.innerHTML = `
         <div class="verificando">
           <div class="spinner"></div>
@@ -572,7 +544,7 @@
         </div>`;
 
       const user = await esperarUsuario();
-      
+
       if (!user && tieneSesionNavbar) {
         acciones.innerHTML = `
           <div class="verificando">
@@ -597,7 +569,7 @@
       }
 
       if (pagado) {
-        // Reemplazar portada por embed del PDF completo
+        // PDF completo desbloqueado
         document.getElementById('pdfPortadaContainer').innerHTML = `
           <embed src="${pdf.completo}" type="application/pdf" width="100%" height="480px" style="border:none; border-radius:8px;">
         `;
@@ -638,7 +610,7 @@
           }
         }, 50);
       } else {
-        // Llenar portada con título y botón de preview
+        // Portada con preview y botón de pago
         document.getElementById('portadaTitulo').innerText = pdf.titulo;
         document.getElementById('btnVerPreview').href = pdf.preview;
 
