@@ -260,7 +260,7 @@
 <body>
 
   <header class="navbar">
-    <a href="index.html" class="back-btn" onclick="document.getElementById('pdfPortadaContainer').innerHTML=''; return true;">
+    <a href="index.html" class="back-btn" onclick="document.getElementById('pdfVisor').src=''; return true;">
       <i class="fa-solid fa-arrow-left"></i> Regresar
     </a>
     <div class="logo-area">
@@ -392,48 +392,8 @@
     <div class="pdf-modal-content">
       <span class="close-modal" onclick="cerrarVisorPDF()">&times;</span>
       <h3 id="modalTitulo">Título del Documento</h3>
-      <div class="pdf-frame-container" id="pdfPortadaContainer">
-        <div id="pdfPortada" style="
-          width:100%; height:480px;
-          display:flex; flex-direction:column;
-          align-items:center; justify-content:center;
-          background: linear-gradient(135deg, #0d1b2a, #1a2e4a);
-          border-radius:8px; gap:1rem; position:relative; overflow:hidden;
-        ">
-          <div style="
-            position:absolute; inset:0;
-            background: radial-gradient(circle at 30% 50%, rgba(0,150,255,0.08), transparent 60%),
-                        radial-gradient(circle at 70% 50%, rgba(0,220,130,0.05), transparent 60%);
-          "></div>
-          <div style="
-            width:80px; height:100px; border-radius:8px;
-            background: linear-gradient(135deg, #1e3a5f, #2a5298);
-            border: 1px solid rgba(255,255,255,0.15);
-            display:flex; align-items:center; justify-content:center;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.4);
-            font-size:11px; font-weight:700; color:#ff6b6b; letter-spacing:0.1em;
-            position:relative; z-index:1;
-          ">PDF</div>
-          <p id="portadaTitulo" style="
-            color:#fff; font-size:1.2rem; font-weight:600;
-            text-align:center; max-width:280px; line-height:1.4;
-            position:relative; z-index:1; margin:0;
-          "></p>
-          <p style="color:rgba(255,255,255,0.4); font-size:0.8rem; position:relative; z-index:1; margin:0;">
-            Vista previa disponible
-          </p>
-          <a id="btnVerPreview" href="#" target="_blank" style="
-            background: linear-gradient(135deg, #0096ff, #0060cc);
-            color:#fff; border:none; padding:0.65rem 1.5rem;
-            border-radius:99px; font-size:0.875rem; font-weight:500;
-            cursor:pointer; text-decoration:none;
-            box-shadow: 0 4px 16px rgba(0,150,255,0.3);
-            position:relative; z-index:1;
-            display:flex; align-items:center; gap:0.5rem;
-          ">
-            <i class="fa-solid fa-eye"></i> Ver primeras páginas
-          </a>
-        </div>
+      <div class="pdf-frame-container">
+        <embed id="pdfVisor" src="" type="application/pdf" width="100%" height="480px" style="border:none; border-radius:8px;">
       </div>
       <div class="pdf-acciones" id="pdfAcciones"></div>
     </div>
@@ -597,10 +557,7 @@
       }
 
       if (pagado) {
-        // Reemplazar portada por embed del PDF completo
-        document.getElementById('pdfPortadaContainer').innerHTML = `
-          <embed src="${pdf.completo}" type="application/pdf" width="100%" height="480px" style="border:none; border-radius:8px;">
-        `;
+        visor.src = pdf.completo;
         acciones.innerHTML = `
           <div class="exito-scene" id="exitoScene">
             <div class="exito-particles" id="exitoParticles"></div>
@@ -638,15 +595,14 @@
           }
         }, 50);
       } else {
-        // Llenar portada con título y botón de preview
-        document.getElementById('portadaTitulo').innerText = pdf.titulo;
-        document.getElementById('btnVerPreview').href = pdf.preview;
-
         const urlConUsuario = pdf.stripeUrl !== '#'
           ? `${pdf.stripeUrl}?client_reference_id=${uidFinal}`
           : '#';
         const deshabilitado = urlConUsuario === '#';
         acciones.innerHTML = `
+          <p class="alerta-premium">
+            <i class="fa-solid fa-eye"></i> Vista previa — primeras 3 páginas
+          </p>
           <a class="btn-pagar"
              href="${urlConUsuario}"
              ${deshabilitado ? 'onclick="return false;" style="opacity:0.5;cursor:not-allowed;"' : 'target="_blank" rel="noopener noreferrer"'}>
@@ -660,27 +616,11 @@
 
     window.cerrarVisorPDF = function() {
       document.getElementById('pdfModal').style.display = 'none';
-      document.getElementById('pdfPortadaContainer').innerHTML = `
-        <div id="pdfPortada" style="
-          width:100%; height:480px;
-          display:flex; flex-direction:column;
-          align-items:center; justify-content:center;
-          background: linear-gradient(135deg, #0d1b2a, #1a2e4a);
-          border-radius:8px; gap:1rem; position:relative; overflow:hidden;
-        ">
-          <div style="position:absolute;inset:0;background:radial-gradient(circle at 30% 50%,rgba(0,150,255,0.08),transparent 60%),radial-gradient(circle at 70% 50%,rgba(0,220,130,0.05),transparent 60%);"></div>
-          <div style="width:80px;height:100px;border-radius:8px;background:linear-gradient(135deg,#1e3a5f,#2a5298);border:1px solid rgba(255,255,255,0.15);display:flex;align-items:center;justify-content:center;box-shadow:0 8px 32px rgba(0,0,0,0.4);font-size:11px;font-weight:700;color:#ff6b6b;letter-spacing:0.1em;position:relative;z-index:1;">PDF</div>
-          <p id="portadaTitulo" style="color:#fff;font-size:1.2rem;font-weight:600;text-align:center;max-width:280px;line-height:1.4;position:relative;z-index:1;margin:0;"></p>
-          <p style="color:rgba(255,255,255,0.4);font-size:0.8rem;position:relative;z-index:1;margin:0;">Vista previa disponible</p>
-          <a id="btnVerPreview" href="#" target="_blank" style="background:linear-gradient(135deg,#0096ff,#0060cc);color:#fff;border:none;padding:0.65rem 1.5rem;border-radius:99px;font-size:0.875rem;font-weight:500;cursor:pointer;text-decoration:none;box-shadow:0 4px 16px rgba(0,150,255,0.3);position:relative;z-index:1;display:flex;align-items:center;gap:0.5rem;">
-            <i class="fa-solid fa-eye"></i> Ver primeras páginas
-          </a>
-        </div>`;
+      document.getElementById('pdfVisor').src = '';
     };
 
     window.addEventListener('beforeunload', () => {
-      const container = document.getElementById('pdfPortadaContainer');
-      if (container) container.innerHTML = '';
+      document.getElementById('pdfVisor').src = '';
     });
 
     window.addEventListener('DOMContentLoaded', async () => {
