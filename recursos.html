@@ -22,6 +22,14 @@
       margin-bottom: 0.5rem;
       border-left: 4px solid red;
       padding-left: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .section-title i {
+      font-size: 1.4rem;
+      color: red;
     }
 
     .section-desc {
@@ -71,18 +79,8 @@
       flex-shrink: 0;
     }
 
-    .recurso-info h3 {
-      font-size: 1rem;
-      font-weight: 600;
-      color: #fff;
-      margin-bottom: 4px;
-    }
-
-    .recurso-info p {
-      font-size: 0.82rem;
-      color: #666;
-      line-height: 1.5;
-    }
+    .recurso-info h3 { font-size: 1rem; font-weight: 600; color: #fff; margin-bottom: 4px; }
+    .recurso-info p { font-size: 0.82rem; color: #666; line-height: 1.5; }
 
     .recurso-tag {
       display: inline-block;
@@ -95,13 +93,8 @@
       border: 1px solid rgba(255,0,0,0.15);
     }
 
-    .seccion-divider {
-      border: none;
-      border-top: 1px solid #1a1a1a;
-      margin: 2.5rem 0;
-    }
+    .seccion-divider { border: none; border-top: 1px solid #1a1a1a; margin: 2.5rem 0; }
 
-    /* Créditos */
     .creditos-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -122,11 +115,7 @@
       transition: all 0.2s;
     }
 
-    .credito-card:hover {
-      border-color: #333;
-      background: #111;
-      color: inherit;
-    }
+    .credito-card:hover { border-color: #333; background: #111; color: inherit; }
 
     .credito-icon {
       width: 38px;
@@ -141,19 +130,9 @@
       flex-shrink: 0;
     }
 
-    .credito-info h4 {
-      font-size: 0.9rem;
-      font-weight: 600;
-      color: #fff;
-      margin-bottom: 2px;
-    }
+    .credito-info h4 { font-size: 0.9rem; font-weight: 600; color: #fff; margin-bottom: 2px; }
+    .credito-info p { font-size: 0.75rem; color: #555; }
 
-    .credito-info p {
-      font-size: 0.75rem;
-      color: #555;
-    }
-
-    /* Aviso de créditos */
     .aviso-creditos {
       background: rgba(255,255,255,0.02);
       border: 1px solid #1a1a1a;
@@ -165,24 +144,10 @@
       align-items: flex-start;
     }
 
-    .aviso-creditos i {
-      color: #f59e0b;
-      font-size: 1.2rem;
-      margin-top: 2px;
-      flex-shrink: 0;
-    }
+    .aviso-creditos i { color: #f59e0b; font-size: 1.2rem; margin-top: 2px; flex-shrink: 0; }
+    .aviso-creditos p { font-size: 0.88rem; color: #888; line-height: 1.7; }
+    .aviso-creditos a { color: #f59e0b; }
 
-    .aviso-creditos p {
-      font-size: 0.88rem;
-      color: #888;
-      line-height: 1.7;
-    }
-
-    .aviso-creditos a {
-      color: #f59e0b;
-    }
-
-    /* Footer */
     .site-footer {
       border-top: 1px solid #1a1a1a;
       padding: 2rem 10%;
@@ -198,9 +163,7 @@
     .footer-links a:hover { color: #fff; }
     .footer-copy { color: #333; font-size: 0.8rem; }
 
-    @media(max-width:600px){
-      .section-title { font-size: 1.4rem; }
-    }
+    @media(max-width:600px){ .section-title { font-size: 1.4rem; } }
   </style>
 </head>
 <body>
@@ -237,23 +200,23 @@
     <div class="menu-btn" onclick="toggleMenu()">☰</div>
   </header>
 
- <div class="sidebar" id="sidebar">
-  <div class="close-btn" onclick="toggleMenu()">✕</div>
-  <div class="sidebar-logo">
-    <img src="/img/logo.png" alt="Logo">
-    <span>Ingeniería<em>Flex</em></span>
+  <div class="sidebar" id="sidebar">
+    <div class="close-btn" onclick="toggleMenu()">✕</div>
+    <div class="sidebar-logo">
+      <img src="/img/logo.png" alt="Logo">
+      <span>Ingeniería<em>Flex</em></span>
+    </div>
+    <a href="/index.html"><i class="fa-solid fa-house"></i> Inicio</a>
+    <a href="/catalogo.html"><i class="fa-solid fa-book"></i> Cursos</a>
+    <a href="/juegos.html"><i class="fa-solid fa-gamepad"></i> Juegos</a>
+    <a href="/recursos.html" class="active-link"><i class="fa-solid fa-folder"></i> Recursos</a>
+    <a href="/acerca.html"><i class="fa-solid fa-circle-info"></i> Acerca de</a>
   </div>
-  <a href="/index.html"><i class="fa-solid fa-house"></i> Inicio</a>
-  <a href="/catalogo.html"><i class="fa-solid fa-book"></i> Cursos</a>
-  <a href="/juegos.html"><i class="fa-solid fa-gamepad"></i> Juegos</a>
-  <a href="/recursos.html" class="active-link"><i class="fa-solid fa-folder"></i> Recursos</a>
-  <a href="/acerca.html"><i class="fa-solid fa-circle-info"></i> Acerca de</a>
-</div>
-  
+
   <div class="recursos-container">
 
     <!-- HERRAMIENTAS ONLINE -->
-    <h2 class="section-title">🛠️ Herramientas Online</h2>
+    <h2 class="section-title"><i class="fa-solid fa-wrench"></i> Herramientas Online</h2>
     <p class="section-desc">Calculadoras, simuladores y herramientas gratuitas útiles para ingenieros y estudiantes.</p>
 
     <div class="recursos-grid">
@@ -331,7 +294,7 @@
       </a>
 
       <a href="https://www.symbolab.com" target="_blank" class="recurso-card">
-        <div class="recurso-icon"><i class="fas fa-integral"></i></div>
+        <div class="recurso-icon"><i class="fas fa-infinity"></i></div>
         <div class="recurso-info">
           <h3>Symbolab</h3>
           <p>Resuelve ecuaciones, derivadas, integrales y álgebra lineal paso a paso.</p>
@@ -358,7 +321,7 @@
       </a>
 
       <a href="https://www.mathway.com/es" target="_blank" class="recurso-card">
-        <div class="recurso-icon"><i class="fas fa-square-root-variable"></i></div>
+        <div class="recurso-icon"><i class="fas fa-square-root-alt"></i></div>
         <div class="recurso-info">
           <h3>Mathway</h3>
           <p>Resuelve problemas de álgebra, trigonometría, cálculo y estadística al instante.</p>
@@ -371,86 +334,59 @@
     <hr class="seccion-divider">
 
     <!-- CRÉDITOS -->
-    <h2 class="section-title">🎬 Créditos a los Creadores</h2>
+    <h2 class="section-title"><i class="fa-solid fa-film"></i> Créditos a los Creadores</h2>
     <p class="section-desc">Todo el contenido de video de IngenieríaFlex pertenece a sus respectivos creadores en YouTube.</p>
 
     <div class="aviso-creditos">
       <i class="fas fa-triangle-exclamation"></i>
-      <p>IngenieríaFlex <strong>no es propietaria de ningún video</strong> presentado en esta plataforma. Todo el contenido audiovisual pertenece a sus respectivos creadores y canales de YouTube. Esta plataforma funciona como un directorio educativo que organiza y facilita el acceso a recursos públicos disponibles en YouTube. Si eres creador y deseas que tu contenido sea retirado, contáctanos en <a href="mailto:pepechuysantiago714@gmail.com">pepechuysantiago714@gmail.com</a>.</p>
+      <p>IngenieríaFlex <strong>no es propietaria de ningún video</strong> presentado en esta plataforma. Todo el contenido audiovisual pertenece a sus respectivos creadores y canales de YouTube. Esta plataforma funciona como un directorio educativo que organiza y facilita el acceso a recursos públicos disponibles en YouTube. Si eres creador y deseas que tu contenido sea retirado, <a href="/contacto.html">contáctanos aquí</a>.</p>
     </div>
 
     <div class="creditos-grid">
 
       <a href="https://www.youtube.com/@JulioProfe" target="_blank" class="credito-card">
         <div class="credito-icon"><i class="fab fa-youtube"></i></div>
-        <div class="credito-info">
-          <h4>JulioProfe</h4>
-          <p>Matemáticas y física</p>
-        </div>
+        <div class="credito-info"><h4>JulioProfe</h4><p>Matemáticas y física</p></div>
       </a>
 
       <a href="https://www.youtube.com/@Math2me" target="_blank" class="credito-card">
         <div class="credito-icon"><i class="fab fa-youtube"></i></div>
-        <div class="credito-info">
-          <h4>Math2Me</h4>
-          <p>Matemáticas en español</p>
-        </div>
+        <div class="credito-info"><h4>Math2Me</h4><p>Matemáticas en español</p></div>
       </a>
 
       <a href="https://www.youtube.com/@khanacademyespanol" target="_blank" class="credito-card">
         <div class="credito-icon"><i class="fab fa-youtube"></i></div>
-        <div class="credito-info">
-          <h4>Khan Academy Español</h4>
-          <p>Educación gratuita general</p>
-        </div>
+        <div class="credito-info"><h4>Khan Academy Español</h4><p>Educación gratuita general</p></div>
       </a>
 
       <a href="https://www.youtube.com/@HolaMundoDev" target="_blank" class="credito-card">
         <div class="credito-icon"><i class="fab fa-youtube"></i></div>
-        <div class="credito-info">
-          <h4>Hola Mundo</h4>
-          <p>Programación y desarrollo web</p>
-        </div>
+        <div class="credito-info"><h4>Hola Mundo</h4><p>Programación y desarrollo web</p></div>
       </a>
 
       <a href="https://www.youtube.com/@Fazt" target="_blank" class="credito-card">
         <div class="credito-icon"><i class="fab fa-youtube"></i></div>
-        <div class="credito-info">
-          <h4>Fazt</h4>
-          <p>Programación y tecnología</p>
-        </div>
+        <div class="credito-info"><h4>Fazt</h4><p>Programación y tecnología</p></div>
       </a>
 
       <a href="https://www.youtube.com/@midulive" target="_blank" class="credito-card">
         <div class="credito-icon"><i class="fab fa-youtube"></i></div>
-        <div class="credito-info">
-          <h4>midudev</h4>
-          <p>JavaScript y desarrollo web</p>
-        </div>
+        <div class="credito-info"><h4>midudev</h4><p>JavaScript y desarrollo web</p></div>
       </a>
 
       <a href="https://www.youtube.com/@EDteam" target="_blank" class="credito-card">
         <div class="credito-icon"><i class="fab fa-youtube"></i></div>
-        <div class="credito-info">
-          <h4>EDteam</h4>
-          <p>Programación en español</p>
-        </div>
+        <div class="credito-info"><h4>EDteam</h4><p>Programación en español</p></div>
       </a>
 
       <a href="https://www.youtube.com/@DoingProgramming" target="_blank" class="credito-card">
         <div class="credito-icon"><i class="fab fa-youtube"></i></div>
-        <div class="credito-info">
-          <h4>Doing Programming</h4>
-          <p>Programación y algoritmos</p>
-        </div>
+        <div class="credito-info"><h4>Doing Programming</h4><p>Programación y algoritmos</p></div>
       </a>
 
       <a href="https://www.youtube.com" target="_blank" class="credito-card">
         <div class="credito-icon"><i class="fab fa-youtube"></i></div>
-        <div class="credito-info">
-          <h4>Y muchos más...</h4>
-          <p>Todos los creadores de YouTube</p>
-        </div>
+        <div class="credito-info"><h4>Y muchos más...</h4><p>Todos los creadores de YouTube</p></div>
       </a>
 
     </div>
@@ -458,7 +394,7 @@
     <hr class="seccion-divider">
 
     <!-- SITIOS RECOMENDADOS -->
-    <h2 class="section-title">🌐 Sitios Educativos Recomendados</h2>
+    <h2 class="section-title"><i class="fa-solid fa-globe"></i> Sitios Educativos Recomendados</h2>
     <p class="section-desc">Otros sitios donde puedes seguir aprendiendo de forma gratuita.</p>
 
     <div class="recursos-grid">
@@ -511,13 +447,12 @@
     <div class="footer-links">
       <a href="/privacidad.html">Política de Privacidad</a>
       <a href="/terminos.html">Términos de Uso</a>
-      <a href="mailto:pepechuysantiago714@gmail.com">Contacto</a>
+      <a href="/contacto.html">Contacto</a>
     </div>
     <p class="footer-copy">© 2026 IngenieríaFlex. Todos los derechos reservados.</p>
   </footer>
 
   <div id="sidebarOverlay"></div>
-
   <script src="js/app.js"></script>
   <script type="module" src="js/userMenu.js"></script>
 
